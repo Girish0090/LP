@@ -1,0 +1,221 @@
+import { Component, OnInit } from '@angular/core';
+import { AppserviceService } from '../appservice.service';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { Validators,FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
+declare var filter: any;
+declare var $: any;
+
+@Component({
+  selector: 'app-listing',
+  templateUrl: './listing.component.html',
+  styleUrls: ['./listing.component.css']
+})
+export class ListingComponent implements OnInit {
+  projectList: any;
+  Category: any;
+  isLoading: boolean = true;
+  imageUrl = environment.imageurl;
+  p: number = 1;
+  selectedMin:any;
+  selectedMax: any;
+  City: any;
+  submitForm:boolean = false;
+
+  constructor(private service: AppserviceService, private route: ActivatedRoute,private fb:FormBuilder) {
+    this.route.paramMap.subscribe((params: any) => {
+      this.Category = params.get('type');
+      this.City = params.get('city');
+      if (this.Category) {
+        this.getProjectByCat();
+      }else if(this.City){
+        this.getProjectByCity();
+      } else{
+        this.getAppProjects();
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+    window.scroll(0, 0);
+    filter();
+  }
+
+  getProjectByCat() {
+    this.service.get("getPropertyByCat/" + this.Category).subscribe((res: any) => {
+      if (res.success == true) {
+        this.projectList = res.data;
+        console.log(this.projectList)
+      }
+    }, error => {
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
+    })
+  }
+
+  getAppProjects() {
+    this.service.get("getAllProperty").subscribe((res: any) => {
+      if (res.success == true) {
+        this.projectList = res.data;
+      }
+    }, error => {
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
+    })
+  }
+
+  filterbycategory(event: any) {
+    this.isLoading = true;
+    if (event.target.value == "Residential" || event.target.value == "Commercial" || event.target.value == "Industrial" || event.target.value == "Villa") {
+      this.service.get("getFilterProperty?categoryName=" + event.target.value).subscribe((res: any) => {
+        if (res.success == true) {
+          this.projectList = res.data;
+          this.isLoading = false;
+        }
+      }, error => {
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+        this.isLoading = false;
+      })
+    } else if (event.target.value == "Sold" || event.target.value == "Sale") {
+      this.service.get("getFilterProperty?status=" + event.target.value).subscribe((res: any) => {
+        if (res.success == true) {
+          this.projectList = res.data;
+          this.isLoading = false;
+        }
+      }, error => {
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+        this.isLoading = false;
+      })
+    } else{
+      const target = event.target as HTMLSelectElement;
+      const selectedOption = target.options[target.selectedIndex];
+
+      if (selectedOption) {
+        const minAttribute = selectedOption.getAttribute('min');
+        const maxAttribute = selectedOption.getAttribute('max');
+
+        if (minAttribute !== null && maxAttribute !== null) {
+          this.selectedMin = parseInt(minAttribute);
+          this.selectedMax = parseInt(maxAttribute);
+        }
+        this.service.get("getFilterProperty?minPrice="+this.selectedMin+"&maxPrice="+this.selectedMax).subscribe((res: any) => {
+          if (res.success == true) {
+            this.projectList = res.data;
+            this.isLoading = false;
+          }
+        }, error => {
+          Swal.fire({
+            title: 'Error',
+            text: error.message,
+            icon: 'error',
+          });
+          this.isLoading = false;
+        })
+      } else {
+        this.selectedMin = null;
+        this.selectedMax = null;
+        this.isLoading = false;
+      }
+    }
+  }
+
+  getSorting(event:any){
+    this.isLoading = true;
+    if(event == "Relevance"){
+      this.getAppProjects();
+      this.isLoading = false;
+    }else{
+      this.service.get("getSortProperty?order="+event).subscribe((res: any) => {
+        if (res.success == true) {
+          this.projectList = res.data;
+          this.isLoading = false;
+        }
+      }, error => {
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+        this.isLoading = false;
+      })
+    }
+  }
+
+  getProjectByCity(){
+    this.service.get("getPropertyByCity/"+this.City).subscribe((res: any) => {
+      if (res.success == true) {
+        this.projectList = res.data;
+        console.log(this.projectList)
+      }
+    }, error => {
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
+    })
+  }
+
+  contactProject = this.fb.group({
+    name:["",[Validators.required]],
+    email:["",[Validators.required,Validators.email]],
+    mobile:["",[Validators.required]],
+    projectID:["",[Validators.required]]
+  })
+
+  ProjectContact(id:any){
+    this.contactProject.patchValue({projectID:id});
+  }
+  
+  contact(){
+    if(this.contactProject.valid){
+      this.isLoading = true;
+      this.service.post("projectContact/",this.contactProject.value).subscribe((res: any) => {
+        if (res.success == true) {
+          Swal.fire({
+            title: 'Success',
+            text: res.message,
+            icon: 'success',
+          });
+          $("#login").modal("hide");
+          this.isLoading = false;
+        }else{
+          Swal.fire({
+            title: 'Error',
+            text: res.message,
+            icon: 'error',
+          });
+        }
+      }, error => {
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+        this.isLoading = false;
+      })
+    }else{
+      this.submitForm = true;
+      this.isLoading = false;
+    }
+  }
+
+}

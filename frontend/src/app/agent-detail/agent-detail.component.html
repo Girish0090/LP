@@ -1,0 +1,120 @@
+<!-- ============================ Page Title Start================================== -->
+<div class="page-title" style="background:#f4f4f4 url(assets/img/slider-1.jpg);" data-overlay="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <div class="breadcrumbs-wrap position-relative z-1">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Agent Detail</li>
+                    </ol>
+                    <h2 class="breadcrumb-title">{{agentDetail?.userName}} - {{agentDetail?.address}}</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================ Page Title End ================================== -->
+
+<!-- ============================ About Agency ================================== -->
+<section class="gray">
+    <div class="container">
+        <div class="row">
+
+            <!-- property main detail -->
+            <div class="col-lg-8 col-md-12 col-sm-12">
+
+                <!-- Single Block Wrap -->
+                <div class="property_block_wrap">
+
+                    <div class="property_block_wrap_header">
+                        <h4 class="property_block_title">Agent Info</h4>
+                    </div>
+
+                    <div class="block-body">
+                        <p>{{agentDetail?.description}}</p>
+                        <ul class="social-icons">
+                            <li><a class="facebook"><i class="ti-facebook"></i></a></li>
+                            <li><a class="twitter"><i class="ti-twitter"></i></a></li>
+                            <li><a class="linkedin"><i class="ti-instagram"></i></a></li>
+                            <li><a class="linkedin"><i class="ti-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="_prtis_list mb-4">
+                    <div class="_prtis_list_header">
+                        <ul>
+                            <li>
+                                <div class="content_thumb"><i class="fa fa-envelope"></i></div>
+                                <div class="content">
+                                    <span class="dark">{{agentDetail?.email}}</span>
+                                    <span class="title">Email</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="content_thumb"><i class="fa fa-phone"></i></div>
+                                <div class="content">
+                                    <span class="dark">{{agentDetail?.mobile}}</span>
+                                    <span class="title">Call Me</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="content_thumb"><i class="fa fa-map-marker-alt"></i></div>
+                                <div class="content">
+                                    <span class="dark">{{agentDetail?.address}}</span>
+                                    <span class="title">Location</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="_prtis_list_body">
+                        <ul class="deatil_features">
+                            <li><strong>{{agentDetail?.userName}}</strong>Name</li>
+                            <li><strong>{{agentDetail?.email}}</strong>Email</li>
+                            <li><strong>{{agentDetail?.mobile}}</strong>Call</li>
+                            <li><strong>{{agentDetail?.city}}</strong>City</li>
+                            <li><strong>{{agentDetail?.state}}</strong>State</li>
+                            <li><strong>India</strong>Country</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- property Sidebar -->
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="property-sidebar lg-mt-0 mt-4">
+
+                    <!-- Agent Detail -->
+                    <div class="sider_blocks_wrap">
+                        <div class="side-booking-body">
+                            <div class="agent-_blocks_title">
+
+                                <div class="agent-_blocks_thumb"><img src="{{imageUrl}}{{agentDetail?.image?.path}}" alt=""></div>
+                                <div class="agent-_blocks_caption">
+                                    <h4>{{agentDetail?.userName}}</h4>
+                                    <span class="approved-agent"><i class="ti-check"></i>approved</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <a href="#" class="agent-btn-contact" data-bs-toggle="modal" data-bs-target="#autho-message"><i class="ti-comment-alt"></i>Message</a>
+
+                            <span id="number">
+                                    <span><i class="ti-headphone-alt"></i><a class="see">+91 {{agentDetail?.mobile}} Show</a></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ============================ About Agency End ================================== -->
+<app-loader *ngIf="isLoading"></app-loader>

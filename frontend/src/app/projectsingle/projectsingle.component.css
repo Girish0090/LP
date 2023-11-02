@@ -1,0 +1,8 @@
+::ng-deep .modal-backdrop{
+    scroll-behavior: smooth;
+}
+
+.like{
+    height: 382px !important;
+    width: 100% !important;
+}

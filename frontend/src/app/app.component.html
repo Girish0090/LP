@@ -1,0 +1,28 @@
+<div [@myAnimation]="o.isActivated ? o.activatedRoute : ''" [className]="!display?'d-none':''">
+
+
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <!-- <div class="preloader"></div> -->
+
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+
+        <app-header></app-header>
+        <router-outlet #o="outlet"></router-outlet>
+        <div id="preloader" [ngStyle]="{'display': waitLoader ? 'block' : 'none'}">
+            <ngx-ui-loader fgsColor="#fff6d4" blur="100" [fgsSize]="100" pbColor="green"
+                fgsType="square-jelly-box"></ngx-ui-loader>
+        </div>
+        <app-footer></app-footer>
+
+        <a id="back2Top" class="top-scroll" title="Back to top"><i class="ti-arrow-up"></i></a>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+
+</div>

@@ -1,0 +1,25 @@
+.point{
+    cursor: pointer;
+}
+
+::ng-deep .modal-body {   
+    padding: 0em 0em !important;
+}
+
+::ng-deep .resp_log_caption{
+    padding: 1rem 2.5rem !important;
+}
+
+@media (max-width: 700px){
+    ::ng-deep .modal-dialog {
+        padding-top: 115px !important;
+
+    }
+}
+
+@media (min-width: 992px){
+    ::ng-deep .modal-dialog {
+        margin: 30px auto !important;
+    }
+}
+  

@@ -1,0 +1,704 @@
+<!-- ============================ Hero Banner  Start================================== -->
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" *ngFor="let slideItem of sliderList">
+            <img src="{{imageUrl}}{{slideItem.image.path}}" class="d-block w-100" alt="slider image" height="650px"
+                data-bs-interval="10000">
+        </div>
+
+        <div class="image-cover hero_banner">
+            <div class="container">
+
+                <h1 class="big-header-capt mb-0 text-light">Search Your Dream Home</h1>
+                <p class="text-center text-light">Find new & featured property located in your local city.</p>
+                <!-- Type -->
+                <div class="row justify-content-center mt-5">
+                    <div class="col-xl-4 col-lg-4 col-md-12">
+                        <div class="full_search_box nexio_search lightanic_search hero_search-radius modern">
+                            <div class="search_hero_wrapping">
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label>City/Street</label>
+                                            <div class="input-with-icon">
+                                                <select (change)="getProjectByCity($event)" class="form-control">
+                                                    <option value="" selected disabled>Location</option>
+                                                    <option value="Jaipur">Jaipur</option>
+                                                    <option value="Ajmer">Ajmer</option>
+                                                    <option value="Mumbai">Mumbai</option>
+                                                    <option value="Kota">Kota</option>
+                                                    <option value="Indore">Indore</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Property Type</label>
+                                            <div class="input-with-icon">
+                                                <select id="ptypes" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">All categories</option>
+                                                    <option value="2">Apartment</option>
+                                                    <option value="3">Villas</option>
+                                                    <option value="4">Commercial</option>
+                                                    <option value="5">Offices</option>
+                                                    <option value="6">Garage</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="form-group none">
+                                            <label>Price Range</label>
+                                            <div class="input-with-icon">
+                                                <select id="price" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">From 40,000 To 10m</option>
+                                                    <option value="2">From 60,000 To 20m</option>
+                                                    <option value="3">From 70,000 To 30m</option>
+                                                    <option value="3">From 80,000 To 40m</option>
+                                                    <option value="3">From 90,000 To 50m</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- <div class="col-lg-2 col-md-2 col-sm-12 small-padd p-0">
+                                        <div class="form-group none">
+                                            <a class="btn btn-danger full-width"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div> -->
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- ============================ Hero Banner End ================================== -->
+
+<!-- ============================ Agent section start ================================== -->
+<section class="min">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="sec-heading">
+                    <h2>Facilities for project</h2>
+                    <p>It is a company for having scope of providing services of To carry on the business of buying, selling, construction, maintenance, development, advertising, marketing of any real estate projects, lands, villas, houses, flats, apartments, offices, bungalows, farm houses, resorts, other properties, etc..</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+
+            <!-- Single Category -->
+            <div class="point col-lg-6 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a (click)="getAllAgent('VastuExpert')">
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <img src="assets/agentimage/vastue.webp" alt="Vastu Expert">
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Vastu Expert</h5>
+                                <!-- <span>22 Properties</span> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Category -->
+            <div class="point col-lg-6 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a (click)="getAllAgent('Architects')">
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <img src="assets/agentimage/architect.webp" alt="Vastu Expert">
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Architects</h5>
+                                <!-- <span>22 Properties</span> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house-fire text-seegreen"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Home & Villas</h5>
+                                <span>22 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-igloo text-danger"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Garages</h5>
+                                <span>22 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house-laptop text-primary"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Office & Studio</h5>
+                                <span>72 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-building-circle-check text-orange"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Apartment</h5>
+                                <span>102 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+</section>
+<!-- ============================ Agent section end ================================== -->
+
+
+<!-- ============================ Property Category Start ================================== -->
+<section class="min">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-8">
+                <div class="sec-heading center">
+                    <h2>Choose Your Category</h2>
+                    <p>It is a company for having scope of providing services of To carry on the business of buying,
+                        selling, construction, maintenance, development, advertising, marketing of any real estate
+                        projects, lands, villas, houses, flats, apartments, offices, bungalows, farm houses, resorts,
+                        other properties, etc..</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+
+            <!-- Single Category -->
+            <div class="point col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a (click)="getProjectbycat('Residential')">
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house text-info"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Residential plots</h5>
+                                <!-- <span>22 Properties</span> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Category -->
+            <div class="point col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a (click)="getProjectbycat('Commercial')">
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house-circle-check text-warning"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Commercial plots</h5>
+                                <!-- <span>22 Properties</span> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Category -->
+            <div class="point col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a (click)="getProjectbycat('Industrial')">
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house-crack text-purple"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Industrial plots</h5>
+                                <!-- <span>79 Properties</span> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Category -->
+            <div class="point col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a (click)="getProjectbycat('Villa')">
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-building text-success"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Villas</h5>
+                                <!-- <span>85 Properties</span> -->
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house-fire text-seegreen"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Home & Villas</h5>
+                                <span>22 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-igloo text-danger"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Garages</h5>
+                                <span>22 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-house-laptop text-primary"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Office & Studio</h5>
+                                <span>72 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+            <!-- Single Category -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="_category_box">
+                    <a>
+                        <div class="_category_elio">
+                            <div class="_category_thumb">
+                                <i class="fa-solid fa-building-circle-check text-orange"></i>
+                            </div>
+                            <div class="_category_caption">
+                                <h5>Apartment</h5>
+                                <span>102 Properties</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+</section>
+<!-- ============================ Property Category End ================================== -->
+
+<!-- ============================ Properties Start ================================== -->
+<section class="pt-0">
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-8">
+                <div class="sec-heading center">
+                    <h2>Our Projects</h2>
+                    <p>Gokul Kripa Sales & Marketing Private Limited is a prestigious real estate Company registered
+                        under Companies Act, 2013 which was launched on 29.05.2021.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="item-slide space">
+                <!-- Single Property -->
+                <div class="col-lg-4 col-md-6 col-sm-12 single_items" style="height: 480px;"
+                    *ngFor="let item of allProjects">
+                    <div class="property-listing property-2 h-100">
+
+                        <div class="listing-img-wrapper">
+                            <div class="_exlio_125">For {{item.status}}</div>
+                            <div class="list-img-slide">
+                                <div class="click">
+                                    <div><a><img src="{{imageUrl}}{{item.image[0].path}}" class="img-fluid mx-auto"
+                                                alt="" /></a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listing-detail-wrapper">
+                            <div class="listing-short-detail-wrap">
+                                <!-- <div class="_card_list_flex mb-2">
+                                <div class="_card_flex_01">
+                                    <span class="_list_blickes _netork">4 Network</span>
+                                    <span class="_list_blickes types">Condos</span>
+                                </div>
+                                <div class="_card_flex_last">
+                                    <h6 class="listing-card-info-price mb-0">$6,700</h6>
+                                </div>
+                            </div> -->
+                                <div class="_card_list_flex">
+                                    <div class="_card_flex_01">
+                                        <h3 class="listing-name verified"><a
+                                                class="prt-link-detail">{{item.project_name}}</a></h3>
+                                        <p>{{item.project_description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="price-features-wrapper">
+                        <div class="list-fx-features">
+                            <div class="listing-card-info-icon">
+                                <div class="inc-fleat-icon"><img src="assets/img/bed.svg" width="15" alt="" /></div>
+                                4 Beds
+                            </div>
+                            <div class="listing-card-info-icon">
+                                <div class="inc-fleat-icon"><img src="assets/img/bathtub.svg" width="15" alt="" />
+                                </div>2 Bath
+                            </div>
+                            <div class="listing-card-info-icon">
+                                <div class="inc-fleat-icon"><img src="assets/img/move.svg" width="15" alt="" />
+                                </div>820 sqft
+                            </div>
+                        </div>
+                    </div> -->
+
+                        <div class="listing-detail-footer">
+                            <div class="footer-first">
+                                <div class="foot-location"><img src="assets/img/pin.svg" width="18"
+                                        alt="" />{{item.city}},
+                                    {{item.state}}</div>
+                            </div>
+                            <div class="footer-flex">
+                                <!-- <ul class="selio_style">
+                                <li>
+                                    <div class="prt_saveed_12lk">
+                                        <label class="toggler toggler-danger" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="Save property"><input
+                                                type="checkbox"><i class="fa-solid fa-heart"></i></label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="prt_saveed_12lk">
+                                        <a  data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="Compare property"><i class="fa-solid fa-share"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="prt_saveed_12lk">
+                                        <a  data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="View Property"><i
+                                                class="fa-regular fa-circle-right"></i></a>
+                                    </div>
+                                </li>
+                            </ul> -->
+                                <a routerLink="/project-detail/{{item._id}}"><button type="button"
+                                        class="btn-danger rounded-pill">View detail</button></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Single Property -->
+            </div>
+            <div class="row  mt-3">
+                <div class="col-12 text-center">
+                    <a routerLink="/listing" *ngIf="allProjects"><button class="btn-danger rounded">View
+                            more</button></a>
+                </div>
+            </div>
+
+            <h4 *ngIf="allProjects?.length == 0">No projects found</h4>
+
+        </div>
+        <!-- </section> -->
+        <!-- ============================ Properties End ================================== -->
+
+        <!-- ============================ Property By Location ================================== -->
+        <section>
+            <div class="container">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-8">
+                        <div class="sec-heading center">
+                            <h2>Top Project Places</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center g-4">
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <a class="img-wrap">
+                            <div class="location_wrap_content visible">
+                                <div class="location_wrap_content_first">
+                                    <h4>AJMER</h4>
+                                    <span>4+ Projects</span>
+                                </div>
+                                <div class="location_btn"><i class="fa fa-arrow-right"></i></div>
+                            </div>
+                            <div class="img-wrap-background"
+                                style="background-image: url(assets/whatsappimage/ajmer2.jpeg);"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <a class="img-wrap">
+                            <div class="location_wrap_content visible">
+                                <div class="location_wrap_content_first">
+                                    <h4>JAIPUR</h4>
+                                    <span>95+ Projects</span>
+                                </div>
+                                <div class="location_btn"><i class="fa fa-arrow-right"></i></div>
+                            </div>
+                            <div class="img-wrap-background"
+                                style="background-image: url(assets/whatsappimage/jaipur2.jpeg);"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <a class="img-wrap">
+                            <div class="location_wrap_content visible">
+                                <div class="location_wrap_content_first">
+                                    <h4>KOTA</h4>
+                                    <span>3+ Projects</span>
+                                </div>
+                                <div class="location_btn"><i class="fa fa-arrow-right"></i></div>
+                            </div>
+                            <div class="img-wrap-background"
+                                style="background-image: url(assets/whatsappimage/kota2.jpeg);"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <a class="img-wrap">
+                            <div class="location_wrap_content visible">
+                                <div class="location_wrap_content_first">
+                                    <h4>PANVEL,(MUMBAI)</h4>
+                                    <span>Upcoming..</span>
+                                </div>
+                                <div class="location_btn"><i class="fa fa-arrow-right"></i></div>
+                            </div>
+                            <div class="img-wrap-background"
+                                style="background-image: url(assets/whatsappimage/Panvel.jpg);"></div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <a class="img-wrap">
+                            <div class="location_wrap_content visible">
+                                <div class="location_wrap_content_first">
+                                    <h4>INDORE</h4>
+                                    <span>Upcoming..</span>
+                                </div>
+                                <div class="location_btn"><i class="fa fa-arrow-right"></i></div>
+                            </div>
+                            <div class="img-wrap-background"
+                                style="background-image: url(assets/whatsappimage/indore.jpeg);"></div>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- ============================ Property By Location End ================================== -->
+
+        <!-- ============================ Smart Testimonials ================================== -->
+        <section class="gray-simple">
+            <div class="container">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-8">
+                        <div class="sec-heading center">
+                            <h2>Good Reviews By Clients</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="item-slide space">
+
+                            <!-- Single Item -->
+                            <div class="single_items" *ngFor="let slideItem of getAllReviews">
+                                <div class="_testimonial_wrios">
+                                    <div class="_testimonial_flex">
+                                        <div class="_testimonial_flex_first">
+                                            <div class="_tsl_flex_thumb">
+                                                <img src="{{imageUrl}}{{slideItem.image.path}}" class="img-fluid"
+                                                    alt="">
+                                            </div>
+                                            <div class="_tsl_flex_capst">
+                                                <h5>{{slideItem.userName}}</h5>
+                                                <div class="_ovr_posts"><span>{{slideItem.Designation}}</span></div>
+                                                <div class="_ovr_rates"><span><i
+                                                            class="fa fa-star"></i></span>{{slideItem.Rating}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="facts-detail">
+                                        <p>{{slideItem.Description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ============================ Smart Testimonials End ================================== -->
+
+        <!-- ============================ Call To Action ================================== -->
+        <section class="bg-danger call_action_wrap-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="call_action_wrap">
+                            <div class="call_action_wrap-head">
+                                <h3>Do You Have Questions ?</h3>
+                                <span>We'll help you to grow your career and growth.</span>
+                            </div>
+                            <a routerLink="contact" class="btn btn-call_action_wrap">Contact Us Today</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============================ Call To Action End ================================== -->
+
+
+
+        <!-- Send Message -->
+        <div class="modal fade" id="autho-message" tabindex="-1" role="dialog" aria-labelledby="authomessage"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+                <div class="modal-content" id="authomessage">
+                    <span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
+                    <div class="modal-body">
+                        <h4 class="modal-header-title">Drop Message</h4>
+                        <div class="login-form">
+                            <form>
+
+                                <div class="form-group mb-3">
+                                    <label>Subject</label>
+                                    <div class="input-with-icons">
+                                        <input type="text" class="form-control" placeholder="Message Title">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label>Messages</label>
+                                    <div class="input-with-icons">
+                                        <textarea class="form-control ht-80"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn full-width fw-medium btn-danger">Send
+                                        Message</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Modal -->
+
+        <app-loader *ngIf="isLoading"></app-loader>
