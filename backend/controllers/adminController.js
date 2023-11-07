@@ -615,6 +615,24 @@ exports.projectContact = async (req, res) => {
     }
 }
 
+// Delete Contact Api
+exports.deleteProjectContact = async (req, res) => {
+    try {
+        const { contactId } = req.params;
+
+        const deletedProduct = await projectContact.findByIdAndDelete(contactId);
+
+        if (!deletedProduct) {
+            return res.status(404).json({ success: false, message: 'Contact Enquiry not found' });
+        } else {
+            res.status(200).send({ success: true, message: 'Agent Deleted Successfully!' });
+        }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
 
 // --------------------------------Agents ---------------------------
 // Render Agents - Add Page
@@ -710,7 +728,7 @@ exports.agentAdd = async (req, res) => {
     }
 }
 
-// Agent Banner Api
+// Agent Delete Api
 exports.agentDelete = async (req, res) => {
     try {
         const { agentId } = req.params;
@@ -733,6 +751,45 @@ exports.agentDelete = async (req, res) => {
                 });
             }
 
+        }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Edit Agent Api
+exports.editAgent = async (req, res) => {
+    try {
+        const { agentId } = req.params;
+
+        const { userName, email, mobile, age, address, experience, description, runningProject, completedProject, category, city, state, education, specialist } = req.body;
+
+        const updateFields = {
+            userName,
+            email,
+            mobile,
+            age,
+            address,
+            experience,
+            experience,
+            description,
+            runningProject,
+            completedProject,
+            category,
+            city,
+            state,
+            education,
+            specialist,
+        }
+
+        const agent = await Agents.findByIdAndUpdate(agentId, updateFields, { new: true });
+
+        if (!agent) {
+            return res.status(404).send('Agent Details not found');
+        } else {
+            // res.redirect(`/admin/propertyView`);
+            res.status(200).send({ success: true, message: 'Agent Details Edit Successfully!' });
         }
 
     } catch (error) {

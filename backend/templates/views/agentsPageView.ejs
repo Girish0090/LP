@@ -58,22 +58,30 @@
                                     <table class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Image</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Category</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">User_Name</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">User_Name
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Email</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Mobile</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Age</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Education</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Education
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Address</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">City</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">State</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Experience</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Specialist</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Description</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Running_Project</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Completed_Project</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Experience
+                                                </th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Specialist
+                                                </th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Description
+                                                </th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">
+                                                    Running_Project</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">
+                                                    Completed_Project</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center" colspan="2">
                                                     Action</th>
                                             </tr>
@@ -105,13 +113,15 @@
                                                             <%= agentsData[i].age %>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <span class="text-center" style="display: flex; width: 200px;">
-                                                            <%= agentsData[i].education %>
+                                                            <span class="text-center"
+                                                                style="display: flex; width: 200px;">
+                                                                <%= agentsData[i].education %>
                                                             </span>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <span class="text-center" style="display: flex; width: 200px;">
-                                                            <%= agentsData[i].address %>
+                                                            <span class="text-center"
+                                                                style="display: flex; width: 200px;">
+                                                                <%= agentsData[i].address %>
                                                             </span>
                                                         </td>
                                                         <td class="align-middle">
@@ -124,12 +134,14 @@
                                                             <%= agentsData[i].experience %>+ years
                                                         </td>
                                                         <td class="align-middle ">
-                                                            <span class="text-center" style="display: flex; width: 500px;">
+                                                            <span class="text-center"
+                                                                style="display: flex; width: 500px;">
                                                                 <%= agentsData[i].specialist %>
                                                             </span>
                                                         </td>
                                                         <td class="align-middle ">
-                                                            <span class="text-center" style="display: flex; width: 700px;">
+                                                            <span class="text-center"
+                                                                style="display: flex; width: 700px;">
                                                                 <%= agentsData[i].description %>
                                                             </span>
                                                         </td>
@@ -139,8 +151,28 @@
                                                         <td class="align-middle">
                                                             <%= agentsData[i].completedProject %>
                                                         </td>
-                                                        
+
                                                         <td colspan="1" class="align-middle">
+                                                            <a class="edit-button" style="cursor: pointer;"
+                                                                data-toggle="modal" data-target="#editModal"
+                                                                data-id="<%= agentsData[i]._id %>"
+                                                                data-userName="<%= agentsData[i].userName %>"
+                                                                data-description="<%= agentsData[i].description %>"
+                                                                data-category="<%= agentsData[i].category %>"
+                                                                data-email="<%= agentsData[i].email %>"
+                                                                data-mobile="<%= agentsData[i].mobile %>"
+                                                                data-age="<%= agentsData[i].age %>"
+                                                                data-education="<%= agentsData[i].education %>"
+                                                                data-address="<%= agentsData[i].address %>"
+                                                                data-city="<%= agentsData[i].city %>"
+                                                                data-state="<%= agentsData[i].state %>"
+                                                                data-experience="<%= agentsData[i].experience %>"
+                                                                data-specialist="<%= agentsData[i].specialist %>"
+                                                                data-runningProject="<%= agentsData[i].runningProject %>"
+                                                                data-completedProject="<%= agentsData[i].completedProject %>">
+                                                                <i class="fas fa-edit text-success"></i>
+                                                            </a>
+                                                            &nbsp;
                                                             <a class="delete-button" style="cursor: pointer;"
                                                                 data-agentId="<%= agentsData[i]._id %>">
                                                                 <i class="fas fa-trash text-danger"></i>
@@ -165,14 +197,158 @@
     </div>
 
 
-     <!-- Loader -->
-     <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
-     <script>
-         AmagiLoader.show();
-         setTimeout(() => {
-             AmagiLoader.hide();
-         }, 1000);
-     </script>
+    <!-- Edit Agent modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Agent Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editAgentForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12 mx-auto">
+                                <div class="card mb-6">
+                                    <div class="card-body p-6">
+
+                                        <div class="row">
+                                            <div class="form-group col-12 d-none">
+                                                <label for="agentid" class="text-heading font-weight-bold">User Id
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="agentid" name="agentid">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="userName" class="text-heading font-weight-bold">User Name
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="userName" name="userName">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="email" class="text-heading font-weight-bold">Email
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="email" name="email">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="mobile" class="text-heading font-weight-bold">Mobile
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="mobile" name="mobile" maxlength="10"
+                                                    onkeypress="return /[0-9 ]/i.test(event.key)">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="age" class="text-heading font-weight-bold">Age
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="age" name="age" onkeypress="return /[0-9 ]/i.test(event.key)">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="education" class="text-heading font-weight-bold">Education
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="education" name="education">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="category" class="text-heading font-weight-bold">Category
+                                                </label>
+                                                <select
+                                                    class="form-control border-0 shadow-none form-control-lg selectpicker"
+                                                    title="Select" data-style="btn-lg py-2 h-52" id="category"
+                                                    name="category">
+                                                    <option value="VastuExpert">VastuExpert</option>
+                                                    <option value="Architects">Architects</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="address" class="text-heading font-weight-bold">Address
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="address" name="address">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="city" class="text-heading font-weight-bold">City
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="city" name="city">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="state" class="text-heading font-weight-bold">State
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="state" name="state">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="description"
+                                                    class="text-heading font-weight-bold">Description
+                                                    <span class="text-muted"></span></label>
+
+                                                <textarea name="description" id="description" cols="30" rows="10"
+                                                    class="form-control form-control-lg border-0"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="specialist" class="text-heading font-weight-bold">Specialist
+                                                    <span class="text-muted"></span></label>
+                                                <textarea name="specialist" id="specialist" cols="30" rows="10"
+                                                    class="form-control form-control-lg border-0"></textarea>
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label for="experience" class="text-heading font-weight-bold">Experience
+                                                    (<span class="text-danger">*In Years</span>)
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="experience" name="experience"
+                                                    onkeypress="return /[0-9 ]/i.test(event.key)">
+                                            </div>
+
+                                            <div class="form-group col-12">
+                                                <label for="runningProject"
+                                                    class="text-heading font-weight-bold">Running Project (<span
+                                                        class="text-danger">*In Numbers</span>)
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="runningProject" name="runningProject"
+                                                    onkeypress="return /[0-9 ]/i.test(event.key)">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="completedProject"
+                                                    class="text-heading font-weight-bold">Completed Project
+                                                    (<span class="text-danger">*In Numbers</span>)
+                                                    <span class="text-muted"></span></label>
+                                                <input type="text" class="form-control form-control-lg border-0"
+                                                    id="completedProject" name="completedProject"
+                                                    onkeypress="return /[0-9 ]/i.test(event.key)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center mb-3">
+                                        <button type="submit" class="btn btn-primary mt-1 me-1">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Loader -->
+    <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
+
+    <script>
+        AmagiLoader.show();
+        setTimeout(() => {
+            AmagiLoader.hide();
+        }, 1000);
+    </script>
 
 
     <!-- Delete Project -->
@@ -189,8 +365,6 @@
 
                     if (confirmed) {
                         const agentId = button.getAttribute('data-agentId');
-                        // The user confirmed, perform the delete operation here
-                        console.log(agentId);
 
                         fetch(`/admin/agentDelete/${agentId}`, {
                             method: 'GET'
@@ -206,6 +380,100 @@
                 });
             });
         });
+    </script>
+
+
+    <!-- Edit Modal Values -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            $('.edit-button').on('click', function () {
+                const $editButton = $(this);
+
+                const agentid = $editButton.data('id');
+                const userName = $editButton.data('username');
+                const description = $editButton.data('description');
+                const category = $editButton.data('category');
+                const email = $editButton.data('email');
+                const mobile = $editButton.data('mobile');
+                const age = $editButton.data('age');
+                const education = $editButton.data('education');
+                const address = $editButton.data('address');
+                const city = $editButton.data('city');
+                const state = $editButton.data('state');
+                const experience = $editButton.data('experience');
+                const specialist = $editButton.data('specialist');
+                const runningProject = $editButton.data('runningproject');
+                const completedProject = $editButton.data('completedproject');
+
+
+                $('#agentid').val(agentid);
+                $('#userName').val(userName);
+                $('#description').val(description);
+                $('#category').val(category).trigger('change');
+                $('#email').val(email);
+                $('#mobile').val(mobile);
+                $('#age').val(age);
+                $('#education').val(education);
+                $('#address').val(address);
+                $('#city').val(city);
+                $('#state').val(state);
+                $('#experience').val(experience);
+                $('#specialist').val(specialist);
+                $('#runningProject').val(runningProject);
+                $('#completedProject').val(completedProject);
+            });
+        })
+    </script>
+
+
+    <!-- Edit Api -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const editReviewForm = document.getElementById('editAgentForm');
+
+            editReviewForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Collect the form data
+                const formData = new FormData(this);
+                const agentId = document.getElementById('agentid').value;
+
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+
+                fetch(`/admin/editAgent/${agentId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(jsonData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            $(editModal).modal('hide');
+                            // Display a success message using Swal
+                            Swal.fire({
+                                title: 'Success',
+                                text: data.message, // Server response message
+                                icon: 'success'
+                            }).then(() => {
+                                // Redirect or perform other actions after success
+                                window.location.href = '/admin/viewAgents'; // Replace with your redirect URL
+                            });
+                        } else {
+                            // Display an error message using Swal
+                            Swal.fire('Error', data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        // Handle any errors (e.g., display an error message)
+                        console.error(error);
+                    });
+            })
+        })
     </script>
 
 

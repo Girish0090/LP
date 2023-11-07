@@ -107,8 +107,6 @@ const galleryImage = multer({ storage: galleryImages });
 
 
 
-
-
 // --------------------------------Register/Login/Logout ---------------------------
 // Register Admin Api
 router.post('/register', AdminImage.single('image'), adminController.registerAdmin);
@@ -194,6 +192,9 @@ router.get('/enquiries', checkAuth, adminController.getEnquiry);
 // Render Project Contact - View page
 router.get('/projectContact', checkAuth, adminController.projectContact);
 
+// Delete Project Contact Api
+router.get('/deleteProjectContact/:contactId', checkAuth, adminController.deleteProjectContact);
+
 
 // --------------------------------Agent ---------------------------
 // Render Agents - Add page
@@ -207,6 +208,9 @@ router.post('/agentAdd', checkAuth, AgentImage.single('image'), adminController.
 
 // Delete Agent Api
 router.get('/agentDelete/:agentId', checkAuth, adminController.agentDelete);
+
+// Edit Agent Api
+router.post('/editAgent/:agentId', checkAuth, adminController.editAgent);
 
 
 // --------------------------------Gallery ---------------------------
