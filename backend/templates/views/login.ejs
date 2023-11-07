@@ -36,75 +36,102 @@
 
 </head>
 
-<body>
+<body style="background-image: url('../../public/images/jaipur2.jpeg'); background-repeat: no-repeat; background-size: cover; height: 100vh;">
     <div class="wrapper dashboard-wrapper">
         <div class="d-flex flex-wrap flex-xl-nowrap">
 
-            <!-- Sidebar -->
-            <%- include('../partials/sidebar') %>
+            <div class="db-sidebar bg-white loginSidebar">
+                <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
+                    <div class="sticky-area shadow-xs-1 py-3">
+                        <div class="d-flex px-3 px-xl-6 w-100">
+                            <a class="navbar-brand">
+                                <img src="../../public/images/logo.png" alt="HomeID">
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
 
-                <div class="page-content">
 
-                    <!-- Header -->
-                    <%- include('../partials/header') %>
+            <div class="page-content">
 
-                        <main id="content" class="bg-gray-01">
-                            <div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
-                                <div class="mb-6">
-                                    <h2 class="mb-0 text-heading fs-22 lh-15">Admin Login
-                                    </h2>
-                                    <p>Access the Administrator Login to Manage System Settings and Functions</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mx-auto border shadow p-3 mb-5 bg-white rounded">
-                                        <div class="tab-content shadow-none p-3" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="login" role="tabpanel"
-                                                aria-labelledby="login-tab">
-                                                <% if (errorMessage) { %>
-                                                    <p style="color: red;">*<%= errorMessage %></p>
-                                                <% } %>
-                                                <form class="form" action="/admin/login" method="POST">
-                                                    <div class="form-group mb-4">
-                                                        <label for="username" class="sr-only">Email</label>
-                                                        <div class="input-group input-group-lg">
-                                                            <div class="input-group-prepend ">
-                                                                <span
-                                                                    class="input-group-text bg-gray-01 border-0 text-muted fs-18"
-                                                                    id="inputGroup-sizing-lg">
-                                                                    <i class="far fa-user"></i></span>
-                                                            </div>
-                                                            <input type="text"
-                                                                class="form-control border-0 shadow-none fs-13"
-                                                                id="username" name="email" required
-                                                                placeholder="Your email ID">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group mb-4">
-                                                        <label for="password" class="sr-only">Password</label>
-                                                        <div class="input-group input-group-lg">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text bg-gray-01 border-0 text-muted fs-18">
-                                                                    <i class="far fa-lock"></i>
-                                                                </span>
-                                                            </div>
-                                                            <input type="password" class="form-control border-0 shadow-none fs-13" id="password" name="password" required placeholder="Password">
-                                                            <div class="input-group-append">
-                                                                <span class="input-group-text bg-gray-01 border-0 text-body fs-18">
-                                                                    <i class="far fa-eye-slash" id="togglePassword"></i>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                <!-- Header -->
+                <%- include('../partials/header') %>
 
-                                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Log
-                                                        in</button>
-                                                </form>
-
-                                                <div class="row mt-5">
-                                                    <div class="col-md-12 text-center">
-                                                        <a class="navbar-brand">
-                                                            <img src="../../public/images/logo.png" alt="HomeID">
-                                                        </a>
+                    <main id="content"
+                        >
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-lg-8 col-md-8 col-sm-8 mx-auto">
+                                    <div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10 my-profile">
+                                        <div class="mb-6">
+                                            <h2 class="mb-0 text-heading fs-22 lh-15">Admin Login
+                                            </h2>
+                                            <p>Access the Administrator Login to Manage System Settings and Functions</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 mx-auto border shadow p-3 mb-5 bg-white rounded">
+                                                <div class="tab-content shadow-none p-3" id="myTabContent">
+                                                    <div class="tab-pane fade show active" id="login" role="tabpanel"
+                                                        aria-labelledby="login-tab">
+                                                        <% if (errorMessage) { %>
+                                                            <p style="color: red;">*<%= errorMessage %>
+                                                            </p>
+                                                            <% } %>
+                                                                <form class="form" action="/admin/login" method="POST">
+                                                                    <div class="form-group mb-4">
+                                                                        <label for="username" class="sr-only">Email</label>
+                                                                        <div class="input-group input-group-lg">
+                                                                            <div class="input-group-prepend ">
+                                                                                <span
+                                                                                    class="input-group-text bg-gray-01 border-0 text-muted fs-18"
+                                                                                    id="inputGroup-sizing-lg">
+                                                                                    <i class="far fa-user"></i></span>
+                                                                            </div>
+                                                                            <input type="text"
+                                                                                class="form-control border-0 shadow-none fs-13"
+                                                                                id="username" name="email" required
+                                                                                placeholder="Your email ID">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group mb-4">
+                                                                        <label for="password"
+                                                                            class="sr-only">Password</label>
+                                                                        <div class="input-group input-group-lg">
+                                                                            <div class="input-group-prepend">
+                                                                                <span
+                                                                                    class="input-group-text bg-gray-01 border-0 text-muted fs-18">
+                                                                                    <i class="fas fa-unlock-alt"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                            <input type="password"
+                                                                                class="form-control border-0 shadow-none fs-13"
+                                                                                id="password" name="password" required
+                                                                                placeholder="Password">
+                                                                            <div class="input-group-append">
+                                                                                <span
+                                                                                    class="input-group-text bg-gray-01 border-0 text-body fs-18">
+    
+                                                                                    <i class="far fa-eye-slash"
+                                                                                        id="togglePassword"></i>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary btn-lg btn-block">Log
+                                                                        in</button>
+                                                                </form>
+    
+                                                                <div class="row mt-5">
+                                                                    <div class="col-md-12 text-center">
+                                                                        <a class="navbar-brand">
+                                                                            <img src="../../public/images/logo.png"
+                                                                                alt="HomeID">
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,8 +139,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </main>
-                </div>
+    
+                        </div>
+                    </main>
+            </div>
         </div>
     </div>
 
@@ -122,7 +151,7 @@
     <script>
         const passwordInput = document.getElementById("password");
         const togglePassword = document.getElementById("togglePassword");
-    
+
         togglePassword.addEventListener("click", () => {
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";

@@ -48,14 +48,17 @@
 
                         <main id="content" class="bg-gray-01">
                             <div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10">
-                                <div class="d-flex flex-wrap flex-md-nowrap mb-6">
-                                    <div class="mr-0 mr-md-auto">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12 col-sm-12">
                                         <h2 class="mb-0 text-heading fs-22 lh-15">Property Listing</h2>
                                         <p>Real Estate Property Listing and Management</p>
                                     </div>
-                                    <div class="mr-0 mr-md-auto" style="margin-left: 30%;">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <input type="text" class="form-control border border-primary" id="searchInput" placeholder="Search by project ID...">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mt-md-0">
                                         <select class="form-control border border-primary selectpicker"
-                                            title="Sort By Category" data-style="btn-lg py-2 h-52" id="categoryFilter"
+                                            title="Sort By Category" data-style="btn" id="categoryFilter"
                                             name="category">
                                             <option value="all">All</option>
                                             <option value="Residential">Residential</option>
@@ -64,9 +67,10 @@
                                             <option value="villa">Villa</option>
                                         </select>
                                     </div>
+                                    
                                 </div>
-                                <div class="table-responsive">
-                                    <table id="myTable" class="table table-hover bg-white border rounded-lg">
+                                <div class="table-responsive mt-2 mt-sm-2 mt-md-2">
+                                    <table id="myTable" class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4">S.no.</th>
@@ -79,6 +83,7 @@
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4">State</th>
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4">Category</th>
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4">Status</th>
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4">Brochure</th>
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4" colspan="2">Action
                                                 </th>
                                             </tr>
@@ -91,22 +96,33 @@
                                                             <%= i + 1 %>.
                                                         </td>
 
-                                                        <td class="align-middle">
-                                                            <%= propertyData[i].project_Id %>
+                                                        <td class="align-middle project-name">
+                                                            <span style="display: flex; width: 100px;">
+                                                                <%= propertyData[i].project_Id %>
+                                                            </span>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <img src="../../<%= propertyData[i].image[0].path %>"
-                                                                width="150">
+                                                            <span style="display: flex; width: 130px;">
+                                                                <img src="../../<%= propertyData[i].image[0].path %>"
+                                                                    style="width: 100px; height: 100px;">
+                                                            </span>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <%= propertyData[i].project_name %>
+                                                            <span style="display: flex; width: 120px;">
+                                                                <%= propertyData[i].project_name %>
+                                                            </span>
+
                                                         </td>
                                                         <td class="align-middle"
-                                                            style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;text-overflow: ellipsis; max-height: 60px;width: 250px;">
+                                                            style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;text-overflow: ellipsis; max-height: 124px;width: 250px;">
                                                             <%= propertyData[i].project_description %>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <%= '₹ ' +propertyData[i].project_price %> <%= '/' +propertyData[i].area %>
+                                                            <span style="display: flex; width: 120px;">
+                                                                <%= '₹ ' +propertyData[i].project_price %>
+                                                                    <%= '/' +propertyData[i].area %>
+                                                            </span>
+
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= propertyData[i].city %>
@@ -119,6 +135,13 @@
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= propertyData[i].status %>
+                                                        </td>
+                                                        <td class="align-middle">
+
+                                                            <a href="../../<%= propertyData[i].brochure.path %>"
+                                                                target="_blank" class="btn-info p-2 rounded"
+                                                                style="display: flex; width: 120px;"><span>View
+                                                                    Brochure</span></a>
                                                         </td>
                                                         <td colspan="1" class="align-middle">
                                                             <!-- Add data attributes to the "Edit" button -->
@@ -162,6 +185,32 @@
                 </div>
         </div>
     </div>
+
+
+    <!-- Search Functionality -->
+    <script>
+        // Function to filter properties based on the search query
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.trim().toLowerCase();
+            const propertyRows = document.querySelectorAll('tr.shadow-hover-xs-2');
+            propertyRows.forEach(row => {
+                const projectNameElement = row.querySelector('.align-middle.project-name');
+                if (projectNameElement) {
+                    const projectName = projectNameElement.textContent.toLowerCase();
+                    if (projectName.includes(query)) {
+                        row.style.display = 'table-row';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Attach an input event listener to trigger the search on input
+        document.getElementById('searchInput').addEventListener('input', performSearch);
+    </script>
+
 
 
     <!-- Loader -->
@@ -247,38 +296,32 @@
                                             Project
                                             Price (In ₹)
                                         </label>
-                                        <input type="text" class="form-control form-control-lg border-0" id="project_price"
-                                            name="project_price" onkeypress="return /[0-9 ]/i.test(event.key)">
+                                        <input type="text" class="form-control form-control-lg border-0"
+                                            id="project_price" name="project_price"
+                                            onkeypress="return /[0-9 ]/i.test(event.key)">
                                     </div>
                                     <div class="form-group col-3">
-                                        <label for="area"
-                                        class="text-heading">Area
-                                    </label>
-                                        <select id="area"  class="form-control border-0 shadow-none form-control-lg selectpicker"
-                                        title="Select"
-                                        data-style="btn-lg py-2 h-52" name="area">
-                                            <option
-                                                value="sqft">sqft</option>
-                                            <option
-                                                value="sqyd">sqyd</option>
-                                            <option
-                                                value="acre">acre
+                                        <label for="area" class="text-heading">Area
+                                        </label>
+                                        <select id="area"
+                                            class="form-control border-0 shadow-none form-control-lg selectpicker"
+                                            title="Select" data-style="btn-lg py-2 h-52" name="area">
+                                            <option value="sqft">sqft</option>
+                                            <option value="sqyd">sqyd</option>
+                                            <option value="acre">acre
                                             </option>
-                                            <option
-                                                value="hectare">hectare
+                                            <option value="hectare">hectare
                                             </option>
-                                            <option
-                                                value="gaj">gaj
+                                            <option value="gaj">gaj
                                             </option>
-                                            <option
-                                                value="bigha">bigha
+                                            <option value="bigha">bigha
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            
-                          
+
+
                             <div class="form-group col-12">
                                 <label for="city" class="text-heading">City
                                 </label>
@@ -306,7 +349,7 @@
                                     <option value="Residential">Residential</option>
                                     <option value="Commercial">Commercial</option>
                                     <option value="Industrial">Industrial</option>
-                                    <option value="villa">Villa</option>
+                                    <option value="Villa">Villa</option>
                                 </select>
                             </div>
 

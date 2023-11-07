@@ -9,6 +9,7 @@ const Admin = require('../model/admin');
 const Career = require('../model/career');
 const projectContact = require('../model/projectContact');
 const Agents = require('../model/agents');
+const Gallery = require('../model/gallery');
 
 const path = require('path');
 const fs = require('fs');
@@ -279,9 +280,12 @@ exports.postProperty = async (req, res) => {
     try {
         const { project_Id, project_name, project_description, project_price, area, city, state, category, status } = req.body;
 
-
         if (!project_Id || !project_name || !project_description || !project_price || !area || !city || !state || !category || !status) {
             return res.status(400).json({ success: false, message: 'All fields are required.' });
+        }
+
+        if (!req.files || !req.files.image || !req.files.brochure) {
+            return res.status(400).send({ success: false, message: 'Please provide both images and a brochure.' });
         }
 
         const existingProperty = await Property.findOne({ project_Id });
@@ -289,8 +293,9 @@ exports.postProperty = async (req, res) => {
         if (existingProperty) {
             res.status(400).send({ success: false, message: 'Existing Property ID!' });
         } else {
-            // req.files contains an array of uploaded images
-            const propertyImages = req.files;
+
+            const propertyImages = req.files.image;
+            const brochure = req.files.brochure;
 
             let imagesData = propertyImages.map(file => ({
                 filename: file.originalname,
@@ -308,6 +313,9 @@ exports.postProperty = async (req, res) => {
                 category,
                 status,
                 image: imagesData,
+                brochure: {
+                    filename: brochure[0].filename, path: brochure[0].path
+                }
             });
 
             property.save().then((property, err) => {
@@ -379,12 +387,16 @@ exports.deleteProperty = async (req, res) => {
 
             const imagePaths = imagesToDelete.map(imageObj => path.join(__dirname, '..', imageObj.path));
 
+
             imagePaths.forEach(imagePath => {
                 if (fs.existsSync(imagePath)) {
                     fs.unlink(imagePath, (err) => {
+                        console.log(imagePath);
                         if (err) {
+                            console.log(err);
                             return res.status(500).send({ success: false, message: 'Error deleting Project.', err });
                         } else {
+                            console.log("yes");
                             res.status(200).send({ success: true, message: 'Project Deleted Successfully!' });
                         }
                     });
@@ -639,11 +651,11 @@ exports.viewAgents = async (req, res) => {
 // Agent Add Api
 exports.agentAdd = async (req, res) => {
     try {
-        const { userName, email, mobile, age, address, experience, description, runningProject, completedProject, category, city, state } = req.body;
+        const { userName, email, mobile, age, address, experience, description, runningProject, completedProject, category, city, state, education, specialist } = req.body;
         const { filename, path } = req.file;
 
 
-        if (!userName || !email || !mobile || !age || !address || !experience || !description || !runningProject || !completedProject || !category || !city || !state) {
+        if (!userName || !email || !mobile || !age || !address || !experience || !description || !runningProject || !completedProject || !category || !city || !state || !education || !specialist) {
             cleanupUpload(path);
             return res.status(400).json({ success: false, message: 'All fields are required.' });
         }
@@ -668,6 +680,8 @@ exports.agentAdd = async (req, res) => {
                 runningProject,
                 completedProject,
                 category,
+                education,
+                specialist,
                 image: {
                     filename: filename, path
                 },
@@ -727,14 +741,124 @@ exports.agentDelete = async (req, res) => {
 }
 
 
+// ---------------------------Gallery--------------
+// Render Gallery - Add Page
+exports.addGallery = async (req, res) => {
+    try {
+        const pageTitle = 'Admin Gallery Add -';
+
+        const userId = req.userData.userId;
+        const user = await Admin.findById(userId);
+
+        res.render('addGallery', { title: pageTitle, userName: user.userName, userImage: user.image.path });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Render Gallery - View page
+exports.viewGallery = async (req, res) => {
+    try {
+        const pageTitle = 'Admin Gallery Page View -';
+        const userId = req.userData.userId;
+        const user = await Admin.findById(userId);
+
+        Gallery.find({}).then((gallery) => {
+            return res.render('galleryView', { title: pageTitle, userName: user.userName, userImage: user.image.path, galleryData: gallery });
+        }).catch((err) => {
+            console.error('Error fetching Gallery:', err);
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Gallery Add Api
+exports.galleryUpload = async (req, res) => {
+    try {
+
+        const { text_1 } = req.body;
+
+        if (!text_1 || !req.file) {
+            cleanupUpload(path);
+            return res.status(400).json({ success: false, message: 'All fields are required.' });
+        }
+        const { filename, path } = req.file;
+
+        let gallery = new Gallery({
+            text_1,
+            image: {
+                filename: filename, path
+            },
+        });
+
+        gallery.save().then((gallery, err) => {
+            if (gallery) {
+                // res.redirect('/admin/propertyView');
+                res.status(200).send({ success: true, message: 'Gallery Image Uploaded!', gallery });
+            } else {
+                cleanupUpload(path);
+                // return res.redirect(`/admin/bannerPageView?error=${err}`);
+                res.status(400).send({ success: false, message: 'Error!', err });
+            }
+        }).catch(err => {
+            cleanupUpload(path);
+            res.status(400).send({ success: false, message: 'Internal Error!', err });
+        })
+
+    } catch (error) {
+        cleanupUpload(path);
+        console.log(error);
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Delete Banner Api
+exports.deleteGallery = async (req, res) => {
+    try {
+        const { galleryId } = req.params;
+
+        console.log(galleryId);
+
+        // Find and delete the product by ID
+        const deletedGallery = await Gallery.findByIdAndDelete(galleryId);
+
+        if (!deletedGallery) {
+            return res.status(404).json({ success: false, message: 'Gallery not found' });
+        } else {
+
+            const imagePath = path.join(__dirname, '..', 'uploads/galleryImage', deletedGallery.image.filename);
+            if (fs.existsSync(imagePath)) {
+                fs.unlink(imagePath, (err) => {
+                    if (err) {
+                        return res.status(500).send({ success: false, message: 'Error deleting Gallery.', err });
+                    } else {
+                        res.status(200).send({ success: true, message: 'Gallery Image Deleted Successfully!' });
+                    }
+                });
+            }
+
+        }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
 
 
 
+
+
+// -----------------Delete pdf/images function-------------------
 // For Delete Image
 function cleanupUpload(filePath) {
-    fs.unlink(filePath, (err) => {
-        if (err) {
-            console.error('Error deleting uploaded image:', err);
-        }
+    return new Promise((resolve, reject) => {
+        fs.unlink(filePath, (err) => {
+            if (err) {
+                reject(err); // Reject the promise in case of an error
+            } else {
+                resolve(); // Resolve the promise if the file is successfully deleted
+            }
+        });
     });
 }

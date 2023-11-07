@@ -26,6 +26,11 @@ const propertySchema = new Schema({
             path: String
         }
     ],
+    brochure:
+        {
+            filename: String,
+            path: String
+        },
     city: {
         type: String,
     },

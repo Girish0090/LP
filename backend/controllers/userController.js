@@ -5,6 +5,7 @@ const Review = require('../model/reviews');
 const Career = require('../model/career');
 const projectContact = require('../model/projectContact');
 const Agents = require('../model/agents');
+const Gallery = require('../model/gallery');
 const fs = require('fs');
 
 
@@ -357,10 +358,27 @@ exports.getAgentByID = async (req, res) => {
     }
 }
 
+// Get Gallery Images
+exports.getGalleryImages = async (req, res) => {
+    try {
+
+        Gallery.find({}).then((gallery) => {
+            return res.status(200).json({ success: true, message: 'Gallery Data retrieved successfully!', data: gallery, length: gallery.length });
+        }).catch((err) => {
+            return res.status(500).json({ success: false, message: 'Error Occured in getting data!', error: err })
+        });
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error Occured..', data: error.message });
+    }
+}
 
 
 
-// Delete Pdf
+
+
+// -----------------------Delete uploaded pdf/images------------------
+// Delete function
 function cleanupUpload(filePath) {
     fs.unlink(filePath, (err) => {
         if (err) {

@@ -1602,6 +1602,9 @@ pre code {
 }
 
 @media(min-width:1200px) {
+    .loginSidebar{
+        display: none;
+    }
     .col-xl {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;

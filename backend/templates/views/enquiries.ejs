@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover bg-white border rounded-lg">
+                                    <table class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4">S.no.</th>
@@ -64,7 +64,7 @@
                                                 <th scope="col" class="border-top-0 pt-5 pb-4">Mobile</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4">Education Level</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4">Additional Message</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Action</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4">Resume</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4">Time Stamp</th>
                                             </tr>
                                         </thead>
@@ -92,7 +92,10 @@
                                                         </td>
                                                         <td class="align-middle">
 
+                                                            <span style="display: flex; width: 120px;">
                                                                 <a href="../../<%= enquiryData[i].resumePDF.path %>" target="_blank" class="btn-info p-2 rounded"><span>View Resume</span></a>
+                                                            </span>
+
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= enquiryData[i].timestamp.toLocaleDateString('en-US', {

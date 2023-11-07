@@ -61,4 +61,8 @@ router.get('/getAllAgents/:category', userController.getAgents);
 // Get Single Agents by Id Api
 router.get('/getAgentDetail/:Id', userController.getAgentByID);
 
+
+// Get All Gallery Images
+router.get('/getGalleryImages', userController.getGalleryImages);
+
 module.exports = router;

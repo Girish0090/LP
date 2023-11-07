@@ -48,6 +48,12 @@ const agentSchema = new Schema({
         type: String,
         enum: ['Architects', 'VastuExpert'],
     },
+    education:{
+        type:String
+    },
+    specialist: {
+        type:String
+    }
 });
 
 module.exports = mongoose.model('Agent', agentSchema);

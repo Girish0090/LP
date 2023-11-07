@@ -7,9 +7,7 @@
     <meta name="description" content="Real Estate Html Template">
     <meta name="author" content>
     <meta name="generator" content="Jekyll">
-    <title>
-        <%= title %> LaxmiPrabhu
-    </title>
+    <title><%= title %> LaxmiPrabhu</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
@@ -49,9 +47,10 @@
                             <div class="px-3 px-lg-6 px-xxl-13 py-5 py-lg-10">
                                 <div class="d-flex flex-wrap flex-md-nowrap mb-6">
                                     <div class="mr-0 mr-md-auto">
-                                        <h2 class="mb-0 text-heading fs-22 lh-15">Project Contact List View
+                                        <h2 class="mb-0 text-heading fs-22 lh-15">Gallery Images List View
+                                             
                                         </h2>
-                                        <p>Browse the Project Contact List for Comprehensive Project Management</p>
+                                        <p>View and Manage Your Gallery Images List for Easy Visual Content Control</p>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -59,48 +58,38 @@
                                         <thead class="thead-sm thead-black">
                                             <tr>
                                                 <th scope="col" class="border-top-0 px-6 pt-5 pb-4">S.no.</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Project ID</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Email</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Mobile</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Time Stamp</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4">Image</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4">Text-1</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% if (contactData.length> 0) { %>
-                                                <% for (let i=0; i < contactData.length; i++) { %>
+                                            <% if (galleryData.length > 0) { %>
+                                                <% for (let i = 0; i < galleryData.length; i++) { %>
                                                     <tr class="shadow-hover-xs-2 bg-hover-white">
                                                         <td class="align-middle pt-6 pb-4 px-6">
                                                             <%= i + 1 %>.
                                                         </td>
                                                         <td class="align-middle">
-                                                            <%= contactData[i].projectID %>
+                                                            <img src="../../<%= galleryData[i].image.path %>" style="width: 100px; height: 100px;">
                                                         </td>
                                                         <td class="align-middle">
-                                                            <%= contactData[i].name %>
+                                                           <b> <%= galleryData[i].text_1 %></b>
                                                         </td>
-                                                        <td class="align-middle">
-                                                            <%= contactData[i].email %>
+                                                        <td  class="align-middle">
+                                                            <a class="delete-button" style="cursor: pointer;"
+                                                                data-galleryId="<%= galleryData[i]._id %>">
+                                                                <i class="fas fa-trash text-danger"></i>
+                                                            </a>
                                                         </td>
-                                                        <td class="align-middle">
-                                                            <%= contactData[i].mobile %>
-                                                        </td>
-                                                        <td class="align-middle">
-                                                            <%= contactData[i].timestamp.toLocaleDateString('en-US', {
-                                                                day: '2-digit' , month: 'short' , year: 'numeric' ,
-                                                                hour: '2-digit' , minute: '2-digit' ,second: '2-digit'
-                                                                ,}) %>
-                                                        </td>
-                                                       
                                                     </tr>
-                                                    <% } %>
-                                                        <% } else { %>
-                                                            <tr>
-                                                                <td colspan="6" class="text-center">No Contact data
-                                                                    available.</td>
-                                                            </tr>
-                                                            <% } %>
-
+                                                <% } %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="4" class="text-center">No Gallery data available.</td>
+                                                </tr>
+                                            <% } %>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -111,6 +100,7 @@
     </div>
 
 
+
      <!-- Loader -->
      <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
      <script>
@@ -119,6 +109,40 @@
              AmagiLoader.hide();
          }, 1000);
      </script>
+
+     <!-- Delete Gallery -->
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all elements with the class "delete-button"
+            const deleteButtons = document.querySelectorAll('.delete-button');
+
+            // Add a click event listener to each "Delete" button
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Display a confirmation dialog
+                    const confirmed = window.confirm('Are you sure you want to delete this Gallery Image?');
+
+                    if (confirmed) {
+                        const galleryId = button.getAttribute('data-galleryId');
+                        // The user confirmed, perform the delete operation here
+                        console.log(galleryId);
+
+                        fetch(`/admin/deleteGallery/${galleryId}`, {
+                            method: 'GET'
+                        }).then((res) => {
+                            console.log(res);
+                            if (res.status == 200) {
+                                location.reload(true);
+                            }
+                        })
+
+                    } else {
+                        // The user canceled
+                    }
+                });
+            });
+        });
+    </script>
 
     <script src="../../public/vendors/jquery.min.js"></script>
     <script src="../../public/vendors/jquery-ui/jquery-ui.min.js"></script>

@@ -2,8 +2,13 @@
     <div class="container-fluid">
         <nav class="navbar navbar-light py-0 row no-gutters px-3 px-lg-0">
             <div class="col-md-4 px-0 px-md-6 order-1 order-md-0">
-
+                <a class="navbar-brand">
+                    <% if (!userImage) { %>
+                    <img src="../../public/images/logo.png" alt="HomeID">
+                    <% } %>
+                </a>
             </div>
+            <% if (userName) { %>
             <div class="col-md-6 d-flex flex-wrap justify-content-md-end order-0 order-md-1">
                 <div class="dropdown border-md-right border-0 py-3 text-right">
                     <a href="#"
@@ -24,9 +29,9 @@
                                         </div>
                                         <% } else { %>
                                             <!-- Content to display when userName is not defined -->
-                                            <div class="fs-13 font-weight-500 lh-1">
-                                                Login
-                                            </div>
+                                            <!-- <div class="fs-13 font-weight-500 lh-1">
+                                                <h6><b>Login</b></h6>
+                                            </div> -->
                                             <% } %>
 
                     </a>
@@ -38,13 +43,14 @@
                             </div>
                             <% } else { %>
                                 <!-- Content to display when userName is not defined -->
-                                <a class="dropdown-item" href="/admin">Login</a>
+                                <!-- <a class="dropdown-item" href="/admin">Login</a> -->
                                 <% } %>
 
                     </div>
                 </div>
 
             </div>
+            <% } %>
         </nav>
     </div>
 </header>

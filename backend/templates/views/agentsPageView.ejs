@@ -55,24 +55,26 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover bg-white border rounded-lg">
+                                    <table class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4">S.no.</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Image</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Category</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">User_Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Email</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Mobile</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Age</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Address</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">City</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">State</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Experience</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Description</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Running_Project</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Completed_Project</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 align-middle" colspan="2">
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Image</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Category</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">User_Name</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Email</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Mobile</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Age</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Education</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Address</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">City</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">State</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Experience</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Specialist</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Description</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Running_Project</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Completed_Project</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center" colspan="2">
                                                     Action</th>
                                             </tr>
                                         </thead>
@@ -103,7 +105,14 @@
                                                             <%= agentsData[i].age %>
                                                         </td>
                                                         <td class="align-middle">
+                                                            <span class="text-center" style="display: flex; width: 200px;">
+                                                            <%= agentsData[i].education %>
+                                                            </span>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <span class="text-center" style="display: flex; width: 200px;">
                                                             <%= agentsData[i].address %>
+                                                            </span>
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= agentsData[i].city %>
@@ -114,8 +123,15 @@
                                                         <td class="align-middle">
                                                             <%= agentsData[i].experience %>+ years
                                                         </td>
-                                                        <td class="align-middle">
-                                                            <%= agentsData[i].description %>
+                                                        <td class="align-middle ">
+                                                            <span class="text-center" style="display: flex; width: 500px;">
+                                                                <%= agentsData[i].specialist %>
+                                                            </span>
+                                                        </td>
+                                                        <td class="align-middle ">
+                                                            <span class="text-center" style="display: flex; width: 700px;">
+                                                                <%= agentsData[i].description %>
+                                                            </span>
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= agentsData[i].runningProject %>

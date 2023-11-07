@@ -5,6 +5,8 @@
                 <a class="navbar-brand">
                     <img src="../../public/images/logo.png" alt="HomeID">
                 </a>
+
+                
                 <div class="ml-auto d-flex align-items-center ">
                     <!-- <div class="d-flex align-items-center d-xl-none">
                         <div class="dropdown px-3">
@@ -136,6 +138,34 @@
 
                             </li>
 
+                             <!-- Gallery Pages -->
+                             <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
+                                <a href="#gallery_collapse"
+                                    class="text-heading lh-1 sidebar-link d-flex align-items-center"
+                                    data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-20">
+                                        <i class="fas fa-camera-retro"></i>
+                                    </span>
+                                    <span class="sidebar-item-text">Gallery</span>
+                                    <span class="d-inline-block ml-auto"><i class="fas fa-angle-down"></i></span>
+                                </a>
+
+                                <div class="collapse" id="gallery_collapse">
+                                    <div class="card card-body border-0 bg-transparent py-0 pl-6">
+                                        <ul class="list-group list-group-flush list-group-no-border">
+                                            <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
+                                                <a class="text-heading lh-1 sidebar-link" href="/admin/addGallery">Add Gallery</a>
+                                            </li>
+                                            <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
+                                                <a class="text-heading lh-1 sidebar-link"
+                                                    href="/admin/viewGallery">View Gallery</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </li>
+
                             <!-- Property Pages -->
                             <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
                                 <a href="#property_collapse"
@@ -241,7 +271,7 @@
                                     <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-20">
                                         <i class="fa fa-question-circle" aria-hidden="true"></i>
                                     </span>
-                                    <span class="sidebar-item-text">Enquiry Detail</span>
+                                    <span class="sidebar-item-text">Career</span>
                                 </a>
                             </li>
 
@@ -259,29 +289,6 @@
 
 
                         </ul>
-                        <div class="collapse" id="invoice_collapse">
-                            <div class="card card-body border-0 bg-transparent py-0 pl-6">
-                                <ul class="list-group list-group-flush list-group-no-border">
-                                    <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
-                                        <a class="text-heading lh-1 sidebar-link"
-                                            href="dashboard-invoice-listing.html">Listing Invoice</a>
-                                    </li>
-                                    <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
-                                        <a class="text-heading lh-1 sidebar-link"
-                                            href="dashboard-add-new-invoice.html">Add New Invoice</a>
-                                    </li>
-                                    <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
-                                        <a class="text-heading lh-1 sidebar-link"
-                                            href="dashboard-edit-invoice.html">Edit
-                                            Invoice</a>
-                                    </li>
-                                    <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
-                                        <a class="text-heading lh-1 sidebar-link"
-                                            href="dashboard-preview-invoice.html">Preview Invoice</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
 
                     </li>
                 </ul>
