@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AppserviceService } from '../appservice.service';
 import Swal from 'sweetalert2';
 
@@ -10,55 +10,63 @@ import Swal from 'sweetalert2';
 })
 export class ContactComponent implements OnInit {
 
-  submitForm:boolean = false;
-  isLoading:boolean = true;
+  submitForm: boolean = false;
+  isLoading: boolean = true;
 
-  constructor(private fb:FormBuilder,private service:AppserviceService) { }
+  constructor(private fb: FormBuilder, private service: AppserviceService) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
     }, 3000);
-    window.scroll(0,0);
+    window.scroll(0, 0);
   }
 
   contactForm = this.fb.group({
-    name:["",[Validators.required]],
-    email:["",[Validators.required,Validators.email]],
-    subject:["",[Validators.required]],
-    message:["",[Validators.required]],
+    name: ["", [Validators.required]],
+    email: ["", [Validators.required, Validators.email]],
+    subject: ["", [Validators.required]],
+    message: ["", [Validators.required]],
   })
 
-  submitContact(){
+  submitContact() {
     this.isLoading = true;
-    if(this.contactForm.valid){
-      this.service.post("contactForm",this.contactForm.value).subscribe((res:any)=>{
-        if(res.success == true){
+    if (this.contactForm.valid) {
+      this.service.post("contactForm", this.contactForm.value).subscribe((res: any) => {
+        if (res.success == true) {
           Swal.fire({
-            title: 'Success',
-            text: res.message,
-            icon: 'success',
+            title: 'Thankyou',
+            text: "Thankyou for submitting your detail with us for our project. our team will contact you shortly.",
+            imageUrl: '/assets/img/thanks.png',
+            imageHeight:"160px",
+            showCancelButton: false, 
+            showConfirmButton: false
           });
-            this.contactForm.reset();
+          setTimeout(() => {
+            Swal.close();
+          }, 3000);
+          this.isLoading = false;
+          this.contactForm.reset();
+
+        } else {
+          setTimeout(() => {
             this.isLoading = false;
-        }else{
+          }, 1000);
           Swal.fire({
             title: 'Error',
             text: res.message,
             icon: 'error',
           });
-          this.isLoading = false;
         }
-      },error=>{
-        console.log(error);
+      }, error => {
+        this.isLoading = false;
         Swal.fire({
           title: 'Error',
           text: error.message,
           icon: 'error',
         });
-        this.isLoading = false;
       })
-    }else{
+    } else {
       this.submitForm = true;
       this.isLoading = false;
     }

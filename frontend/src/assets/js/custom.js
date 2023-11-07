@@ -130,7 +130,7 @@ function gallerypage(){
         let modalImg = document.getElementById("modal-image");
         let closeModal = document.getElementById("close-modal");
     
-        document.querySelectorAll(".gallery-wrapper > div > img").forEach((img) => {
+        document.querySelectorAll(".gallery-wrapper > tall > img").forEach((img) => {
           img.addEventListener("click", function () {
             modal.style.display = "block";
             modalImg.src = this.src;

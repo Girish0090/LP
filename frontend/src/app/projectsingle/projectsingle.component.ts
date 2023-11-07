@@ -35,7 +35,7 @@ export class ProjectsingleComponent implements OnInit {
     this.service.get("getPropertyDetail/"+this.projectid).subscribe((res:any)=>{
       if(res.success == true){
         this.projectDetail = res.data[0];
-        
+        console.log(this.projectDetail)
         setTimeout(() => {
           detailCarousel();
         }, 300);

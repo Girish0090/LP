@@ -34,12 +34,12 @@
 
                     <div class="block-body">
                         <p>{{agentDetail?.description}}</p>
-                        <ul class="social-icons">
+                        <!-- <ul class="social-icons">
                             <li><a class="facebook"><i class="ti-facebook"></i></a></li>
                             <li><a class="twitter"><i class="ti-twitter"></i></a></li>
                             <li><a class="linkedin"><i class="ti-instagram"></i></a></li>
                             <li><a class="linkedin"><i class="ti-linkedin"></i></a></li>
-                        </ul>
+                        </ul> -->
                     </div>
 
                 </div>
@@ -75,10 +75,10 @@
                         <ul class="deatil_features">
                             <li><strong>{{agentDetail?.userName}}</strong>Name</li>
                             <li><strong>{{agentDetail?.email}}</strong>Email</li>
-                            <li><strong>{{agentDetail?.mobile}}</strong>Call</li>
+                            <li class="text-end"><strong>{{agentDetail?.mobile}}</strong>Call</li>
                             <li><strong>{{agentDetail?.city}}</strong>City</li>
                             <li><strong>{{agentDetail?.state}}</strong>State</li>
-                            <li><strong>India</strong>Country</li>
+                            <li class="text-end"><strong>India</strong>Country</li>
                         </ul>
                     </div>
                 </div>
@@ -102,10 +102,10 @@
                                 <div class="clearfix"></div>
                             </div>
 
-                            <a href="#" class="agent-btn-contact" data-bs-toggle="modal" data-bs-target="#autho-message"><i class="ti-comment-alt"></i>Message</a>
+                            <a href="#" class="agent-btn-contact" data-bs-toggle="modal" data-bs-target="#autho-message">{{agentDetail?.category}}</a>
 
                             <span id="number">
-                                    <span><i class="ti-headphone-alt"></i><a class="see">+91 {{agentDetail?.mobile}} Show</a></span>
+                                    <span><i class="ti-headphone-alt"></i><a class="see">+91 {{agentDetail?.mobile}}</a></span>
                             </span>
                         </div>
                     </div>

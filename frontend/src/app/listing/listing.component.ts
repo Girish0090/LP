@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Validators,FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 declare var filter: any;
 declare var $: any;
@@ -18,40 +18,45 @@ export class ListingComponent implements OnInit {
   isLoading: boolean = true;
   imageUrl = environment.imageurl;
   p: number = 1;
-  selectedMin:any;
+  selectedMin: any;
   selectedMax: any;
   City: any;
-  submitForm:boolean = false;
+  submitForm: boolean = false;
 
-  constructor(private service: AppserviceService, private route: ActivatedRoute,private fb:FormBuilder) {
+  constructor(private service: AppserviceService, private route: ActivatedRoute, private fb: FormBuilder) {
     this.route.paramMap.subscribe((params: any) => {
       this.Category = params.get('type');
       this.City = params.get('city');
       if (this.Category) {
         this.getProjectByCat();
-      }else if(this.City){
+      } else if (this.City) {
         this.getProjectByCity();
-      } else{
+      } else {
         this.getAppProjects();
       }
     })
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 1000);
     window.scroll(0, 0);
     filter();
   }
 
   getProjectByCat() {
     this.service.get("getPropertyByCat/" + this.Category).subscribe((res: any) => {
+      this.isLoading = true;
       if (res.success == true) {
         this.projectList = res.data;
         console.log(this.projectList)
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       }
     }, error => {
+      this.isLoading = false;
       Swal.fire({
         title: 'Error',
         text: error.message,
@@ -62,10 +67,15 @@ export class ListingComponent implements OnInit {
 
   getAppProjects() {
     this.service.get("getAllProperty").subscribe((res: any) => {
+      this.isLoading = true;
       if (res.success == true) {
         this.projectList = res.data;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       }
     }, error => {
+      this.isLoading = false;
       Swal.fire({
         title: 'Error',
         text: error.message,
@@ -78,33 +88,38 @@ export class ListingComponent implements OnInit {
     this.isLoading = true;
     if (event.target.value == "Residential" || event.target.value == "Commercial" || event.target.value == "Industrial" || event.target.value == "Villa") {
       this.service.get("getFilterProperty?categoryName=" + event.target.value).subscribe((res: any) => {
+        this.isLoading = true;
         if (res.success == true) {
           this.projectList = res.data;
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
         }
       }, error => {
+        this.isLoading = false;
         Swal.fire({
           title: 'Error',
           text: error.message,
           icon: 'error',
         });
-        this.isLoading = false;
       })
     } else if (event.target.value == "Sold" || event.target.value == "Sale") {
       this.service.get("getFilterProperty?status=" + event.target.value).subscribe((res: any) => {
         if (res.success == true) {
           this.projectList = res.data;
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
         }
       }, error => {
+        this.isLoading = false;
         Swal.fire({
           title: 'Error',
           text: error.message,
           icon: 'error',
         });
-        this.isLoading = false;
       })
-    } else{
+    } else {
       const target = event.target as HTMLSelectElement;
       const selectedOption = target.options[target.selectedIndex];
 
@@ -116,18 +131,20 @@ export class ListingComponent implements OnInit {
           this.selectedMin = parseInt(minAttribute);
           this.selectedMax = parseInt(maxAttribute);
         }
-        this.service.get("getFilterProperty?minPrice="+this.selectedMin+"&maxPrice="+this.selectedMax).subscribe((res: any) => {
+        this.service.get("getFilterProperty?minPrice=" + this.selectedMin + "&maxPrice=" + this.selectedMax).subscribe((res: any) => {
           if (res.success == true) {
             this.projectList = res.data;
-            this.isLoading = false;
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 1000);
           }
         }, error => {
+          this.isLoading = false;
           Swal.fire({
             title: 'Error',
             text: error.message,
             icon: 'error',
           });
-          this.isLoading = false;
         })
       } else {
         this.selectedMin = null;
@@ -137,35 +154,44 @@ export class ListingComponent implements OnInit {
     }
   }
 
-  getSorting(event:any){
+  getSorting(event: any) {
     this.isLoading = true;
-    if(event == "Relevance"){
+    if (event == "Relevance") {
       this.getAppProjects();
-      this.isLoading = false;
-    }else{
-      this.service.get("getSortProperty?order="+event).subscribe((res: any) => {
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
+    } else {
+      this.service.get("getSortProperty?order=" + event).subscribe((res: any) => {
         if (res.success == true) {
           this.projectList = res.data;
-          this.isLoading = false;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
         }
       }, error => {
+        this.isLoading = false;
         Swal.fire({
           title: 'Error',
           text: error.message,
           icon: 'error',
         });
-        this.isLoading = false;
       })
     }
   }
 
-  getProjectByCity(){
-    this.service.get("getPropertyByCity/"+this.City).subscribe((res: any) => {
+  getProjectByCity() {
+    this.isLoading = true;
+    this.service.get("getPropertyByCity/" + this.City).subscribe((res: any) => {
       if (res.success == true) {
         this.projectList = res.data;
         console.log(this.projectList)
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       }
     }, error => {
+      this.isLoading = false;
       Swal.fire({
         title: 'Error',
         text: error.message,
@@ -175,29 +201,34 @@ export class ListingComponent implements OnInit {
   }
 
   contactProject = this.fb.group({
-    name:["",[Validators.required]],
-    email:["",[Validators.required,Validators.email]],
-    mobile:["",[Validators.required]],
-    projectID:["",[Validators.required]]
+    name: ["", [Validators.required]],
+    email: ["", [Validators.required, Validators.email]],
+    mobile: ["", [Validators.required]],
+    projectID: ["", [Validators.required]]
   })
 
-  ProjectContact(id:any){
-    this.contactProject.patchValue({projectID:id});
+  ProjectContact(id: any) {
+    this.contactProject.patchValue({ projectID: id });
   }
-  
-  contact(){
-    if(this.contactProject.valid){
+
+  contact() {
+    if (this.contactProject.valid) {
       this.isLoading = true;
-      this.service.post("projectContact/",this.contactProject.value).subscribe((res: any) => {
+      this.service.post("projectContact/", this.contactProject.value).subscribe((res: any) => {
         if (res.success == true) {
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
           Swal.fire({
             title: 'Success',
             text: res.message,
             icon: 'success',
           });
           $("#login").modal("hide");
-          this.isLoading = false;
-        }else{
+        } else {
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
           Swal.fire({
             title: 'Error',
             text: res.message,
@@ -205,14 +236,14 @@ export class ListingComponent implements OnInit {
           });
         }
       }, error => {
+        this.isLoading = false;
         Swal.fire({
           title: 'Error',
           text: error.message,
           icon: 'error',
         });
-        this.isLoading = false;
       })
-    }else{
+    } else {
       this.submitForm = true;
       this.isLoading = false;
     }

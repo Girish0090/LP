@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-declare var gallerypage:any;
+import { AppserviceService } from '../appservice.service';
+import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
+declare var gallerypage: any;
 
 @Component({
   selector: 'app-gallery',
@@ -8,18 +11,38 @@ declare var gallerypage:any;
 })
 export class GalleryComponent implements OnInit {
 
-  isLoading:boolean = true;
+  isLoading: boolean = true;
+  allImages: any;
+  imageUrl = environment.imageurl;
 
-  constructor() { }
+  constructor(private service: AppserviceService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 1000);
+    this.getAllImages();
+    window.scroll(0, 0);
+  }
+
+  getAllImages() {
+    this.isLoading = true;
+    this.service.get("getGalleryImages").subscribe((res: any) => {
+      if (res.success == true) {
+        this.allImages = res.data;
+        gallerypage();
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
+      }
+    }, error => {
       this.isLoading = false;
-    }, 1000);
-    
-    gallerypage();
-    
-    window.scroll(0,0);
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
+    })
   }
 
 }
