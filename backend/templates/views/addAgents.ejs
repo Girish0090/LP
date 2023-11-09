@@ -55,8 +55,8 @@
                                 <div class="collapse-tabs new-property-step">
 
                                     <div class="tab-content shadow-none p-0">
-                                        <form autocomplete="off" action="/admin/agentAdd" method="post" enctype="multipart/form-data"
-                                            id="agentForm">
+                                        <form autocomplete="off" action="/admin/agentAdd" method="post"
+                                            enctype="multipart/form-data" id="agentForm">
                                             <div id="collapse-tabs-accordion">
                                                 <div class="tab-pane tab-pane-parent fade show active px-0"
                                                     id="description" role="tabpanel" aria-labelledby="description-tab">
@@ -73,12 +73,14 @@
                                                                                 <div class="row">
                                                                                     <div class="form-group col-6">
                                                                                         <label for="userName"
-                                                                                            class="text-heading">User Name
+                                                                                            class="text-heading">User
+                                                                                            Name
                                                                                             <span
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="userName" name="userName">
+                                                                                            id="userName"
+                                                                                            name="userName">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="email"
@@ -96,7 +98,9 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="mobile" name="mobile" maxlength="10" onkeypress="return /[0-9 ]/i.test(event.key)">
+                                                                                            id="mobile" name="mobile"
+                                                                                            maxlength="10"
+                                                                                            onkeypress="return /[0-9 ]/i.test(event.key)">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="age"
@@ -105,7 +109,8 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="age" name="age"  onkeypress="return /[0-9 ]/i.test(event.key)">
+                                                                                            id="age" name="age"
+                                                                                            onkeypress="return /[0-9 ]/i.test(event.key)">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="education"
@@ -114,7 +119,8 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="education" name="education">
+                                                                                            id="education"
+                                                                                            name="education">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="category"
@@ -137,7 +143,7 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="address" name="address" >
+                                                                                            id="address" name="address">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="city"
@@ -146,7 +152,7 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="city" name="city" >
+                                                                                            id="city" name="city">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="state"
@@ -155,7 +161,7 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="state" name="state" >
+                                                                                            id="state" name="state">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="description"
@@ -164,7 +170,8 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="description" name="description" >
+                                                                                            id="description"
+                                                                                            name="description">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="specialist"
@@ -173,38 +180,54 @@
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="specialist" name="specialist" >
+                                                                                            id="specialist"
+                                                                                            name="specialist">
                                                                                     </div>
-                                                                                    
+
                                                                                     <div class="form-group col-6">
                                                                                         <label for="experience"
-                                                                                            class="text-heading">Experience (<span class="text-danger">*In Years</span>)
+                                                                                            class="text-heading">Experience
+                                                                                            (<span
+                                                                                                class="text-danger">*In
+                                                                                                Years</span>)
                                                                                             <span
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="experience" name="experience"  onkeypress="return /[0-9 ]/i.test(event.key)">
+                                                                                            id="experience"
+                                                                                            name="experience"
+                                                                                            onkeypress="return /[0-9 ]/i.test(event.key)">
                                                                                     </div>
-                                                                                    
+
                                                                                     <div class="form-group col-6">
                                                                                         <label for="runningProject"
-                                                                                            class="text-heading">Running Project (<span class="text-danger">*In Numbers</span>)
+                                                                                            class="text-heading">Running
+                                                                                            Project (<span
+                                                                                                class="text-danger">*In
+                                                                                                Numbers</span>)
                                                                                             <span
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="runningProject" name="runningProject"  onkeypress="return /[0-9 ]/i.test(event.key)" >
+                                                                                            id="runningProject"
+                                                                                            name="runningProject"
+                                                                                            onkeypress="return /[0-9 ]/i.test(event.key)">
                                                                                     </div>
                                                                                     <div class="form-group col-6">
                                                                                         <label for="completedProject"
-                                                                                            class="text-heading">Completed Project (<span class="text-danger">*In Numbers</span>)
+                                                                                            class="text-heading">Completed
+                                                                                            Project (<span
+                                                                                                class="text-danger">*In
+                                                                                                Numbers</span>)
                                                                                             <span
                                                                                                 class="text-muted"></span></label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg border-0"
-                                                                                            id="completedProject" name="completedProject"   onkeypress="return /[0-9 ]/i.test(event.key)">
+                                                                                            id="completedProject"
+                                                                                            name="completedProject"
+                                                                                            onkeypress="return /[0-9 ]/i.test(event.key)">
                                                                                     </div>
-                                                                                   
+
                                                                                     <div class="form-group col-6 mb-0">
                                                                                         <label class="form-label"
                                                                                             for="image">Agent
@@ -238,14 +261,58 @@
         </div>
     </div>
 
-     <!-- Loader -->
-     <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>
-     <script>
-         AmagiLoader.show();
-         setTimeout(() => {
-             AmagiLoader.hide();
-         }, 1000);
-     </script>
+    <!-- Loader -->
+    <script>
+        const AmagiLoader = {
+            __loader: null,
+            show: function () {
+
+                if (this.__loader == null) {
+                    var divContainer = document.createElement('div');
+                    divContainer.style.position = 'fixed';
+                    divContainer.style.left = '0';
+                    divContainer.style.top = '0';
+                    divContainer.style.width = '100%';
+                    divContainer.style.height = '100%';
+                    divContainer.style.zIndex = '9998';
+                    divContainer.style.backgroundColor = 'rgba(250, 250, 250, 0.80)';
+
+                    var div = document.createElement('div');
+                    div.style.position = 'absolute';
+                    div.style.left = '50%';
+                    div.style.top = '50%';
+                    div.style.zIndex = '9999';
+                    div.style.height = '64px';
+                    div.style.width = '64px';
+                    div.style.margin = '-32px 0 0 -32px'; // Adjusted margin for centering
+                    div.style.border = '8px solid #e1e1e1';
+                    div.style.borderRadius = '50%';
+                    div.style.borderTop = '8px solid #F36E21';
+                    div.animate([
+                        { transform: 'rotate(0deg)' },
+                        { transform: 'rotate(360deg)' }
+                    ], {
+                        duration: 2000,
+                        iterations: Infinity
+                    });
+                    divContainer.appendChild(div);
+                    this.__loader = divContainer
+                    document.body.appendChild(this.__loader);
+                }
+                this.__loader.style.display = "";
+            },
+            hide: function () {
+                if (this.__loader != null) {
+                    this.__loader.style.display = "none";
+                }
+            }
+        }
+
+        AmagiLoader.show();
+        setTimeout(() => {
+            AmagiLoader.hide();
+        }, 1000);
+    </script>
 
 
     <!-- SweetAlert2 -->
