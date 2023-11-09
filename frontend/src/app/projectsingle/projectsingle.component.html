@@ -1,465 +1,172 @@
-<!-- ============================ Hero Banner  Start================================== -->
-<!-- Gallery Part Start -->
-<section class="gallery_parts pt-2 pb-2 d-none d-sm-none d-md-none d-lg-none d-xl-block">
-    <div class="container">
+<div class="row gray">
+    <div class="short_wraping mx-auto shadow">
         <div class="row align-items-center">
-            <div class="col-lg-8 col-md-7 col-sm-12 pr-1">
-                <div class="gg_single_part left"><a class=" rounded"><img
-                            src="{{imageUrl}}{{projectDetail?.image[0].path}}" class="img-fluid mx-auto rounded"
-                            alt="" /></a></div>
-            </div>
-            <div class="col-lg-4 col-md-5 col-sm-12 pl-1">
-                <div class="gg_single_part-right min mt-3" *ngFor="let item of projectDetail?.image.slice(1, 4)">
-                    <a class="h-100">
-                        <img src="{{imageUrl}}{{item.path}}" class="img-fluid full-width rounded object-fit h-100"
-                            alt="" />
-                    </a>
-                </div>
-
-                <!-- <div class="gg_single_part-right min mt-3 mb-3">
-                    <a
-                        class=" h-100">
-                        <img src="assets/img/p-3.png"
-                            class="img-fluid full-width rounded object-fit h-100" alt="" /></a>
-                </div>
-                <div class="gg_single_part-right min">
-                    <a class=" h-100"><img
-                            src="assets/img/p-4.png" class="img-fluid full-width rounded object-fit h-100" alt="" />
-                    </a>
-                </div> -->
-            </div>
+            <nav class="breadcrumbs">
+                <a class="breadcrumbs__item" routerLink="/">Home</a>
+                <a class="breadcrumbs__item">Project Detail</a>
+                <a class="breadcrumbs__item">{{projectDetail?.project_name}}, {{projectDetail?.city}},
+                    {{projectDetail?.state}}</a>
+            </nav>
         </div>
     </div>
-</section>
+</div>
 
-<div class="featured_slick_gallery gray d-block d-md-block d-lg-block d-xl-none">
+<!-- ============================ New Search Form Start ================================== -->
+<div class="featured_slick_gallery gray">
     <div class="featured_slick_gallery-slide">
-        <div *ngFor="let item of projectDetail?.image" class="featured_slick_padd">
-            <a href="{{imageUrl}}{{item.path}}" class="mfp-gallery">
-                <img src="{{imageUrl}}{{item.path}}" class="like img-fluid mx-auto" alt="" />
+        <div class="featured_slick_padd" *ngFor="let item of projectDetail?.image">
+            <a href="{{imageUrl}}{{item?.path}}" class="mfp-gallery">
+                <img src="{{imageUrl}}{{item?.path}}" class="img-fluid mx-auto" alt=""
+                    style="height: 450px; width: 100%;" />
             </a>
         </div>
     </div>
 </div>
-<!-- ============================ Hero Banner End ================================== -->
+<!-- ============================ New Search Form End ================================== -->
 
 <!-- ============================ Property Detail Start ================================== -->
-<section class="pt-4">
+<section class="gray">
     <div class="container">
         <div class="row">
 
             <!-- property main detail -->
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-8 col-md-12 col-sm-12">
 
-                <div class="property_info_detail_wrap mb-4">
+                <div class="property_info_detail_wrap exlio_wrap mb-4">
 
                     <div class="property_info_detail_wrap_first">
                         <div class="pr-price-into">
-                            <!-- <ul class="prs_lists">
-                                <li><span class="bed fw-medium rounded">3 Beds</span></li>
-                                <li><span class="bath fw-medium rounded">2 Bath</span></li>
-                                <li><span class="gar fw-medium rounded">1 Garage</span></li>
-                                <li><span class="sqft fw-medium rounded">800 sqft</span></li>
-                            </ul> -->
-                            <h2>{{projectDetail?.project_name}}</h2>
-                            <span><i class="lni-map-marker"></i> {{projectDetail?.city
-                                }}, {{projectDetail?.state}}</span>
-                        </div>
-                    </div>
-
-                    <div class="property_detail_section">
-                        <div class="prt-sect-pric">
-                            <ul class="_share_lists">
-                                <li><h6>Posted date:</h6></li>
-                                <li><span>{{projectDetail?.posted_Date | date:'dd-MM-yyyy'}}</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Single Block Wrap -->
-                <div class="property_block_wrap">
-
-                    <div class="property_block_wrap_header">
-                        <h4 class="property_block_title">About Property</h4>
-                    </div>
-
-                    <div class="block-body">
-                        <p>{{projectDetail?.project_description}}</p>
-                    </div>
-
-                </div>
-
-                <!-- Single Block Wrap -->
-                <div class="property_block_wrap">
-
-                    <div class="property_block_wrap_header">
-                        <h4 class="property_block_title">Advance Features</h4>
-                    </div>
-
-                    <div class="block-body">
-                        <ul class="row p-0 m-0">
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-bed me-1"></i>4 Bedrooms</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-bath me-1"></i>2 Bathrooms</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-expand-arrows-alt me-1"></i>12400
-                                sqft</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-house-damage me-1"></i>1 Living Rooms
-                            </li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-building me-1"></i>Build 2007</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-utensils me-1"></i>2 Kitchens </li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-car me-1"></i>Car Parking</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-briefcase-medical me-1"></i>Free
-                                Medical</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-fire me-1"></i>Fireplace</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-layer-group me-1"></i>Residential
-                            </li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-tv me-1"></i>TV Cable</li>
-                            <li class="col-lg-4 col-md-6 mb-3 p-0"><i class="fa fa-spa me-1"></i>Free Spa</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <!-- Single Block Wrap -->
-                <div class="property_block_wrap">
-
-                    <div class="property_block_wrap_header">
-                        <h4 class="property_block_title">Ameneties</h4>
-                    </div>
-
-                    <div class="block-body">
-                        <ul class="avl-features third">
-                            <li class="active">Air Conditioning</li>
-                            <li class="active">Swimming Pool</li>
-                            <li class="active">Central Heating</li>
-                            <li class="active">Laundry Room</li>
-                            <li class="active">Gym</li>
-                            <li class="active">Alarm</li>
-                            <li class="active">Window Covering</li>
-                            <li class="active">Internet</li>
-                            <li class="active">Pets Allow</li>
-                            <li class="active">Free WiFi</li>
-                            <li>Car Parking</li>
-                            <li>Spa & Massage</li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <!-- Single Block Wrap -->
-                <!-- <div class="property_block_wrap">
-
-                    <div class="property_block_wrap_header">
-                        <h4 class="property_block_title">Property video</h4>
-                    </div>
-
-                    <div class="block-body">
-                        <div class="property_video">
-                            <div class="thumb">
-                                <img class="pro_img img-fluid w100" src="assets/img/p-3.png" alt="7.jpg">
-                                <div class="overlay_icon">
-                                    <div class="bb-video-box">
-                                        <div class="bb-video-box-inner">
-                                            <div class="bb-video-box-innerup">
-                                                <a href="https://www.youtube.com/watch?v=A8EI6JaFbv4"
-                                                    data-bs-toggle="modal" data-bs-target="#popup-video"
-                                                    class="theme-cl"><i class="ti-control-play"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="_card_list_flex mb-2">
+                                <div class="_card_flex_01 d-flex justify-content-between">
+                                    <span class="_list_blickes _netork py-3">Posted Date:- {{projectDetail?.posted_Date |
+                                        date}}</span> &nbsp;
+                                    <span class="_list_blickes types">Category:- {{projectDetail?.category}}</span>
                                 </div>
                             </div>
+                            <h2>{{projectDetail?.project_name}}</h2>
+                            <span><i class="fas fa-map-marker-alt"></i> {{projectDetail?.city}},
+                                {{projectDetail?.state}}</span>
                         </div>
                     </div>
 
-                </div> -->
+                </div>
 
                 <!-- Single Block Wrap -->
-                <!-- <div class="property_block_wrap">
-
-                    <div class="property_block_wrap_header">
-                        <ul class="nav nav-pills tabs_system" id="pill-tab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pills-walk-tab" data-bs-toggle="pill" href="#pills-walk"
-                                    role="tab" aria-controls="pills-walk" aria-selected="true">WalkScore</a>
+                <div class="_prtis_list mb-4">
+                    <div class="_prtis_list_header">
+                        <ul>
+                            <li>
+                                <div class="content_thumb"><i class="fas fa-building"></i></div>
+                                <div class="content">
+                                    <span class="dark">{{projectDetail?.project_Id}}</span>
+                                    <span class="title">Project Id</span>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-nearby-tab" data-bs-toggle="pill" href="#pills-nearby"
-                                    role="tab" aria-controls="pills-nearby" aria-selected="false">Nearby</a>
+
+                            <li>
+                                <div class="content_thumb"><i class="fas fa-layer-group"></i></div>
+                                <div class="content">
+                                    <span class="dark">{{projectDetail?.project_price}} {{projectDetail?.area}}</span>
+                                    <span class="title">Area</span>
+                                </div>
                             </li>
                         </ul>
                     </div>
-                </div> -->
+                    <div class="_prtis_list_body">
+                        <ul class="deatil_features">
+                            <li><strong>Project name</strong>{{projectDetail?.project_name}}</li>
+                            <li><strong>Status</strong>{{projectDetail?.status}}</li>
+                            <li><strong>Location</strong>{{projectDetail?.city}}, {{projectDetail?.state}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Single Block Wrap -->
+                <div class="_prtis_list mb-4">
+                    <div class="_prtis_list_header min">
+                        <h4 class="m-0">About <span class="theme-cl">Property</span></h4>
+                    </div>
+                    <div class="_prtis_list_body">
+                        <p>{{projectDetail?.project_description}}</p>
+                    </div>
+                </div>              
 
             </div>
 
             <!-- property Sidebar -->
             <div class="col-lg-4 col-md-12 col-sm-12">
-                <div class="property-sidebar">
+                <div class="property-sidebar side_stiky">
 
-                    <!-- <div class="sider_blocks_wrap">
+                    <div class="sider_blocks_wrap shadows">
                         <div class="side-booking-header">
-                            <div class="sb-header-left">
-                                <h3 class="price">$470<sub>/Night</sub><span class="offs">$510</span></h3>
-                            </div>
-                            <div class="price_offer bg-seegreen">20% Off</div>
+                            <ul class="nav nav-pills sider_tab" id="pillss-tab" role="tablist">
+                                <li class="nav-item"> <a class="nav-link active bg-success" id="pills-book-tab" target="_blank" href="https://web.whatsapp.com/send?phone=8829058003"
+                                        aria-selected="true"><span><i class="fab fa-whatsapp"></i> <br> 
+                                            +91 8829058003</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link bg-danger" href="mailto:support@laxmiprabhu.com" role="tab"
+                                        aria-controls="pills-appointment" aria-selected="false"><i
+                                            class="ti-email"></i><br> support@laxmiprabhu.com</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="side-booking-body">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <div class="form-group">
-                                        <label>Check In</label>
-                                        <div class="cld-box">
-                                            <i class="ti-calendar"></i>
-                                            <input type="text" name="checkin" class="form-control" value="10/24/2020" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <div class="form-group">
-                                        <label>Check Out</label>
-                                        <div class="cld-box">
-                                            <i class="ti-calendar"></i>
-                                            <input type="text" name="checkout" class="form-control"
-                                                value="10/24/2020" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <div class="form-group">
-                                        <div>
-                                            <label for="guests">Adults</label>
-                                            <div class="guests-box">
-                                                <button class="counter-btn" type="button" id="cnt-down"><i
-                                                        class="ti-minus"></i></button>
-                                                <input type="text" id="guestNo" name="guests" value="2" />
-                                                <button class="counter-btn" type="button" id="cnt-up"><i
-                                                        class="ti-plus"></i></button>
+                        <div class="sidetab-content">
+                            <div class="tab-content" id="pillss-tabContent">
+                                <!-- Book Now Tab -->
+                                <div class="tab-pane fade show active" id="pills-book" role="tabpanel"
+                                    aria-labelledby="pills-book-tab">
+                                    <div class="side-booking-body">
+                                        <div class="row">
+
+                                            <div class="col-lg12 col-md-12 col-sm-12 mt-3">
+                                                <h6>Advance features</h6>
+                                                <div class="_adv_features_list">
+                                                    <ul class="no-ul-list">
+                                                        <li class="my-1 d-flex">
+                                                            <input id="a-1" class="form-check-input" name="a-1"
+                                                                type="checkbox" onclick="return false;" checked
+                                                                style="margin-left: -7px;"> &nbsp;
+                                                            <label for="a-1" class="form-check-label">Air
+                                                                Condition</label>
+                                                        </li>
+                                                        <li class="my-1 d-flex">
+                                                            <input id="a-2" class="form-check-input" name="a-2"
+                                                                type="checkbox" onclick="return false;" checked
+                                                                style="margin-left: -7px;">&nbsp;
+                                                            <label for="a-2" class="form-check-label">Bedding</label>
+                                                        </li>
+                                                        <li class="my-1 d-flex">
+                                                            <input id="a-3" class="form-check-input" name="a-3"
+                                                                type="checkbox" onclick="return false;" checked
+                                                                style="margin-left: -7px;">&nbsp;
+                                                            <label for="a-3" class="form-check-label">Car
+                                                                Parking</label>
+                                                        </li>
+                                                        <li class="my-1 d-flex">
+                                                            <input id="a-4" class="form-check-input" name="a-4"
+                                                                type="checkbox" onclick="return false;" checked
+                                                                style="margin-left: -7px;">&nbsp;
+                                                            <label for="a-4" class="form-check-label">Pets Allow</label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <a href="{{imageUrl}}{{projectDetail?.brochure?.path}}" target="_blank">
+                                                    <button class="btn btn-danger full-width fw-medium">Download
+                                                        Brochure</button>
+                                                        </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-6">
-                                    <div class="form-group">
-                                        <div class="guests">
-                                            <label>Kids</label>
-                                            <div class="guests-box">
-                                                <button class="counter-btn" type="button" id="kcnt-down"><i
-                                                        class="ti-minus"></i></button>
-                                                <input type="text" id="kidsNo" name="kids" value="0" />
-                                                <button class="counter-btn" type="button" id="kcnt-up"><i
-                                                        class="ti-plus"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg12 col-md-12 col-sm-12 mt-3">
-                                    <h6>Advance features</h6>
-                                    <div class="_adv_features_list">
-                                        <ul class="no-ul-list">
-                                            <li class="my-1 d-flex">
-                                                <input id="a-1" class="form-check-input" name="a-1" type="checkbox">
-                                                <label for="a-1" class="form-check-label">Air
-                                                    Condition<i>$10</i></label>
-                                            </li>
-                                            <li class="my-1 d-flex">
-                                                <input id="a-2" class="form-check-input" name="a-2" type="checkbox"
-                                                    checked>
-                                                <label for="a-2" class="form-check-label">Bedding<i>$07</i></label>
-                                            </li>
-                                            <li class="my-1 d-flex">
-                                                <input id="a-3" class="form-check-input" name="a-3" type="checkbox"
-                                                    checked>
-                                                <label for="a-3" class="form-check-label">Heating<i>$20</i></label>
-                                            </li>
-                                            <li class="my-1 d-flex">
-                                                <input id="a-4" class="form-check-input" name="a-4" type="checkbox">
-                                                <label for="a-4" class="form-check-label">Internet<i>$10</i></label>
-                                            </li>
-                                            <li class="my-1 d-flex">
-                                                <input id="a-5" class="form-check-input" name="a-5" type="checkbox">
-                                                <label for="a-5" class="form-check-label">Microwave<i>$05</i></label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg12 col-md-12 col-sm-12 mt-3">
-                                    <h6>Price & Tax</h6>
-                                    <div class="_adv_features">
-                                        <ul>
-                                            <li>I Night<span>$310</span></li>
-                                            <li>Discount 25$<span>-$250</span></li>
-                                            <li>Service Fee<span>$17</span></li>
-                                            <li>Breakfast Per Adult<span>$35</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="side-booking-foot">
-                                    <span class="sb-header-left">Total Payment</span>
-                                    <h3 class="price text-danger">$170</h3>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <div class="stbooking-footer mt-1">
-                                        <div class="form-group mb-0 pb-0">
-                                            <a href="#" class="btn btn-danger full-width fw-medium">Book It Now</a>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+
                         </div>
-                    </div> -->
-
-                    <!-- Agent Detail -->
-                    <!-- <div class="sider_blocks_wrap">
-                        <div class="side-booking-body">
-                            <div class="agent-_blocks_title">
-
-                                <div class="agent-_blocks_thumb"><img src="assets/img/user-6.jpg" alt=""></div>
-                                <div class="agent-_blocks_caption">
-                                    <h4><a href="#">Shivangi Preet</a></h4>
-                                    <span class="approved-agent"><i class="ti-check"></i>approved</span>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <a href="#" class="agent-btn-contact" data-bs-toggle="modal"
-                                data-bs-target="#autho-message"><i class="ti-comment-alt"></i>Message</a>
-
-                            <span id="number" data-last="+1234567896">
-                                <span><i class="ti-headphone-alt"></i><a class="see">+355(44)35...Show</a></span>
-                            </span>
-                        </div>
-                    </div> -->
-
-                    <!-- Mortgage Calculator -->
-                    <!-- <div class="sider_blocks_wrap">
-                        <div class="side-booking-header">
-                            <h4 class="m-0">Mortgage Calculator</h4>
-                        </div>
-
-                        <div class="sider-block-body p-3">
-                            <div class="form-group">
-                                <div class="input-with-icon">
-                                    <input type="text" class="form-control light" placeholder="Sale Price">
-                                    <i class="ti-money"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="input-with-icon">
-                                    <input type="text" class="form-control light" placeholder="Down Payment">
-                                    <i class="ti-money"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="input-with-icon">
-                                    <input type="text" class="form-control light" placeholder="Loan Term (Years)">
-                                    <i class="ti-calendar"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="input-with-icon">
-                                    <input type="text" class="form-control light" placeholder="Interest Rate">
-                                    <i class="fa fa-percent"></i>
-                                </div>
-                            </div>
-                            <div class="mortgage mb-2">Monthly Payment: 22742.10 $</div>
-                            <button class="btn btn-light-danger fw-medium full-width">Calculate</button>
-                        </div>
-                    </div> -->
-
-                    <!-- Similar Property -->
-                    <div class="sidebar-widgets">
-
-                        <!-- <h4>Similar Property</h4> -->
-
-                        <!-- <div class="sidebar_featured_property"> -->
-
-                            <!-- List Sibar Property -->
-                            <!-- <div class="sides_list_property">
-                                <div class="sides_list_property_thumb">
-                                    <img src="assets/img/p-1.png" class="img-fluid" alt="" />
-                                </div>
-                                <div class="sides_list_property_detail">
-                                    <h4><a href="single-property-1.html">Loss vengel New Apartment</a></h4>
-                                    <span><i class="ti-location-pin"></i>Sans Fransico</span>
-                                    <div class="lists_property_price">
-                                        <div class="lists_property_types">
-                                            <div class="property_types_vlix sale">For Sale</div>
-                                        </div>
-                                        <div class="lists_property_price_value">
-                                            <h4>$4,240</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- List Sibar Property -->
-                            <!-- <div class="sides_list_property">
-                                <div class="sides_list_property_thumb">
-                                    <img src="assets/img/p-4.png" class="img-fluid" alt="" />
-                                </div>
-                                <div class="sides_list_property_detail">
-                                    <h4><a href="single-property-1.html">Montreal Quriqe Apartment</a></h4>
-                                    <span><i class="ti-location-pin"></i>Liverpool, London</span>
-                                    <div class="lists_property_price">
-                                        <div class="lists_property_types">
-                                            <div class="property_types_vlix">For Rent</div>
-                                        </div>
-                                        <div class="lists_property_price_value">
-                                            <h4>$7,380</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- List Sibar Property -->
-                            <!-- <div class="sides_list_property">
-                                <div class="sides_list_property_thumb">
-                                    <img src="assets/img/p-7.png" class="img-fluid" alt="" />
-                                </div>
-                                <div class="sides_list_property_detail">
-                                    <h4><a href="single-property-1.html">Curmic Studio For Office</a></h4>
-                                    <span><i class="ti-location-pin"></i>Montreal, Canada</span>
-                                    <div class="lists_property_price">
-                                        <div class="lists_property_types">
-                                            <div class="property_types_vlix buy">For Buy</div>
-                                        </div>
-                                        <div class="lists_property_price_value">
-                                            <h4>$8,730</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- List Sibar Property -->
-                            <!-- <div class="sides_list_property">
-                                <div class="sides_list_property_thumb">
-                                    <img src="assets/img/p-5.png" class="img-fluid" alt="" />
-                                </div>
-                                <div class="sides_list_property_detail">
-                                    <h4><a href="single-property-1.html">Montreal Quebec City</a></h4>
-                                    <span><i class="ti-location-pin"></i>Sreek View, New York</span>
-                                    <div class="lists_property_price">
-                                        <div class="lists_property_types">
-                                            <div class="property_types_vlix">For Rent</div>
-                                        </div>
-                                        <div class="lists_property_price_value">
-                                            <h4>$6,240</h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                        <!-- </div> -->
-
                     </div>
 
                 </div>

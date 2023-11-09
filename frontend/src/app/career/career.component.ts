@@ -35,6 +35,7 @@ export class CareerComponent implements OnInit {
   }
 
   submitCareerForm() {
+    this.isLoading = true;
     const formData = new FormData();
     formData.append('name', this.careerForm.value.name);
     formData.append('email', this.careerForm.value.email);
@@ -68,6 +69,7 @@ export class CareerComponent implements OnInit {
           });
         }
       }, error => {
+        console.log(error);
         this.isLoading = false;
         Swal.fire({
           title: 'Error',

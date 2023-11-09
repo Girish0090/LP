@@ -7319,7 +7319,7 @@ span.tag_t {
     width: 100%;
     display: flex;
     vertical-align: middle;
-    align-items: center;
+    /* align-items: center; */
     flex: 1 1 auto;
 }
 
@@ -7804,7 +7804,7 @@ span._list_blickes.types {
 
 .listing-detail-footer {
     padding: 1rem 1.5rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     border-top: 1px solid #e4e8f3;
     display: flex;
     align-items: center;
