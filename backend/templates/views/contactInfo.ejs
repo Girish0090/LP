@@ -58,13 +58,13 @@
                                     <table class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4">S.no.</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Email</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Subject</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Message</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Time Stamp</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Action</th>
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Name</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Email</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Subject</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Message</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Time Stamp</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -92,7 +92,7 @@
                                                                 hour: '2-digit' , minute: '2-digit' ,second: '2-digit'
                                                                 ,}) %>
                                                         </td>
-                                                        <td  class="align-middle">
+                                                        <td  class="align-middle" align="center">
                                                             <a class="delete-button" style="cursor: pointer;"
                                                                 data-propertyId="<%= contactData[i]._id %>">
                                                                 <i class="fas fa-trash text-danger"></i>
@@ -126,7 +126,7 @@
          }, 1000);
      </script>
 
-     <!-- Delete Slider -->
+     <!-- Delete Contact -->
      <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Get all elements with the class "delete-button"

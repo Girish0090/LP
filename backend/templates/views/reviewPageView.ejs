@@ -58,13 +58,13 @@
                                     <table class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4">S.no.</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Image</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">User Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Designation</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Description</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4">Rating</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 align-middle" colspan="2">
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Image</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">User Name</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Designation</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Description</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Rating</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 align-middle text-center" colspan="2">
                                                     Action</th>
                                             </tr>
                                         </thead>
@@ -91,7 +91,7 @@
                                                         <td class="align-middle">
                                                             <%= reviewData[i].Rating %>
                                                         </td>
-                                                        <td colspan="1" class="align-middle">
+                                                        <td colspan="1" class="align-middle" align="center">
                                                             <!-- Add data attributes to the "Edit" button -->
                                                             <a class=" edit-button" style="cursor: pointer;"
                                                                 data-toggle="modal" data-target="#editModal"
@@ -105,7 +105,7 @@
                                                             </a>
 
                                                         </td>
-                                                        <td colspan="1" class="align-middle">
+                                                        <td colspan="1" class="align-middle" align="center">
                                                             <a class="delete-button" style="cursor: pointer;"
                                                                 data-reviewId="<%= reviewData[i]._id %>">
                                                                 <i class="fas fa-trash text-danger"></i>
@@ -283,7 +283,7 @@
     </script>
 
 
-    <!-- Delete Project -->
+    <!-- Delete Reviews -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Get all elements with the class "delete-button"

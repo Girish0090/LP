@@ -605,8 +605,35 @@ exports.getEnquiry = async (req, res) => {
     }
 }
 
+// Delete Enquiry Api
+exports.deleteEnquiry = async (req, res) => {
+    try {
+        const { careerId } = req.params;
 
-// --------------------------------Enquiry ---------------------------
+        const deletedCareer = await Career.findByIdAndDelete(careerId);
+
+        if (!deletedCareer) {
+            return res.status(404).json({ success: false, message: 'Career Enquiry not found' });
+        } else {
+            const resumePath = path.join(__dirname, '..', 'uploads/resumepdf', deletedCareer.resumePDF.filename);
+            if (fs.existsSync(resumePath)) {
+                fs.unlink(resumePath, (err) => {
+                    if (err) {
+                        return res.status(500).send({ success: false, message: 'Error deleting Enquiry.', err });
+                    } else {
+                        res.status(200).send({ success: true, message: 'Career Enquiry Deleted Successfully!' });
+                    }
+                });
+            }
+        }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+
+// --------------------------------Project Contact ---------------------------
 // Render Project Contact Page
 exports.projectContact = async (req, res) => {
     try {

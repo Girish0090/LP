@@ -185,6 +185,9 @@ router.get('/deleteContact/:contactId', checkAuth, adminController.deleteContact
 // Render Enquiry - View page
 router.get('/enquiries', checkAuth, adminController.getEnquiry);
 
+// Delete Career Detail Api
+router.get('/deleteEnquiry/:careerId', checkAuth, adminController.deleteEnquiry);
+
 
 // --------------------------------Project Contact ---------------------------
 // Render Project Contact - View page
