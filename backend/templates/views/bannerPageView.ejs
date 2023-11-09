@@ -127,12 +127,10 @@
                     if (confirmed) {
                         const bannerId = button.getAttribute('data-propertyId');
                         // The user confirmed, perform the delete operation here
-                        console.log(bannerId);
 
                         fetch(`/admin/deleteBanner/${bannerId}`, {
                             method: 'GET'
                         }).then((res) => {
-                            console.log(res);
                             if (res.status == 200) {
                                 location.reload(true);
                             }

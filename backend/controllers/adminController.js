@@ -382,31 +382,42 @@ exports.deleteProperty = async (req, res) => {
         if (!deletedProduct) {
             return res.status(404).json({ success: false, message: 'Property not found' });
         } else {
-
+            // Delete images
             const imagesToDelete = deletedProduct.image && Array.isArray(deletedProduct.image) ? deletedProduct.image : [];
 
             const imagePaths = imagesToDelete.map(imageObj => path.join(__dirname, '..', imageObj.path));
 
+            const imageErrors = imagePaths
+                .filter(filePath => fs.existsSync(filePath))
+                .map(filePath => {
+                    try {
+                        fs.unlinkSync(filePath);
+                        return null;
+                    } catch (err) {
+                        return `Error deleting image ${filePath}: ${err}`;
+                    }
+                })
+                .filter(error => error !== null);
 
-            imagePaths.forEach(imagePath => {
-                if (fs.existsSync(imagePath)) {
-                    fs.unlink(imagePath, (err) => {
-                        console.log(imagePath);
-                        if (err) {
-                            console.log(err);
-                            return res.status(500).send({ success: false, message: 'Error deleting Project.', err });
-                        } else {
-                            console.log("yes");
-                            res.status(200).send({ success: true, message: 'Project Deleted Successfully!' });
-                        }
-                    });
+            // Delete brochure
+            if (deletedProduct.brochure) {
+                const brochurePath = path.join(__dirname, '..', deletedProduct.brochure.path);
+                if (fs.existsSync(brochurePath)) {
+                    try {
+                        fs.unlinkSync(brochurePath);
+                    } catch (err) {
+                        console.error(`Error deleting brochure: ${err}`);
+                    }
                 }
-            });
+            }
 
+            const allErrors = [...imageErrors];
+            const successMessage = allErrors.length === 0 ? 'Files deleted successfully' : 'Error deleting files';
+            const statusCode = allErrors.length === 0 ? 200 : 500;
 
-
-
+            res.status(statusCode).send({ success: allErrors.length === 0, message: successMessage });
         }
+
 
     } catch (error) {
         res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
@@ -874,8 +885,6 @@ exports.galleryUpload = async (req, res) => {
 exports.deleteGallery = async (req, res) => {
     try {
         const { galleryId } = req.params;
-
-        console.log(galleryId);
 
         // Find and delete the product by ID
         const deletedGallery = await Gallery.findByIdAndDelete(galleryId);

@@ -298,7 +298,6 @@
                     if (confirmed) {
                         const reviewId = button.getAttribute('data-reviewId');
                         // The user confirmed, perform the delete operation here
-                        console.log(reviewId);
 
                         fetch(`/admin/deleteReview/${reviewId}`, {
                             method: 'GET'
