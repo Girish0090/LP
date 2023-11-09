@@ -141,12 +141,10 @@
                     if (confirmed) {
                         const contactId = button.getAttribute('data-propertyId');
                         // The user confirmed, perform the delete operation here
-                        console.log(contactId);
 
                         fetch(`/admin/deleteContact/${contactId}`, {
                             method: 'GET'
                         }).then((res) => {
-                            console.log(res);
                             if (res.status == 200) {
                                 location.reload(true);
                             }

@@ -81,7 +81,6 @@ const AgentsImages = multer.diskStorage({
         const date = new Date().toISOString().replace(/[-:]/g, ''); // Format date as "yyyyMMddTHHmmss"
         const extname = path.extname(file.originalname);
         const uniqueFileName = username + '-' + date + extname;
-        console.log(uniqueFileName);
         cb(null, uniqueFileName);
     }
 });
@@ -98,7 +97,6 @@ const galleryImages = multer.diskStorage({
         const date = new Date().toISOString().replace(/[-:]/g, ''); // Format date as "yyyyMMddTHHmmss"
         const extname = path.extname(file.originalname);
         const uniqueFileName = username + '-' + date + extname;
-        console.log(uniqueFileName);
         cb(null, uniqueFileName);
     }
 });

@@ -183,10 +183,10 @@ exports.postJoinUs = async (req, res) => {
         }).catch(err => {
             if (err.code === 11000) {
                 cleanupUpload(path);
-                res.status(400).json({ success: false, message: 'Email is already registered.' });
+                res.json({ success: false, message: 'Email is already registered.', });
             } else {
                 cleanupUpload(path);
-                res.status(400).json({ success: false, message: 'Internal Error!', err });
+                res.status(400).json({ success: false, message: 'Internal Error!', });
             }
         })
 

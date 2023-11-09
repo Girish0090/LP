@@ -493,7 +493,6 @@
                     if (confirmed) {
                         const propertyId = button.getAttribute('data-propertyId');
                         // The user confirmed, perform the delete operation here
-                        console.log(propertyId);
 
                         fetch(`/admin/deleteProperty/${propertyId}`, {
                             method: 'GET'

@@ -1,47 +1,20 @@
 <div class="db-sidebar bg-white">
     <nav class="navbar navbar-expand-xl navbar-light d-block px-0 header-sticky dashboard-nav py-0">
         <div class="sticky-area shadow-xs-1 py-3">
-            <div class="d-flex px-3 px-xl-6 w-100">
-                <a class="navbar-brand">
-                    <!-- <img src="../../public/images/logo.png" alt="HomeID"> -->
-                    <h3>LOGO HERE</h3>
+            <div class="d-flex px-3 px-xl-10">
+                <a class="navbar-brand text-center">
+                    <img src="../../public/images/laxmi-prabhu-logo.png" alt="HomeID" class="img-fluid" style="height: 50px;">
+                    <!-- <h3>LOGO HERE</h3> -->
                 </a>
 
                 
                 <div class="ml-auto d-flex align-items-center ">
-                    <!-- <div class="d-flex align-items-center d-xl-none">
-                        <div class="dropdown px-3">
-                            <a href="#" class="dropdown-toggle d-flex align-items-center text-heading"
-                                data-toggle="dropdown">
-                                <div class="w-48px">
-                                    <img src="../../public/images/testimonial-5.jpg" alt="Ronald Hunter"
-                                        class="rounded-circle">
-                                </div>
-                                <span class="fs-13 font-weight-500 d-none d-sm-inline ml-2">
-                                    Ronald Hunter
-                                </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#">My Profile</a>
-                                <a class="dropdown-item" href="#">Logout</a>
-                            </div>
-                        </div>
-                        <div class="dropdown no-caret py-4 px-3 d-flex align-items-center notice mr-3">
-                            <a href="#" class="dropdown-toggle text-heading fs-20 font-weight-500 lh-1"
-                                data-toggle="dropdown">
-                                <i class="far fa-bell"></i>
-                                <span
-                                    class="badge badge-primary badge-circle badge-absolute font-weight-bold fs-13">1</span>
-                            </a>
-                        </div>
-                    </div> -->
-
                     <div class="d-flex align-items-center d-xl-none">
-                        <a href="#"
+                        <a
                         class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end"
                         data-toggle="dropdown">
                         <% if (userImage) { %>
-                            <div class="mr-4 w-48px">
+                            <div class="mr-4 w-40px">
                                 <img src="../../<%= userImage %>" alt="Admin" class="rounded-circle">
                             </div>
                             <% } else { %>
