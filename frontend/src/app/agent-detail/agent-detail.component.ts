@@ -33,7 +33,6 @@ export class AgentDetailComponent implements OnInit {
     this.service.get("getAgentDetail/"+this.agentId).subscribe((res:any)=>{
       if(res.success == true){
         this.agentDetail = res.data[0];
-        console.log(this.agentDetail);
       }
     },error=>{
       Swal.fire({

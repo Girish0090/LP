@@ -50,7 +50,6 @@ export class ListingComponent implements OnInit {
       this.isLoading = true;
       if (res.success == true) {
         this.projectList = res.data;
-        console.log(this.projectList)
         setTimeout(() => {
           this.isLoading = false;
         }, 1000);
@@ -185,7 +184,6 @@ export class ListingComponent implements OnInit {
     this.service.get("getPropertyByCity/" + this.City).subscribe((res: any) => {
       if (res.success == true) {
         this.projectList = res.data;
-        console.log(this.projectList)
         setTimeout(() => {
           this.isLoading = false;
         }, 1000);

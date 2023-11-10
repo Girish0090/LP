@@ -23,7 +23,7 @@
         <div class="row">
 
             <!-- property main detail -->
-            <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="col-lg-8 col-md-12 col-sm-12 order-2 order-lg-1 order-md-2 order-sm-2">
 
                 <!-- Single Block Wrap -->
                 <div class="property_block_wrap">
@@ -47,7 +47,7 @@
                 <div class="property_block_wrap">
 
                     <div class="property_block_wrap_header">
-                        <h4 class="property_block_title">specialist</h4>
+                        <h4 class="property_block_title">Specialist</h4>
                     </div>
 
                     <div class="block-body">
@@ -83,38 +83,36 @@
                 <!-- Single Block Wrap -->
                 <div class="_prtis_list mb-4">
                     <div class="_prtis_list_header">
-                        <ul>
-                            <li>
-                                <div class="content_thumb"><i class="fa fa-envelope"></i></div>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6 col-sm-12 mt-2 mt-sm-3">
+                                <div class="content_thumb text-dark"><strong><i class="fa fa-envelope"></i> &nbsp;<span class="title">Email</span></strong></div>
                                 <div class="content">
                                     <span class="dark">{{agentDetail?.email}}</span>
-                                    <span class="title">Email</span>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="content_thumb"><i class="fa fa-phone"></i></div>
+                            </div>
+                            <div class="col-xl-4 col-md-6 col-sm-12 mt-2 mt-sm-3">
+                                <div class="content_thumb text-dark"><strong><i class="fa fa-phone"></i> &nbsp;<span class="title">Call Me</span></strong></div>
                                 <div class="content">
                                     <span class="dark">{{agentDetail?.mobile}}</span>
-                                    <span class="title">Call Me</span>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="content_thumb"><i class="fa fa-map-marker-alt"></i></div>
+                            </div>
+                            <div class="col-xl-4 col-md-6 col-sm-12 mt-2 mt-sm-3">
+                                <div class="content_thumb text-dark"><strong><i class="fa fa-map-marker-alt"></i> &nbsp;<span class="title">Location</span></strong></div>
                                 <div class="content">
                                     <span class="dark">{{agentDetail?.address}}</span>
-                                    <span class="title">Location</span>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="_prtis_list_body">
                         <ul class="deatil_features">
                             <li><strong>{{agentDetail?.userName}}</strong>Name</li>
                             <li><strong>{{agentDetail?.email}}</strong>Email</li>
-                            <li class="text-end"><strong>{{agentDetail?.mobile}}</strong>Call</li>
+                            <li class="text-left text-md-right text-xl-right"><strong>{{agentDetail?.mobile}}</strong>Call</li>
                             <li><strong>{{agentDetail?.city}}</strong>City</li>
                             <li><strong>{{agentDetail?.state}}</strong>State</li>
-                            <li class="text-end"><strong>India</strong>Country</li>
+                            <li class="text-left text-xl-right"><strong>India</strong>Country</li>
                         </ul>
                     </div>
                 </div>
@@ -122,7 +120,7 @@
             </div>
 
             <!-- property Sidebar -->
-            <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="col-lg-4 col-md-12 col-sm-12 order-1 order-lg-2 order-md-1 order-sm-1">
                 <div class="property-sidebar lg-mt-0 mt-4">
 
                     <!-- Agent Detail -->

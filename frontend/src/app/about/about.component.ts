@@ -17,4 +17,10 @@ export class AboutComponent implements OnInit {
     window.scroll(0,0);
   }
 
+  showFullText: boolean = false;
+
+  toggleText() {
+    this.showFullText = !this.showFullText;
+  }
+
 }

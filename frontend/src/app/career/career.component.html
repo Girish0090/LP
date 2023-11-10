@@ -89,7 +89,7 @@
                                         <div class="form-group">
                                             <label>Name</label>
                                             <div class="input-with-icon">
-                                                <input formControlName="name" placeholder="Name" type="text"
+                                                <input onkeypress="return /[A-Za-z ]/i.test(event.key)" formControlName="name" placeholder="Name" type="text"
                                                     class="form-control">
                                                 <!-- <small *ngIf="!careerForm.get('name')?.valid && submitForm" class="text-danger">*Please fill out of name field</small> -->
                                                 <i class="ti-user"></i>
@@ -109,7 +109,7 @@
                                         <div class="form-group">
                                             <label>Mobile</label>
                                             <div class="input-with-icon">
-                                                <input formControlName="mobile" placeholder="Mobile" minlength="10"
+                                                <input onkeypress="return /[0-9 ]/i.test(event.key)" formControlName="mobile" placeholder="Mobile" minlength="10"
                                                     maxlength="10" type="tel" class="form-control">
                                                 <!-- <small *ngIf="!careerForm.get('mobile')?.valid && submitForm" class="text-danger">*Please fill out of mobile field</small> -->
                                                 <i class="ti-mobile"></i>
@@ -138,7 +138,7 @@
 
                                         <div>
                                             <label for="formFileLg" class="form-label">Upload your resume here</label>
-                                            <input (change)="onSelectFile($event)"
+                                            <input accept=".pdf" (change)="onSelectFile($event)"
                                                 style="margin-bottom: 16px;padding: 17px;"
                                                 class="form-control form-control-lg" id="formFileLg" type="file">
                                         </div>

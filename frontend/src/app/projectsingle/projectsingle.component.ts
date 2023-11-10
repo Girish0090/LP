@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 declare var $:any;
 declare var detailCarousel:any;
 
@@ -35,13 +36,17 @@ export class ProjectsingleComponent implements OnInit {
     this.service.get("getPropertyDetail/"+this.projectid).subscribe((res:any)=>{
       if(res.success == true){
         this.projectDetail = res.data[0];
-        console.log(this.projectDetail)
         setTimeout(() => {
           detailCarousel();
         }, 300);
       }
     },error=>{
-      console.log(error);
+      this.isLoading = false;
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
     })
   }
 

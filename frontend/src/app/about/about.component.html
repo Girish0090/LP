@@ -30,10 +30,9 @@
                     
                     <h2 class="mb-3 fw-bold">Our Agency Story</h2>
                     <span class="text-muted fs-5">Check out our company story and work process</span>
-                    <p class="mt-4">To develop a collaborative relationship based on our ethics and mutual trust and contribute to the growth of the real estate professionals through our valuable trainings and quality service and becoming the leader in the real estate industry.</p>
-                    <p class="mb-3">To create a positive and energetic environment through events, tours and recognitions programs.To teach ethics to real estate professionals through our value-driven culture.To educate real estate professionals through our valuable trainings.To teach ethics to real estate professionals through our value-driven culture.To build a collaborative relationship with best real estate developers.To assist real estate professional to achieve growth and success.To help real estate buyers to get best value for their money.</p>
-                    
-                    <a class="btn btn-danger">More About Us</a>
+                    <p class="mt-4" [ngClass]="{'truncated-text': !showFullText, 'expanded-text': showFullText}">To develop a collaborative relationship based on our ethics and mutual trust and contribute to the growth of the real estate professionals through our valuable trainings and quality service and becoming the leader in the real estate industry. To create a positive and energetic environment through events, tours and recognitions programs.To teach ethics to real estate professionals through our value-driven culture.To educate real estate professionals through our valuable trainings.To teach ethics to real estate professionals through our value-driven culture.To build a collaborative relationship with best real estate developers.To assist real estate professional to achieve growth and success.To help real estate buyers to get best value for their money.</p>
+                  
+                    <a class="btn btn-danger mt-3" id="toggleButton" (click)="toggleText()"> {{ showFullText ? 'Less About Us' : 'More About Us' }}   <span *ngIf="!showFullText" class="fa fa-angle-down ml-2"></span>   <span *ngIf="showFullText" class="fa fa-angle-up ml-2"></span></a>
                 </div>
             </div>
             

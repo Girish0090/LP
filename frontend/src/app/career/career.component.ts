@@ -35,6 +35,7 @@ export class CareerComponent implements OnInit {
   }
 
   submitCareerForm() {
+    alert("function")
     this.isLoading = true;
     const formData = new FormData();
     formData.append('name', this.careerForm.value.name);
@@ -42,9 +43,10 @@ export class CareerComponent implements OnInit {
     formData.append('mobile', this.careerForm.value.mobile);
     formData.append('education_Level', this.careerForm.value.education_Level);
     formData.append('additional_Msg', this.careerForm.value.additional_Msg);
-    formData.append('resumePDF', this.pdf, this.pdf.name);
+    formData.append('resumePDF', this.pdf, this.pdf?.name);
 
     if (this.careerForm.valid) {
+      alert("if")
       this.service.post("joinUs", formData).subscribe((res: any) => {
         if (res.success == true) {
           $("#career").modal("hide");
@@ -60,6 +62,7 @@ export class CareerComponent implements OnInit {
             Swal.close();
           }, 3000);
           this.careerForm.reset();
+          this.isLoading = false;
         } else {
           this.isLoading = false;
           Swal.fire({
@@ -69,7 +72,6 @@ export class CareerComponent implements OnInit {
           });
         }
       }, error => {
-        console.log(error);
         this.isLoading = false;
         Swal.fire({
           title: 'Error',
@@ -78,7 +80,9 @@ export class CareerComponent implements OnInit {
         });
       })
     } else {
+      alert("else");
       this.submitForm = true;
+      this.isLoading = false;
     }
 
   }

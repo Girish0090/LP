@@ -109,3 +109,7 @@
   .breadcrumbs__item.is-active {
     background: #edf1f5;
   }
+
+  .star-color{
+    color: #a70a29;
+  }

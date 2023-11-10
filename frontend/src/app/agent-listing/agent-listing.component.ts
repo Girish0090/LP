@@ -33,7 +33,6 @@ export class AgentListingComponent implements OnInit {
     this.service.get("getAllAgents/"+this.agentCat).subscribe((res:any)=>{
       if(res.success == true){
         this.allAgents = res.data;
-        console.log(this.allAgents);
       }
     },error=>{
       Swal.fire({
