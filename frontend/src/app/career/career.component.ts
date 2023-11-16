@@ -35,7 +35,6 @@ export class CareerComponent implements OnInit {
   }
 
   submitCareerForm() {
-    alert("function")
     this.isLoading = true;
     const formData = new FormData();
     formData.append('name', this.careerForm.value.name);
@@ -46,7 +45,6 @@ export class CareerComponent implements OnInit {
     formData.append('resumePDF', this.pdf, this.pdf?.name);
 
     if (this.careerForm.valid) {
-      alert("if")
       this.service.post("joinUs", formData).subscribe((res: any) => {
         if (res.success == true) {
           $("#career").modal("hide");
@@ -80,7 +78,6 @@ export class CareerComponent implements OnInit {
         });
       })
     } else {
-      alert("else");
       this.submitForm = true;
       this.isLoading = false;
     }

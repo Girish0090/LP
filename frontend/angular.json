@@ -27,6 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/laxmi-prabhu-favicon-black.png",
               "src/assets"
             ],
             "styles": [

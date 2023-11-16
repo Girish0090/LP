@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  siteUrl:"http://192.168.1.31:3000/api/",
-  imageurl:"http://192.168.1.31:3000/"
+  siteUrl:"https://laxmi-prabhu.onrender.com/api/",
+  imageurl:"https://laxmi-prabhu.onrender.com/",
+  // siteUrl:"http://192.168.1.31:3000/api/",
+  // imageurl:"http://192.168.1.31:3000/"
 };
 
 /*
