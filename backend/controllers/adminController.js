@@ -281,11 +281,24 @@ exports.postProperty = async (req, res) => {
         const { project_Id, project_name, project_description, project_price, area, city, state, category, status } = req.body;
 
         if (!project_Id || !project_name || !project_description || !project_price || !area || !city || !state || !category || !status) {
+            for (const file of req.files.image) {
+                cleanupUpload(file.path);
+            }
             return res.status(400).json({ success: false, message: 'All fields are required.' });
         }
 
         if (!req.files || !req.files.image || !req.files.brochure) {
+            for (const file of req.files.image) {
+                cleanupUpload(file.path);
+            }
             return res.status(400).send({ success: false, message: 'Please provide both images and a brochure.' });
+        }
+
+        if(req.files.image.length < 2 || req.files.image.length > 4){
+            for (const file of req.files.image) {
+                cleanupUpload(file.path);
+            }
+            return res.status(400).send({ success: false, message: 'Please provide Minimum 2 Images or Maximum 4 images.' });
         }
 
         const existingProperty = await Property.findOne({ project_Id });
