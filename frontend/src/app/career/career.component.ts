@@ -17,6 +17,7 @@ export class CareerComponent implements OnInit {
   constructor(private fb: FormBuilder, private service: AppserviceService) { }
 
   ngOnInit(): void {
+    window.scroll(0,0);
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
