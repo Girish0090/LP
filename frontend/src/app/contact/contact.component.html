@@ -77,16 +77,27 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <label>Subject</label>
-                                <input onkeypress="return /[A-Za-z ]/i.test(event.key)" placeholder="Enter subject.." formControlName="subject" type="text" class="form-control simple">
-                                <small *ngIf="!contactForm.get('subject')?.valid && submitForm" class="text-danger">*Please fill out of subject field</small>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label>Subject</label>
+                                        <input maxlength="16" onkeypress="return /[A-Za-z ]/i.test(event.key)" placeholder="Enter subject.." formControlName="subject" type="text" class="form-control simple">
+                                        <small *ngIf="!contactForm.get('subject')?.valid && submitForm" class="text-danger">*Please fill out of subject field</small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <label>Mobile</label>
+                                        <input formControlName="mobile" minlength="10" maxlength="10" onkeypress="return /[0-9 ]/i.test(event.key)" placeholder="Enter your mobile number" type="tel" class="form-control simple">
+                                    <small *ngIf="!contactForm.get('mobile')?.valid && submitForm" class="text-danger">*Please fill out of mobile field</small>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div class="form-group">
                                 <label>Message</label>
-                                <textarea onkeypress="return /[A-Za-z ]/i.test(event.key)" placeholder="Enter message..." formControlName="message" class="form-control simple"></textarea>
+                                <textarea maxlength="50" onkeypress="return /[A-Za-z ]/i.test(event.key)" placeholder="Enter message..." formControlName="message" class="form-control simple"></textarea>
                                 <small *ngIf="!contactForm.get('message')?.valid && submitForm" class="text-danger">*Please fill out of message field</small>
                             </div>
                             

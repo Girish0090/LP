@@ -109,7 +109,7 @@
                                 <div class="simple-input">
                                     <select (change)="filterbycategory($event)" class="form-control">
                                         <option value="" selected disabled>Choose status</option>
-                                        <option value="Sold">Sold</option>
+                                        <option value="Sold/Resale">Sold/Resale</option>
                                         <option value="Sale">Sale</option>
                                     </select>
                                 </div>
@@ -275,7 +275,7 @@
                                 <div class="listing-short-detail-wrap">
                                     <div class="_card_list_flex mb-2">
                                         <div class="_card_flex_01">
-                                            <span class="property-type elt_rent">For {{projects.status}}</span>
+                                            <span [ngStyle]="{ 'background-color': projects?.status === 'Sold/Resale' ? 'red' : (projects?.status === 'Sale' ? 'green' : 'inherit') }" class="text-white property-type elt_rent">For {{projects.status}}</span>
                                         </div>
                                         <div class="_card_flex_last">
                                             <div class="prt_saveed_12lk">
@@ -294,7 +294,7 @@
                             
                             <div class="listing-detail-footer d-flex justify-content-between">
                                 <div class="footer-first">
-                                    <div class="foot-location"><span class="pric_lio bg-danger">₹{{projects.project_price}}</span>/{{projects.area}}</div>
+                                    <div class="foot-location"><span (click)="ProjectContact(projects.project_Id)" class="pric_lio bg-danger" data-bs-toggle="modal" data-bs-target="#login" style="cursor: pointer;">Price?</span></div>
                                 </div>
                                 <div class="footer-first text-end">
                                     <!-- <div style="cursor: pointer;"><span class="pric_lio bg-danger" data-bs-toggle="modal" data-bs-target="#login">Contact now</span></div> -->

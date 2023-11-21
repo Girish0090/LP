@@ -102,7 +102,7 @@ export class ListingComponent implements OnInit {
           icon: 'error',
         });
       })
-    } else if (event.target.value == "Sold" || event.target.value == "Sale") {
+    } else if (event.target.value == "Sold/Resale" || event.target.value == "Sale") {
       this.service.get("getFilterProperty?status=" + event.target.value).subscribe((res: any) => {
         if (res.success == true) {
           this.projectList = res.data;
