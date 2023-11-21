@@ -63,7 +63,7 @@ export class ContactComponent implements OnInit {
         this.isLoading = false;
         Swal.fire({
           title: 'Error',
-          text: error.message,
+          text: error.error.message,
           icon: 'error',
         });
       })
