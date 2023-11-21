@@ -53,17 +53,26 @@
                                         </h2>
                                         <p>View and Manage List of Contact Information</p>
                                     </div>
+                                    <div class="mr-0 ml-md-auto">
+                                        <!-- EJS template or HTML file -->
+                                        <button  class="btn btn-primary" onclick="downloadExcel()">Download File &nbsp;<i class="fas fa-download"></i></button>
+
+                                    </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover bg-white border rounded-lg table-bordered">
+                                    <table id="dataTable"
+                                        class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Name</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Email</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Mobile</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Subject</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Message</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Time Stamp</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Time Stamp
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Action</th>
                                             </tr>
                                         </thead>
@@ -78,7 +87,11 @@
                                                             <%= contactData[i].name %>
                                                         </td>
                                                         <td class="align-middle">
-                                                            <%= contactData[i].email %>
+
+                                                            <%= contactData[i].email ? contactData[i].email : 'N/A' %>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <%= contactData[i].mobile ? contactData[i].mobile : 'N/A' %>
                                                         </td>
                                                         <td class="align-middle">
                                                             <%= contactData[i].subject %>
@@ -92,7 +105,7 @@
                                                                 hour: '2-digit' , minute: '2-digit' ,second: '2-digit'
                                                                 ,}) %>
                                                         </td>
-                                                        <td  class="align-middle" align="center">
+                                                        <td class="align-middle" align="center">
                                                             <a class="delete-button" style="cursor: pointer;"
                                                                 data-propertyId="<%= contactData[i]._id %>">
                                                                 <i class="fas fa-trash text-danger"></i>
@@ -117,8 +130,25 @@
     </div>
 
 
-     <!-- Loader -->
-     <script>
+    <!-- EJS template or HTML file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
+    <script>
+        function downloadExcel() {
+            const table = document.getElementById('dataTable');
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet 1');
+
+            // Use XLSX.writeFile to directly save the file
+            XLSX.writeFile(wb, 'table_data.xlsx');
+        }
+    </script>
+
+
+
+    <!-- Loader -->
+    <script>
         const AmagiLoader = {
             __loader: null,
             show: function () {
@@ -170,8 +200,8 @@
         }, 1000);
     </script>
 
-     <!-- Delete Contact -->
-     <script>
+    <!-- Delete Contact -->
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Get all elements with the class "delete-button"
             const deleteButtons = document.querySelectorAll('.delete-button');

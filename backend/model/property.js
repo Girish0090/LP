@@ -8,7 +8,6 @@ const propertySchema = new Schema({
     },
     project_name: {
         type: String,
-        unique:true
     },
     project_description: {
         type: String,
@@ -19,6 +18,7 @@ const propertySchema = new Schema({
     area: {
         type: String,
         enum: ['sqft', 'sqyd', 'acre', 'hectare', 'gaj', 'bigha'],
+        default: "gaj"
     },
     image: [
         {
@@ -45,9 +45,13 @@ const propertySchema = new Schema({
         type: Date,
         default: Date.now
     },
+    approvedBy:{
+        type:String,
+        default:"JWD"
+    },
     status: {
         type: String,
-        enum: ['Sale', 'Sold'],
+        enum: ['Sale', 'Sold/Resale'],
         default: 'Sale',
     },
 });
