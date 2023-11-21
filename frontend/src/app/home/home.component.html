@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-3 col-sm-12">
                                         <div class="form-group">
-                                            <label>City/Street</label>
+                                            <label>City</label>
                                             <div class="input-with-icon">
                                                 <select (change)="getProjectByCity($event)" class="form-control">
                                                     <option value="" selected disabled>Location</option>
@@ -401,11 +401,11 @@
                 <!-- Single Property -->
                 <div class="col-lg-4 col-md-6 col-sm-12 single_items" style="height: 480px;"
                     *ngFor="let item of allProjects">
-                    <a routerLink="/project-detail/{{item._id}}">
+                    <a class="details-page" routerLink="/project-detail/{{item._id}}">
                         <div class="property-listing property-2 h-100">
 
                             <div class="listing-img-wrapper">
-                                <div class="_exlio_125">For {{item.status}}</div>
+                                <div [ngStyle]="{ 'background-color': item?.status === 'Sold/Resale' ? 'red' : (item?.status === 'Sale' ? 'green' : 'inherit') }" class="_exlio_125">For {{item.status}}</div>
                                 <div class="list-img-slide">
                                     <div class="click">
                                         <div><a><img src="{{imageUrl}}{{item.image[0].path}}" class="img-fluid mx-auto"
@@ -428,7 +428,7 @@
                                     <div class="_card_list_flex">
                                         <div class="_card_flex_01">
                                             <h3 class="listing-name verified"><a
-                                                    class="prt-link-detail">{{item.project_name}}</a></h3>
+                                                    class="details-page prt-link-detail">{{item.project_name}}</a></h3>
                                             <p style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;text-overflow: ellipsis; max-height: 124px;">{{item.project_description}}</p>
                                         </div>
                                     </div>
@@ -646,6 +646,54 @@
             </div>
         </section>
         <!-- ============================ Smart Testimonials End ================================== -->
+
+        <!-- ============================ production house section ================================== -->
+        <section class="gray-simple">
+            <div class="container">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-8">
+                        <div class="sec-heading center">
+                            <h2>Our Production Houses</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="item-slide space">
+
+                            <!-- Single Item -->
+                            <div class="single_items" *ngFor="let slideItem of getAllReviews">
+                                <div class="_testimonial_wrios">
+                                    <div class="_testimonial_flex">
+                                        <div class="_testimonial_flex_first">
+                                            <div class="_tsl_flex_thumb">
+                                                <img src="{{imageUrl}}{{slideItem.image.path}}" class="img-fluid" alt=""
+                                                    style="height: 70px; width:100%;">
+                                            </div>
+                                            <div class="_tsl_flex_capst">
+                                                <h5>{{slideItem.userName}}</h5>
+                                                <div class="_ovr_posts"><span>{{slideItem.Designation}}</span></div>
+                                                <div class="_ovr_rates"><span><i
+                                                            class="fa fa-star"></i></span>{{slideItem.Rating}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="facts-detail">
+                                        <p>{{slideItem.Description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- ============================ production house section End ================================== -->
 
         <!-- ============================ Call To Action ================================== -->
         <section class="bg-danger call_action_wrap-wrap">

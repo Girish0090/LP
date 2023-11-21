@@ -22,4 +22,8 @@
         margin: 30px auto !important;
     }
 }
+
+.details-page:hover{
+    color: black;
+}
   

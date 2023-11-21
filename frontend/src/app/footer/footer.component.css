@@ -5,3 +5,7 @@
 .img-footer{
     color: white;
 }
+
+.icon-hover:hover{
+    color: #a70a29 !important;
+}
