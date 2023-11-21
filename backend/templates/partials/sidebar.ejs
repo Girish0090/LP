@@ -6,17 +6,21 @@
                     <img src="../../public/images/laxmi-prabhu-logo.png" alt="HomeID" class="img-fluid" style="height: 50px;">
                     <!-- <h3>LOGO HERE</h3> -->
                 </a>
+                <a class="navbar-brand text-center d-xl-none ml-auto">
+                    <img src="../../public/images/gokulKripra.png" alt="HomeID" class="img-fluid" style="height: 45px;">
+                    <!-- <h3>LOGO HERE</h3> -->
+                </a>
 
                 
-                <div class="ml-auto d-flex align-items-center ">
+                <div class=" d-flex align-items-center ">
                     <div class="d-flex align-items-center d-xl-none">
                         <a
                         class="dropdown-toggle text-heading pr-3 pr-sm-6 d-flex align-items-center justify-content-end"
                         data-toggle="dropdown">
                         <% if (userImage) { %>
-                            <div class="mr-4 w-40px">
+                            <!-- <div class="mr-4 w-40px">
                                 <img src="../../<%= userImage %>" alt="Admin" class="rounded-circle">
-                            </div>
+                            </div> -->
                             <% } else { %>
                                 <!-- Content to display when userImage is not defined -->
 
@@ -37,8 +41,13 @@
                     <div class="dropdown-menu dropdown-menu-right">
 
                         <% if (userName) { %>
-                            <div class="fs-13 font-weight-500 lh-1">
-                                <a class="dropdown-item" href="/admin/logout">Logout</a>
+                            <div class="d-flex align-items-center pl-2 pr-2">
+                                <div class="mr-4 w-100">
+                                    <img src="../../<%= userImage %>" alt="Admin" class="rounded-circle" style="height: 50px;">
+                                </div>
+                                <div class="fs-13 font-weight-500 lh-1">
+                                    <a class="dropdown-item" href="/admin/logout">Logout</a>
+                                </div>
                             </div>
                             <% } else { %>
                                 <!-- Content to display when userName is not defined -->
@@ -220,6 +229,35 @@
                                             <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
                                                 <a class="text-heading lh-1 sidebar-link"
                                                     href="/admin/reviewPageView">View Reviews</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                             <!-- Clients Contact -->
+                             <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
+                                <a href="#client_collapse"
+                                    class="text-heading lh-1 sidebar-link d-flex align-items-center"
+                                    data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sidebar-item-icon d-inline-block mr-3 text-muted fs-20">
+                                        <i class="fas fa-users"></i>
+                                    </span>
+                                    <span class="sidebar-item-text">Clients Contact</span>
+                                    <span class="d-inline-block ml-auto"><i class="fas fa-angle-down"></i></span>
+                                </a>
+
+                                <div class="collapse" id="client_collapse">
+                                    <div class="card card-body border-0 bg-transparent py-0 pl-6">
+                                        <ul class="list-group list-group-flush list-group-no-border">
+                                            <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
+                                                <a class="text-heading lh-1 sidebar-link" href="/admin/addClientContact">Add
+                                                    Contact</a>
+                                            </li>
+                                            <li class="list-group-item px-3 px-xl-4 py-2 sidebar-item">
+                                                <a class="text-heading lh-1 sidebar-link"
+                                                    href="/admin/viewClientContact">View Contact</a>
                                             </li>
                                         </ul>
                                     </div>

@@ -32,24 +32,63 @@ exports.getBanner = async (req, res) => {
 exports.postContact = async (req, res) => {
     try {
 
-        const { name, email, subject, message } = req.body;
+        const { name, email, mobile, subject, message } = req.body;
 
-        const contactData = await Contact.findOne({ email });
+        if (req.body.email == '') {
+            const contactData = await Contact.findOne({ mobile });
 
-        if (!contactData) {
-            const contact = new Contact({
-                name,
-                email,
-                subject,
-                message
-            });
+            if (!contactData) {
+                const contact = new Contact({
+                    name,
+                    email: '',
+                    mobile,
+                    subject,
+                    message
+                });
 
-            const contactDetail = await contact.save();
-            res.status(201).json({ success: true, message: 'Contact Submitted Sent successfully' });
+                const contactDetail = await contact.save();
+                res.status(201).json({ success: true, message: 'Contact Submitted Sent successfully' });
 
+            } else {
+                res.status(400).json({ success: false, message: 'Mobile already registered!' });
+            }
         } else {
-            res.status(400).json({ success: false, message: 'Email already registered!' });
+            const contactDataByEmail = await Contact.findOne({ email });
+            const contactDataByMobile = await Contact.findOne({ mobile });
+
+            if (!contactDataByEmail && !contactDataByMobile) {
+                const contact = new Contact({
+                    name,
+                    email,
+                    mobile,
+                    subject,
+                    message
+                });
+
+                const contactDetail = await contact.save();
+                res.status(201).json({ success: true, message: 'Contact Submitted Sent successfully' });
+
+            } else {
+                let errorMessage = '';
+
+                if (contactDataByEmail && contactDataByMobile) {
+                  errorMessage = 'Email and mobile both registered.';
+              
+                } else {
+                  if (contactDataByEmail) {
+                    errorMessage += 'Email already registered. ';
+                  }
+              
+                  if (contactDataByMobile) {
+                    errorMessage += 'Mobile already registered.';
+                  }
+                }
+              
+                res.status(400).json({ success: false, message: errorMessage });
+            }
         }
+
+
 
     } catch (error) {
         res.status(500).json({ success: false, message: 'Error Occured..', data: error.message });

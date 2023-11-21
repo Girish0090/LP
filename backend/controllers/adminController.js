@@ -10,6 +10,7 @@ const Career = require('../model/career');
 const projectContact = require('../model/projectContact');
 const Agents = require('../model/agents');
 const Gallery = require('../model/gallery');
+const ClientContact = require('../model/clientContact');
 
 const path = require('path');
 const fs = require('fs');
@@ -278,13 +279,17 @@ exports.propertyView = async (req, res) => {
 // Add Property Api
 exports.postProperty = async (req, res) => {
     try {
-        const { project_Id, project_name, project_description, project_price, area, city, state, category, status } = req.body;
+        let { project_Id, project_name, project_description, project_price, area, city, state, category, status } = req.body;
 
-        if (!project_Id || !project_name || !project_description || !project_price || !area || !city || !state || !category || !status) {
+        if (!project_Id || !project_name || !project_description || !project_price || !city || !state || !category || !status) {
             for (const file of req.files.image) {
                 cleanupUpload(file.path);
             }
             return res.status(400).json({ success: false, message: 'All fields are required.' });
+        }
+
+        if (area === '') {
+            area = 'gaj';
         }
 
         if (!req.files || !req.files.image || !req.files.brochure) {
@@ -294,7 +299,7 @@ exports.postProperty = async (req, res) => {
             return res.status(400).send({ success: false, message: 'Please provide both images and a brochure.' });
         }
 
-        if(req.files.image.length < 2 || req.files.image.length > 4){
+        if (req.files.image.length < 2 || req.files.image.length > 4) {
             for (const file of req.files.image) {
                 cleanupUpload(file.path);
             }
@@ -304,6 +309,9 @@ exports.postProperty = async (req, res) => {
         const existingProperty = await Property.findOne({ project_Id });
 
         if (existingProperty) {
+            for (const file of req.files.image) {
+                cleanupUpload(file.path);
+            }
             res.status(400).send({ success: false, message: 'Existing Property ID!' });
         } else {
 
@@ -337,9 +345,15 @@ exports.postProperty = async (req, res) => {
                     res.status(200).send({ success: true, message: 'Property Uploaded!', property });
                 } else {
                     // return res.redirect(`/admin/bannerPageView?error=${err}`);
+                    for (const file of req.files.image) {
+                        cleanupUpload(file.path);
+                    }
                     res.status(400).send({ success: false, message: 'Error!', err });
                 }
             }).catch(err => {
+                for (const file of req.files.image) {
+                    cleanupUpload(file.path);
+                }
                 res.status(400).send({ success: false, message: 'Internal Error!', err });
             })
         }
@@ -356,23 +370,97 @@ exports.postProperty = async (req, res) => {
 exports.editProperty = async (req, res) => {
     try {
         const { propertyId } = req.params;
-
         const { project_name, project_description, project_price, city, state, status, category, area } = req.body;
+        const propertyImages = req.files.image;
+        const brochure = req.files.brochure;
 
-        const updateFields = {
-            project_name,
-            project_description,
-            project_price,
-            city,
-            state,
-            status,
-            category,
-            area
+        // Fetch existing property data
+        const existingProperty = await Property.findOne({ project_Id: propertyId });
+
+        if (!existingProperty) {
+            for (const file of propertyImages) {
+                cleanupUpload(file.path);
+            }
+            return res.status(404).send({ success: false, message: 'Project not found' });
+        }
+
+        if (propertyImages && !brochure) {
+            // Delete existing images from the uploads folder
+            if (existingProperty.image && existingProperty.image.length > 0) {
+                existingProperty.image.forEach(img => {
+                    fs.unlinkSync(img.path); // Delete the image file
+                });
+            }
+
+            if (propertyImages.length < 2 || propertyImages.length > 4) {
+                for (const file of propertyImages) {
+                    cleanupUpload(file.path);
+                }
+                return res.status(400).send({ success: false, message: 'Please provide Minimum 2 Images or Maximum 4 images.' });
+            }
+
+
+            let imagesData = propertyImages.map(file => ({
+                filename: file.originalname,
+                path: file.path,
+            }));
+
+            var updateFields = {
+                project_name,
+                project_description,
+                project_price,
+                city,
+                state,
+                status,
+                category,
+                area,
+                image: imagesData,
+            }
+        } else if (brochure && !propertyImages) {
+            // Delete existing images from the uploads folder
+            if (existingProperty.brochure) {
+                const brochurePath = path.join(__dirname, '..', existingProperty.brochure.path);
+                if (fs.existsSync(brochurePath)) {
+                    try {
+                        fs.unlinkSync(brochurePath);
+                    } catch (err) {
+                        console.error(`Error deleting brochure: ${err}`);
+                    }
+                }
+            }
+
+            var updateFields = {
+                project_name,
+                project_description,
+                project_price,
+                city,
+                state,
+                status,
+                category,
+                area,
+                brochure: {
+                    filename: brochure[0].filename, path: brochure[0].path
+                }
+            }
+        } else if (!brochure && !propertyImages) {
+            var updateFields = {
+                project_name,
+                project_description,
+                project_price,
+                city,
+                state,
+                status,
+                category,
+                area,
+            }
         }
 
         const product = await Property.findOneAndUpdate({ project_Id: propertyId }, updateFields, { new: true });
 
         if (!product) {
+            for (const file of propertyImages) {
+                cleanupUpload(file.path);
+            }
             return res.status(404).send('Project not found');
         } else {
             // res.redirect(`/admin/propertyView`);
@@ -380,6 +468,9 @@ exports.editProperty = async (req, res) => {
         }
 
     } catch (error) {
+        for (const file of propertyImages) {
+            cleanupUpload(file.path);
+        }
         res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
     }
 }
@@ -655,9 +746,23 @@ exports.projectContact = async (req, res) => {
         const userId = req.userData.userId;
         const user = await Admin.findById(userId);
 
-        projectContact.find({}).then((data) => {
+        projectContact.find({}).then(async (data) => {
 
-            return res.render('projectContact', { title: pageTitle, userName: user.userName, userImage: user.image.path, contactData: data });
+            const uniqueProjectIDs = [...new Set(data.map(object => object.projectID))];
+
+            const projectsAccordingToIDs = await Property.find({ project_Id: { $in: uniqueProjectIDs } });
+
+            const projectNamesMap = {};
+            projectsAccordingToIDs.forEach(property => {
+                projectNamesMap[property.project_Id] = property.project_name;
+            });
+
+            const dataWithProjectNames = data.map(contact => ({
+                ...contact.toObject(),
+                projectName: projectNamesMap[contact.projectID]
+            }));
+
+            return res.render('projectContact', { title: pageTitle, userName: user.userName, userImage: user.image.path, contactData: dataWithProjectNames });
         }).catch((err) => {
             console.error('Error fetching banners:', err);
         });
@@ -944,6 +1049,96 @@ exports.deleteGallery = async (req, res) => {
                 });
             }
 
+        }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+
+// ---------------------------Clients Contact--------------
+// Render Clients Contact - Add Page
+exports.clientContact = async (req, res) => {
+    try {
+        const pageTitle = 'Admin Client Contact Add -';
+
+        const userId = req.userData.userId;
+        const user = await Admin.findById(userId);
+
+        res.render('addClientContact', { title: pageTitle, userName: user.userName, userImage: user.image.path });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Render Clients Contact - View page
+exports.viewClientContact = async (req, res) => {
+    try {
+        const pageTitle = 'Admin Clients Contact Page View -';
+        const userId = req.userData.userId;
+        const user = await Admin.findById(userId);
+
+        ClientContact.find({}).then((contact) => {
+            return res.render('clientContactView', { title: pageTitle, userName: user.userName, userImage: user.image.path, contactData: contact });
+        }).catch((err) => {
+            console.error('Error fetching Contact:', err);
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Client Contact Add Api
+exports.postClientContact = async (req, res) => {
+    try {
+
+        const { name, email, mobile, subject, message } = req.body;
+
+        if (!name || !email || !mobile || !subject || !message) {
+            return res.status(400).json({ success: false, message: 'All fields are required.' });
+        }
+
+        // Create a new Contact instance
+        const contact = new ClientContact({
+            name,
+            email,
+            mobile,
+            subject,
+            message,
+        });
+
+        // Save the contact to the database
+        contact.save().then(savedContact => {
+            res.status(201).json({ success: true, message: 'Client Contact submitted successfully' });
+        }).catch(error => {
+            if (error.code === 11000 && error.keyPattern.mobile === 1) {
+                // Duplicate key error for mobile field
+                return res.status(400).json({ success: false, message: 'Mobile number already registered.' });
+            }else if (error.code === 11000 && error.keyPattern.email === 1) {
+                // Duplicate key error for Email field
+                return res.status(400).json({ success: false, message: 'Email already registered.' });
+            }
+            res.status(500).json({ success: false, message: 'Internal server error.', error });
+        });
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Delete Clients Contact Api
+exports.deleteClientContact = async (req, res) => {
+    try {
+        const { contactId } = req.params;
+
+        // Find and delete the product by ID
+        const deletedContact = await ClientContact.findByIdAndDelete(contactId);
+
+        if (!deletedContact) {
+            return res.status(404).json({ success: false, message: 'Contact not found' });
+        } else {
+            res.status(200).send({ success: true, message: 'Client Contact Deleted Successfully!' });
         }
 
     } catch (error) {

@@ -31,6 +31,30 @@
 
     <link rel="icon" href="../../public/images/laxmi-prabhu-favicon-black.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
+
+    <style>
+        /* Add some custom CSS for hiding the camera icon initially */
+        #image-preview-container {
+            position: relative;
+        }
+
+        #image-preview-container .camera-icon {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        #image-preview-container:hover .camera-icon {
+            display: block;
+        }
+    </style>
 
 </head>
 
@@ -53,10 +77,11 @@
                                         <h2 class="mb-0 text-heading fs-22 lh-15">Property Listing</h2>
                                         <p>Real Estate Property Listing and Management</p>
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <input type="text" class="form-control border border-primary" id="searchInput" placeholder="Search by project ID...">
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mt-md-0">
+                                    <!-- <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <input type="text" class="form-control border border-primary" id="searchInput"
+                                            placeholder="Search by project ID...">
+                                    </div> -->
+                                    <!-- <div class="col-lg-4 col-md-6 col-sm-12 mt-2 mt-md-0 mx-auto">
                                         <select class="form-control border border-primary selectpicker"
                                             title="Sort By Category" data-style="btn" id="categoryFilter"
                                             name="category">
@@ -66,85 +91,68 @@
                                             <option value="Industrial">Industrial</option>
                                             <option value="villa">Villa</option>
                                         </select>
-                                    </div>
-                                    
+                                    </div> -->
+
                                 </div>
                                 <div class="table-responsive mt-2 mt-sm-2 mt-md-2">
-                                    <table id="myTable" class="table table-hover bg-white border rounded-lg table-bordered">
-                                        <thead class="thead-sm thead-black">
+                                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">Project ID</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">Project Image</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Project Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Project Description</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">Project Price</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">City</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">State</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">Category</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">Status</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">Brochure</th>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center" colspan="2">Action
-                                                </th>
+                                                <th>S.No.</th>
+                                                <th>Project_ID</th>
+                                                <th>Project_Image</th>
+                                                <th>Project_Name</th>
+                                                <th>Project_Description</th>
+                                                <th>Project_Price</th>
+                                                <th>City</th>
+                                                <th>State</th>
+                                                <th>Category</th>
+                                                <th>Status</th>
+                                                <th>Brochure</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <% if (propertyData.length> 0) { %>
                                                 <% for (let i=0; i < propertyData.length; i++) { %>
-                                                    <tr class="shadow-hover-xs-2 bg-hover-white">
-                                                        <td class="align-middle pt-6 pb-4 px-6">
-                                                            <%= i + 1 %>.
+                                                    <tr>
+                                                        <td>
+                                                            <%= i + 1 %>
                                                         </td>
-
-                                                        <td class="align-middle project-name">
-                                                            <span style="display: flex; width: 100px;">
-                                                                <%= propertyData[i].project_Id %>
-                                                            </span>
+                                                        <td>
+                                                            <%= propertyData[i].project_Id %>
                                                         </td>
-                                                        <td class="align-middle">
-                                                            <span style="display: flex; width: 130px;">
-                                                                <img src="../../<%= propertyData[i].image[0].path %>"
-                                                                    style="width: 100px; height: 100px;">
-                                                            </span>
+                                                        <td><img src="../../<%= propertyData[i].image[0].path %>"
+                                                                alt="Project Image"
+                                                                style="width: 100px; height: 100px;"></td>
+                                                        <td>
+                                                            <%= propertyData[i].project_name %>
                                                         </td>
-                                                        <td class="align-middle">
-                                                            <span style="display: flex; width: 120px;">
-                                                                <%= propertyData[i].project_name %>
-                                                            </span>
-
-                                                        </td>
-                                                        <td class="align-middle"
-                                                            style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;text-overflow: ellipsis; max-height: 124px;width: 250px;">
+                                                        <td>
                                                             <%= propertyData[i].project_description %>
                                                         </td>
-                                                        <td class="align-middle">
-                                                            <span style="display: flex; width: 120px;">
-                                                                <%= '₹ ' +propertyData[i].project_price %>
-                                                                    <%= '/' +propertyData[i].area %>
-                                                            </span>
-
+                                                        <td>
+                                                            <%= '₹ ' +propertyData[i].project_price %>
+                                                                <%= '/' +propertyData[i].area %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= propertyData[i].city %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= propertyData[i].state %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= propertyData[i].category %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= propertyData[i].status %>
                                                         </td>
-                                                        <td class="align-middle">
-
-                                                            <a href="../../<%= propertyData[i].brochure.path %>"
+                                                        <td><a href="../../<%= propertyData[i].brochure.path %>"
                                                                 target="_blank" class="btn-info p-2 rounded"
                                                                 style="display: flex; width: 120px;"><span>View
                                                                     Brochure</span></a>
                                                         </td>
-                                                        <td colspan="1" class="align-middle" align="center">
-                                                            <!-- Add data attributes to the "Edit" button -->
+                                                        <td align="center">
                                                             <a class=" edit-button" style="cursor: pointer;"
                                                                 data-toggle="modal" data-target="#editModal"
                                                                 data-project-id="<%= propertyData[i].project_Id %>"
@@ -159,36 +167,77 @@
                                                                 data-image-url="<%= propertyData[i].image[0].path %>">
                                                                 <i class="fas fa-edit text-success"></i>
                                                             </a>
-
-                                                        </td>
-                                                        <td colspan="1" class="align-middle" align="center">
+                                                            &nbsp;
                                                             <a class="delete-button" style="cursor: pointer;"
                                                                 data-propertyId="<%= propertyData[i]._id %>">
                                                                 <i class="fas fa-trash text-danger"></i>
                                                             </a>
                                                         </td>
-
                                                     </tr>
                                                     <% } %>
                                                         <% } else { %>
                                                             <tr>
-                                                                <td colspan="4" class="text-center">No banner data
+                                                                <td colspan="6" class="text-center">No Property data
                                                                     available.</td>
                                                             </tr>
                                                             <% } %>
-
                                         </tbody>
                                     </table>
                                 </div>
+
                             </div>
                         </main>
                 </div>
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTables with custom options
+            var table = $('#example').DataTable();
+        })
+    </script>
+    <!-- <script>
+        $(document).ready(function () {
+            // Initialize DataTables with custom options
+            var table = $('#example').DataTable({
+                "order": [[0, "asc"]],  // Sort the first column in ascending order
+                "paging": true,         // Enable pagination
+                "searching": true,      // Enable search/filtering
+                "initComplete": function () {
+    
+                    // Add margin between the label and the search input
+                    $('.dataTables_filter label').css('margin-left', '10px');
+    
+                    // Add category filter select next to the search input with label
+                    var column = this.api().column(8); // Assuming the category column is at index 8
+                    var select = $('<select id="categoryFilter" class="ml-2"><option value="" disabled selected>Sort by Category</option></select>')
+                        .appendTo('.dataTables_filter')
+                        .css({
+                            'height': $('.dataTables_filter input').css('height'),
+                            'width': $('.dataTables_filter input').css('width')
+                        })
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                        });
+    
+                    // Add additional options based on unique values in the column
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>');
+                    });
+                }
+            });
+        });
+    </script> -->
+
 
     <!-- Search Functionality -->
-    <script>
+    <!-- <script>
         // Function to filter properties based on the search query
         function performSearch() {
             const searchInput = document.getElementById('searchInput');
@@ -209,7 +258,7 @@
 
         // Attach an input event listener to trigger the search on input
         document.getElementById('searchInput').addEventListener('input', performSearch);
-    </script>
+    </script> -->
 
 
 
@@ -305,8 +354,18 @@
                 <form id="editPropertyForm">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="form-group col-12 text-center">
+                            <div class="form-group col-12 text-center" id="image-preview-container">
+                                <!-- Image preview -->
                                 <img id="image-preview" src="" alt="Image Preview" width="150" height="150">
+                                <div class="camera-icon">
+                                    <label for="image-upload">
+                                        <input type="file" id="image-upload" style="display:none"
+                                            accept="image/png, image/gif, image/jpeg" multiple>
+                                        <i class="fas fa-camera text-info"></i>
+                                    </label>
+                                </div>
+
+
                             </div>
                             <div class="form-group col-12">
                                 <label for="project_Id" class="text-heading">Project
@@ -396,6 +455,13 @@
                                 </select>
                             </div>
 
+                            <div class="form-group col-12">
+                                <label class="form-label" for="brochure">Project
+                                    Brochure (<span class="text-danger">*only pdf</span>)</label>
+                                <input class="form-control" type="file" name="brochure" id="brochure"
+                                    accept="application/pdf,application/vnd.ms-excel">
+                            </div>
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -456,7 +522,7 @@
             });
         });
     </script>
-    
+
 
     <!-- Edit Form -->
     <script>
@@ -475,6 +541,11 @@
             const projectStateField = document.getElementById('state').value;
             const projectStatusField = document.getElementById('status').value;
             const projectCategoryField = document.getElementById('category').value;
+            const fileInput = document.getElementById('image-upload');
+            const fileBrochure = document.getElementById('brochure');
+            // Check if files were selected
+            const selectedFiles = fileInput.files;
+            const selectedBrochure = fileBrochure.files;
 
             const requestData = {
                 project_name: projectNameField,
@@ -484,16 +555,32 @@
                 state: projectStateField,
                 status: projectStatusField,
                 category: projectCategoryField,
-                area: projectAreaField
+                area: projectAreaField,
             };
+
+            const formData = new FormData();
+            formData.append('project_Id', propertyId);
+            formData.append('project_name', projectNameField);
+            formData.append('project_description', projectDescField);
+            formData.append('project_price', projectPriceField);
+            formData.append('area', projectAreaField);
+            formData.append('city', projectCityField);
+            formData.append('state', projectStateField);
+            formData.append('status', projectStatusField);
+            formData.append('category', projectCategoryField);
+
+            // Append each selected file to the FormData
+            for (let i = 0; i < selectedFiles.length; i++) {
+                formData.append('image', selectedFiles[i]);
+            }
+            for (let i = 0; i < selectedBrochure.length; i++) {
+                formData.append('brochure', selectedBrochure[i]);
+            }
 
             // Send the data to the server using Fetch API
             fetch(`/admin/editProperty/${propertyId}`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData),
+                body: formData,
             })
                 .then(response => response.json())
                 .then(data => {

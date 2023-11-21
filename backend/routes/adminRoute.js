@@ -150,7 +150,7 @@ router.get('/propertyView', checkAuth, adminController.propertyView);
 router.post('/postProperty', propertyImage.fields([{ name: 'image', maxCount: 4 }, { name: 'brochure', maxCount: 1 }]), adminController.postProperty);
 
 // Edit Property Api
-router.post('/editProperty/:propertyId', checkAuth, adminController.editProperty);
+router.post('/editProperty/:propertyId', checkAuth ,propertyImage.fields([{ name: 'image', maxCount: 4 }, { name: 'brochure', maxCount: 1 }]), adminController.editProperty);
 
 // Delete Property Api
 router.get('/deleteProperty/:propertyId', checkAuth, adminController.deleteProperty);
@@ -224,8 +224,22 @@ router.get('/viewGallery', checkAuth, adminController.viewGallery);
 // Add Gallery Image Api
 router.post('/galleryUpload', checkAuth, galleryImage.single('image'), adminController.galleryUpload);
 
-// Delete Gallery Inmage Api
+// Delete Gallery Image Api
 router.get('/deleteGallery/:galleryId', checkAuth, adminController.deleteGallery);
+
+
+// --------------------------------Clients Contact ---------------------------
+// Render Clients Contact - add page
+router.get('/addClientContact', checkAuth, adminController.clientContact);
+
+// Render Clients Contact - View page
+router.get('/viewClientContact', checkAuth, adminController.viewClientContact);
+
+// Add Clients Contact Api
+router.post('/postClientContact', checkAuth, adminController.postClientContact);
+
+// Delete Clients Contact Api
+router.get('/deleteClientContact/:contactId', checkAuth, adminController.deleteClientContact);
 
 
 module.exports = router;

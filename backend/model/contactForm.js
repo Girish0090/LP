@@ -8,9 +8,9 @@ const contactFormSchema = new Schema({
     },
     email: {
         type: String,
-        unique: true,
         lowercase: true
     },
+    mobile: { type: Number, required:true, unique: true },
     subject: {
         type: String,
         required: true,
