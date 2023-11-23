@@ -30,6 +30,7 @@ export class GalleryComponent implements OnInit {
     this.service.get("getGalleryImages").subscribe((res: any) => {
       if (res.success == true) {
         this.allImages = res.data;
+        console.log(this.allImages);
         gallerypage();
         setTimeout(() => {
           this.isLoading = false;

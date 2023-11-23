@@ -3,14 +3,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 mt-5">
-                
+
                 <div class="breadcrumbs-wrap position-relative z-1">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active" aria-current="page">About Us</li>
                     </ol>
                     <h2 class="breadcrumb-title">About Us - Who We Are?</h2>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -21,39 +21,226 @@
 <section>
 
     <div class="container">
-    
+
         <!-- row Start -->
         <div class="row align-items-center">
-            
+
             <div class="col-lg-6 col-md-6">
                 <div class="story-wrap explore-content">
-                    
+
                     <h2 class="mb-3 fw-bold">Our Agency Story</h2>
                     <span class="text-muted fs-5">Check out our company story and work process</span>
-                    <p class="mt-4" [ngClass]="{'truncated-text': !showFullText, 'expanded-text': showFullText}">To develop a collaborative relationship based on our ethics and mutual trust and contribute to the growth of the real estate professionals through our valuable trainings and quality service and becoming the leader in the real estate industry. To create a positive and energetic environment through events, tours and recognitions programs.To teach ethics to real estate professionals through our value-driven culture.To educate real estate professionals through our valuable trainings.To teach ethics to real estate professionals through our value-driven culture.To build a collaborative relationship with best real estate developers.To assist real estate professional to achieve growth and success.To help real estate buyers to get best value for their money.</p>
-                  
-                    <a class="btn btn-danger mt-3" id="toggleButton" (click)="toggleText()"> {{ showFullText ? 'Less About Us' : 'More About Us' }}   <span *ngIf="!showFullText" class="fa fa-angle-down ml-2"></span>   <span *ngIf="showFullText" class="fa fa-angle-up ml-2"></span></a>
+                    <p class="mt-4" [ngClass]="{'truncated-text': !showFullText, 'expanded-text': showFullText}">To
+                        develop a collaborative relationship based on our ethics and mutual trust and contribute to the
+                        growth of the real estate professionals through our valuable trainings and quality service and
+                        becoming the leader in the real estate industry. To create a positive and energetic environment
+                        through events, tours and recognitions programs.To teach ethics to real estate professionals
+                        through our value-driven culture.To educate real estate professionals through our valuable
+                        trainings.To teach ethics to real estate professionals through our value-driven culture.To build
+                        a collaborative relationship with best real estate developers.To assist real estate professional
+                        to achieve growth and success.To help real estate buyers to get best value for their money.</p>
+
+                    <a class="btn btn-danger mt-3" id="toggleButton" (click)="toggleText()"> {{ showFullText ? 'Less
+                        About Us' : 'More About Us' }} <span *ngIf="!showFullText" class="fa fa-angle-down ml-2"></span>
+                        <span *ngIf="showFullText" class="fa fa-angle-up ml-2"></span></a>
                 </div>
             </div>
-            
+
             <div class="col-lg-6 col-md-6">
                 <img src="assets/whatsappimage/jaipur2.jpeg" class="img-fluid rounded" alt="" />
             </div>
-            
+
         </div>
-        <!-- /row -->					
-        
+        <!-- /row -->
+
     </div>
-            
+
 </section>
 <!-- ============================ Our Story End ================================== -->
+
+<!-- ============================ Our Team Section Start ================================== -->
+<section>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="sec-heading center">
+                    <h2>Meet Our Corporate Team</h2>
+                    <p>Professional & Dedicated Team</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
+                <div class="team-slide item-slide">
+
+                    <!-- Single Teamm -->
+                    <div class="single-team">
+                        <div class="team-grid">
+
+                            <div class="teamgrid-user">
+                                <img src="assets/img/user-1.jpg" alt="" class="img-fluid" />
+                            </div>
+
+                            <div class="teamgrid-content">
+                                <h4>Shaurya Preet</h4>
+                                <span>Co-Founder</span>
+                            </div>
+
+                            <div class="teamgrid-social">
+                                <ul>
+                                    <li><a href="#" class="f-cl"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#" class="t-cl"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#" class="i-cl"><i class="ti-instagram"></i></a></li>
+                                    <li><a href="#" class="l-cl"><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Single Teamm -->
+                    <div class="single-team">
+                        <div class="team-grid">
+
+                            <div class="teamgrid-user">
+                                <img src="assets/img/user-2.jpg" alt="" class="img-fluid" />
+                            </div>
+
+                            <div class="teamgrid-content">
+                                <h4>Shivangi Preet</h4>
+                                <span>Content Writer</span>
+                            </div>
+
+                            <div class="teamgrid-social">
+                                <ul>
+                                    <li><a href="#" class="f-cl"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#" class="t-cl"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#" class="i-cl"><i class="ti-instagram"></i></a></li>
+                                    <li><a href="#" class="l-cl"><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Single Teamm -->
+                    <div class="single-team">
+                        <div class="team-grid">
+
+                            <div class="teamgrid-user">
+                                <img src="assets/img/user-3.jpg" alt="" class="img-fluid" />
+                            </div>
+
+                            <div class="teamgrid-content">
+                                <h4>Yash Preet</h4>
+                                <span>Content Writer</span>
+                            </div>
+
+                            <div class="teamgrid-social">
+                                <ul>
+                                    <li><a href="#" class="f-cl"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#" class="t-cl"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#" class="i-cl"><i class="ti-instagram"></i></a></li>
+                                    <li><a href="#" class="l-cl"><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Single Teamm -->
+                    <div class="single-team">
+                        <div class="team-grid">
+
+                            <div class="teamgrid-user">
+                                <img src="assets/img/user-4.jpg" alt="" class="img-fluid" />
+                            </div>
+
+                            <div class="teamgrid-content">
+                                <h4>Dhananjay Preet</h4>
+                                <span>CEO & Manager</span>
+                            </div>
+
+                            <div class="teamgrid-social">
+                                <ul>
+                                    <li><a href="#" class="f-cl"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#" class="t-cl"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#" class="i-cl"><i class="ti-instagram"></i></a></li>
+                                    <li><a href="#" class="l-cl"><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Single Teamm -->
+                    <div class="single-team">
+                        <div class="team-grid">
+
+                            <div class="teamgrid-user">
+                                <img src="assets/img/user-5.jpg" alt="" class="img-fluid" />
+                            </div>
+
+                            <div class="teamgrid-content">
+                                <h4>Rahul Gilkrist</h4>
+                                <span>App Designer</span>
+                            </div>
+
+                            <div class="teamgrid-social">
+                                <ul>
+                                    <li><a href="#" class="f-cl"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#" class="t-cl"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#" class="i-cl"><i class="ti-instagram"></i></a></li>
+                                    <li><a href="#" class="l-cl"><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Single Teamm -->
+                    <div class="single-team">
+                        <div class="team-grid">
+
+                            <div class="teamgrid-user">
+                                <img src="assets/img/user-6.jpg" alt="" class="img-fluid" />
+                            </div>
+
+                            <div class="teamgrid-content">
+                                <h4>Adam Wilcard</h4>
+                                <span>Web Developer</span>
+                            </div>
+
+                            <div class="teamgrid-social">
+                                <ul>
+                                    <li><a href="#" class="f-cl"><i class="ti-facebook"></i></a></li>
+                                    <li><a href="#" class="t-cl"><i class="ti-twitter"></i></a></li>
+                                    <li><a href="#" class="i-cl"><i class="ti-instagram"></i></a></li>
+                                    <li><a href="#" class="l-cl"><i class="ti-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ============================ Our Team Section End ================================== -->
 
 <!-- ============================ Call To Action ================================== -->
 <section class="bg-danger call_action_wrap-wrap">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                
+
                 <div class="call_action_wrap">
                     <div class="call_action_wrap-head">
                         <h3>Do You Have Questions ?</h3>
@@ -61,7 +248,7 @@
                     </div>
                     <a class="btn btn-call_action_wrap" routerLink="/contact">Contact Us Today</a>
                 </div>
-                
+
             </div>
         </div>
     </div>

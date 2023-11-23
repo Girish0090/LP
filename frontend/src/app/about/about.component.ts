@@ -10,10 +10,10 @@ export class AboutComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     setTimeout(() => {
       citylocation();
-    }, 1000);   
+    }, 1000);
     window.scroll(0,0);
   }
 
