@@ -16,6 +16,13 @@ const path = require('path');
 const fs = require('fs');
 
 
+const twilio = require('twilio');
+const accountSid = 'AC94e7e4f0496ef08ecb0f48c31c11d484';
+const authToken = 'd551d102df761a62b4be831ced8ea243';
+const twilioPhoneNumber = '+12565483504';
+const client = twilio(accountSid, authToken);
+
+
 
 // --------------------------------Register/Login/Logout ---------------------------
 // Register Admin Api
@@ -1008,7 +1015,7 @@ exports.galleryUpload = async (req, res) => {
         gallery.save().then((gallery, err) => {
             if (gallery) {
                 // res.redirect('/admin/propertyView');
-                res.status(200).send({ success: true, message: 'Gallery Image Uploaded!', gallery });
+                res.status(200).send({ success: true, message: 'Gallery Uploaded!', gallery });
             } else {
                 cleanupUpload(path);
                 // return res.redirect(`/admin/bannerPageView?error=${err}`);
@@ -1115,7 +1122,7 @@ exports.postClientContact = async (req, res) => {
             if (error.code === 11000 && error.keyPattern.mobile === 1) {
                 // Duplicate key error for mobile field
                 return res.status(400).json({ success: false, message: 'Mobile number already registered.' });
-            }else if (error.code === 11000 && error.keyPattern.email === 1) {
+            } else if (error.code === 11000 && error.keyPattern.email === 1) {
                 // Duplicate key error for Email field
                 return res.status(400).json({ success: false, message: 'Email already registered.' });
             }
@@ -1140,6 +1147,23 @@ exports.deleteClientContact = async (req, res) => {
         } else {
             res.status(200).send({ success: true, message: 'Client Contact Deleted Successfully!' });
         }
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: 'Error occurred', error: error.message });
+    }
+}
+
+// Send SMS
+exports.sendSMS = async (req, res) => {
+    try {
+        const { to, message } = req.body;
+
+        client.messages.create({
+            body: message,
+            from: twilioPhoneNumber,
+            to,
+        }).then((message) => res.json({ success: true, message: 'SMS sent successfully', sid: message.sid }))
+            .catch((error) => res.json({ success: false, message: 'Error sending SMS', error: error.message }));
 
     } catch (error) {
         res.status(500).json({ success: false, message: 'Error occurred', error: error.message });

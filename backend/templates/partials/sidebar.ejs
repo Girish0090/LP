@@ -28,7 +28,7 @@
 
                                     <% if (userName) { %>
                                         <div class="fs-13 font-weight-500 lh-1">
-                                            <%= userName %>
+                                            <%- userName.split(' ')[0] %>
                                         </div>
                                         <% } else { %>
                                             <!-- Content to display when userName is not defined -->

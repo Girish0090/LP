@@ -135,7 +135,7 @@ exports.getPropByCat = async (req, res) => {
 exports.getPropByCity = async (req, res) => {
     try {
         const cityName = req.params.city;
-        const cityData = await Property.find({ city: cityName });
+        const cityData = await Property.find({ city: new RegExp(cityName, 'i') });
 
         if (cityData.length > 0) {
             return res.json({ success: true, message: 'Projects Found By category!', data: cityData, length: cityData.length })
@@ -144,7 +144,6 @@ exports.getPropByCity = async (req, res) => {
         }
 
     } catch (error) {
-        console.error(error);
         res.status(500).json({ success: false, message: 'Error Occured..', data: error.message });
     }
 }

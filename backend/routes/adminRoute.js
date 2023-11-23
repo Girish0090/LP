@@ -4,6 +4,8 @@ const adminController = require('../controllers/adminController');
 const checkAuth = require('../middleware/checkAuth');
 const path = require('path');
 
+const twilio = require('twilio');
+
 
 // For Banner Offer Image
 const storage = multer.diskStorage({
@@ -147,7 +149,7 @@ router.get('/addProperty', checkAuth, adminController.addProperty);
 router.get('/propertyView', checkAuth, adminController.propertyView);
 
 // Add Property Api
-router.post('/postProperty', propertyImage.fields([{ name: 'image', maxCount: 4 }, { name: 'brochure', maxCount: 1 }]), adminController.postProperty);
+router.post('/postProperty',checkAuth, propertyImage.fields([{ name: 'image', maxCount: 4 }, { name: 'brochure', maxCount: 1 }]), adminController.postProperty);
 
 // Edit Property Api
 router.post('/editProperty/:propertyId', checkAuth ,propertyImage.fields([{ name: 'image', maxCount: 4 }, { name: 'brochure', maxCount: 1 }]), adminController.editProperty);
@@ -240,6 +242,9 @@ router.post('/postClientContact', checkAuth, adminController.postClientContact);
 
 // Delete Clients Contact Api
 router.get('/deleteClientContact/:contactId', checkAuth, adminController.deleteClientContact);
+
+// Send SMS
+router.post('/send-sms',checkAuth, adminController.sendSMS);
 
 
 module.exports = router;

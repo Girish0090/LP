@@ -31,6 +31,26 @@
 
     <link rel="icon" href="../../public/images/laxmi-prabhu-favicon-black.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
+
+    <style>
+        @media(max-width:768px) {
+            div.dataTables_wrapper div.dataTables_filter input {
+                width: 70vw !important;
+            }
+
+            .dataTables_wrapper .dataTables_length {
+                float: none !important;
+                text-align: left !important;
+            }
+            .dataTables_wrapper .dataTables_filter {
+                float: none !important;
+                text-align: left !important;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
@@ -55,43 +75,43 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover bg-white border rounded-lg table-bordered">
-                                        <thead class="thead-sm thead-black">
+                                    <table id="example" class="table table-hover bg-white border rounded-lg table-bordered" style="width:100%">
+                                        <thead>
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Email</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Mobile</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Education Level</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Additional_Message</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Resume</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Time_Stamp</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Action</th>
+                                                <th>S.no.</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Education_Level</th>
+                                                <th>Additional_Message</th>
+                                                <th>Resume</th>
+                                                <th>Time_Stamp</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <% if (enquiryData.length> 0) { %>
                                                 <% for (let i=0; i < enquiryData.length; i++) { %>
-                                                    <tr class="shadow-hover-xs-2 bg-hover-white">
-                                                        <td class="align-middle pt-6 pb-4 px-6">
+                                                    <tr>
+                                                        <td>
                                                             <%= i + 1 %>.
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= enquiryData[i].name %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= enquiryData[i].email %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= enquiryData[i].mobile %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= enquiryData[i].education_Level %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= enquiryData[i].additional_Msg %>
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
 
                                                             <span style="display: flex; width: 120px;">
                                                                 <a href="../../<%= enquiryData[i].resumePDF.path %>"
@@ -101,14 +121,14 @@
                                                             </span>
 
                                                         </td>
-                                                        <td class="align-middle">
+                                                        <td>
                                                             <%= enquiryData[i].timestamp.toLocaleDateString('en-US', {
                                                                 day: '2-digit' , month: 'short' , year: 'numeric' ,
                                                                 hour: '2-digit' , minute: '2-digit' ,second: '2-digit'
                                                                 ,}) %>
                                                         </td>
 
-                                                        <td class="align-middle" align="center">
+                                                        <td>
                                                             <a class="delete-button" style="cursor: pointer;"
                                                                 data-careerId="<%= enquiryData[i]._id %>">
                                                                 <i class="fas fa-trash text-danger"></i>
@@ -119,11 +139,10 @@
                                                     <% } %>
                                                         <% } else { %>
                                                             <tr>
-                                                                <td colspan="4" class="text-center">No Career Data
+                                                                <td colspan="9" class="text-center">No Career Data
                                                                     available.</td>
                                                             </tr>
                                                             <% } %>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -133,6 +152,17 @@
         </div>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Initialize DataTables with custom options
+            var table = $('#example').DataTable();
+        })
+    </script>
 
     <!-- Loader -->
     <script>
