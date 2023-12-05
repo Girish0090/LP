@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   // siteUrl:"https://laxmi-prabhu.onrender.com/api/",
   // imageurl:"https://laxmi-prabhu.onrender.com/",
-  siteUrl:"http://192.168.1.31:3000/api/",
-  imageurl:"http://192.168.1.31:3000/"
+  siteUrl:"http://192.168.1.22:3000/api/",
+  imageurl:"http://192.168.1.22:3000/"
 };
 
 /*
