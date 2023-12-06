@@ -114,7 +114,9 @@
 
                                 </div>
                                 <div class="table-responsive mt-2 mt-sm-2 mt-md-2">
-                                    <table id="example" class="table table-hover bg-white border rounded-lg table-bordered" style="width:100%">
+                                    <table id="example"
+                                        class="table table-hover bg-white border rounded-lg table-bordered"
+                                        style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>S.No.</th>
@@ -549,6 +551,8 @@
         document.getElementById('editPropertyForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent the default form submission
 
+            AmagiLoader.show();
+
             // Get the property ID and other form data
             const propertyId = document.getElementById('project_Id').value;
 
@@ -603,21 +607,24 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        $(editModal).modal('hide');
-                        // Display a success message using Swal
-                        Swal.fire({
-                            title: 'Success',
-                            text: data.message, // Server response message
-                            icon: 'success'
-                        }).then(() => {
-                            // Redirect or perform other actions after success
-                            window.location.href = '/admin/propertyView'; // Replace with your redirect URL
-                        });
-                    } else {
-                        // Display an error message using Swal
-                        Swal.fire('Error', data.message, 'error');
-                    }
+                    setTimeout(() => {
+                        AmagiLoader.hide();
+                        if (data.success) {
+                            $(editModal).modal('hide');
+                            // Display a success message using Swal
+                            Swal.fire({
+                                title: 'Success',
+                                text: data.message, // Server response message
+                                icon: 'success'
+                            }).then(() => {
+                                // Redirect or perform other actions after success
+                                window.location.href = '/admin/propertyView'; // Replace with your redirect URL
+                            });
+                        } else {
+                            // Display an error message using Swal
+                            Swal.fire('Error', data.message, 'error');
+                        }
+                    }, 1000);
                 })
                 .catch(error => {
                     // Handle any errors (e.g., display an error message)

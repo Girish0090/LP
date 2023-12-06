@@ -44,6 +44,7 @@
                 float: none !important;
                 text-align: left !important;
             }
+
             .dataTables_wrapper .dataTables_filter {
                 float: none !important;
                 text-align: left !important;
@@ -75,14 +76,19 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id="example" class="table table-hover bg-white border rounded-lg table-bordered">
+                                    <table id="example"
+                                        class="table table-hover bg-white border rounded-lg table-bordered">
                                         <thead class="thead-sm thead-black">
                                             <tr>
-                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.</th>
+                                                <th scope="col" class="border-top-0 px-6 pt-5 pb-4 text-center">S.no.
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Image</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">User Name</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Designation</th>
-                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Description</th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">User Name
+                                                </th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Designation
+                                                </th>
+                                                <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Description
+                                                </th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 text-center">Rating</th>
                                                 <th scope="col" class="border-top-0 pt-5 pb-4 align-middle text-center">
                                                     Action</th>
@@ -161,8 +167,8 @@
         })
     </script>
 
-     <!-- Loader -->
-     <script>
+    <!-- Loader -->
+    <script>
         const AmagiLoader = {
             __loader: null,
             show: function () {
@@ -312,6 +318,8 @@
         document.getElementById('editReviewForm').addEventListener('submit', function (event) {
             event.preventDefault(); // Prevent the default form submission
 
+            AmagiLoader.show();
+
             const reviewID = document.getElementById('reviewID').value;
             const userNameField = document.getElementById('userName').value;
             const DesignationField = document.getElementById('Designation').value;
@@ -334,21 +342,24 @@
             })
                 .then(response => response.json())
                 .then(data => {
-                    if (data.success) {
-                        $(editModal).modal('hide');
-                        // Display a success message using Swal
-                        Swal.fire({
-                            title: 'Success',
-                            text: data.message, // Server response message
-                            icon: 'success'
-                        }).then(() => {
-                            // Redirect or perform other actions after success
-                            window.location.href = '/admin/reviewPageView'; // Replace with your redirect URL
-                        });
-                    } else {
-                        // Display an error message using Swal
-                        Swal.fire('Error', data.message, 'error');
-                    }
+                    setTimeout(() => {
+                        AmagiLoader.hide();
+                        if (data.success) {
+                            $(editModal).modal('hide');
+                            // Display a success message using Swal
+                            Swal.fire({
+                                title: 'Success',
+                                text: data.message, // Server response message
+                                icon: 'success'
+                            }).then(() => {
+                                // Redirect or perform other actions after success
+                                window.location.href = '/admin/reviewPageView'; // Replace with your redirect URL
+                            });
+                        } else {
+                            // Display an error message using Swal
+                            Swal.fire('Error', data.message, 'error');
+                        }
+                    }, 1000);
                 })
                 .catch(error => {
                     // Handle any errors (e.g., display an error message)
