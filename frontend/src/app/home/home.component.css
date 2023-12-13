@@ -26,4 +26,15 @@
 .details-page:hover{
     color: black;
 }
+
+.facts-detail p { 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+._testimonial_wrios:hover p {
+    overflow: visible;
+    white-space: normal;
+}
   
