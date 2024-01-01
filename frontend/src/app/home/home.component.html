@@ -1,5 +1,5 @@
 <!-- ============================ Hero Banner  Start================================== -->
-<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+<!-- <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" *ngFor="let slideItem of sliderList">
             <img src="{{imageUrl}}{{slideItem.image.path}}" class="d-block w-100" alt="slider image" height="650px"
@@ -11,7 +11,6 @@
 
                 <h1 class="big-header-capt mb-0 text-light">Search Your Dream Home</h1>
                 <p class="text-center text-light">Find new & featured property located in your local city.</p>
-                <!-- Type -->
                 <div class="row justify-content-center mt-5">
                     <div class="col-xl-4 col-lg-4 col-md-12">
                         <div class="full_search_box nexio_search lightanic_search hero_search-radius modern">
@@ -33,46 +32,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Property Type</label>
-                                            <div class="input-with-icon">
-                                                <select id="ptypes" class="form-control">
-                                                    <option value="">&nbsp;</option>
-                                                    <option value="1">All categories</option>
-                                                    <option value="2">Apartment</option>
-                                                    <option value="3">Villas</option>
-                                                    <option value="4">Commercial</option>
-                                                    <option value="5">Offices</option>
-                                                    <option value="6">Garage</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="form-group none">
-                                            <label>Price Range</label>
-                                            <div class="input-with-icon">
-                                                <select id="price" class="form-control">
-                                                    <option value="">&nbsp;</option>
-                                                    <option value="1">From 40,000 To 10m</option>
-                                                    <option value="2">From 60,000 To 20m</option>
-                                                    <option value="3">From 70,000 To 30m</option>
-                                                    <option value="3">From 80,000 To 40m</option>
-                                                    <option value="3">From 90,000 To 50m</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="col-lg-2 col-md-2 col-sm-12 small-padd p-0">
-                                        <div class="form-group none">
-                                            <a class="btn btn-danger full-width"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div> -->
-                                </div>
+                                  </div>
 
                             </div>
                         </div>
@@ -91,6 +51,49 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+</div> -->
+
+<div class="home-slider margin-bottom-0">
+
+    <div  *ngFor="let slideItem of sliderList">
+        <img src="{{imageUrl}}{{slideItem.image.path}}" class="item" class="d-block w-100" alt="slider image" height="650px">
+    </div>
+
+</div>
+<div class="image-cover hero_banner">
+    <div class="container">
+
+        <h1 class="big-header-capt mb-0 text-light">Search Your Dream Home</h1>
+        <p class="text-center text-light">Find new & featured property located in your local city.</p>
+        <div class="row justify-content-center mt-5">
+            <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="full_search_box nexio_search lightanic_search hero_search-radius modern">
+                    <div class="search_hero_wrapping">
+
+                        <div class="row">
+                            <div class="col-lg-12 col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <div class="input-with-icon">
+                                        <select (change)="getProjectByCity($event)" class="form-control">
+                                            <option value="" selected disabled>Location</option>
+                                            <option value="Jaipur">Jaipur</option>
+                                            <option value="Ajmer">Ajmer</option>
+                                            <option value="Mumbai">Mumbai</option>
+                                            <option value="Kota">Kota</option>
+                                            <option value="Indore">Indore</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 <!-- ============================ Hero Banner End ================================== -->
 

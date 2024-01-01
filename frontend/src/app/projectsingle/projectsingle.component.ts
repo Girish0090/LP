@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 declare var $:any;
@@ -17,13 +17,35 @@ export class ProjectsingleComponent implements OnInit {
   isLoading: boolean = true;
   imageUrl = environment.imageurl;
 
-  constructor(private service:AppserviceService,private route:ActivatedRoute) { 
+  constructor(private service:AppserviceService,private route:ActivatedRoute, private router:Router) { 
     this.route.paramMap.subscribe((params:any)=>{
       this.projectid =  params.get('id');
    })
   }
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data:any) => {
+      if (data.title) {
+        this.service.setTitle(data.title);
+        this.service.setMetaTags({
+          property: "og:title",
+          content: data.title,
+        });
+      }
+      if (data.description) {
+        this.service.setMetaTags({
+          name: "description",
+          content: data.description,
+        });
+        this.service.setMetaTags({
+          property: "og:description",
+          content: data.description,
+        });
+      }
+      this.service.createCanonicalURL(this.router.url);
+    })
+    
     setTimeout(() => {
       this.isLoading = false;
     }, 1000);

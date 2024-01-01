@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var gallerypage: any;
 
 @Component({
@@ -15,9 +16,31 @@ export class GalleryComponent implements OnInit {
   allImages: any;
   imageUrl = environment.imageurl;
 
-  constructor(private service: AppserviceService) { }
+  constructor(private service:AppserviceService,private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data:any) => {
+      if (data.title) {
+        this.service.setTitle(data.title);
+        this.service.setMetaTags({
+          property: "og:title",
+          content: data.title,
+        });
+      }
+      if (data.description) {
+        this.service.setMetaTags({
+          name: "description",
+          content: data.description,
+        });
+        this.service.setMetaTags({
+          property: "og:description",
+          content: data.description,
+        });
+      }
+      this.service.createCanonicalURL(this.router.url);
+    })
+
     // setTimeout(() => {
     //   this.isLoading = false;
     // }, 1000);

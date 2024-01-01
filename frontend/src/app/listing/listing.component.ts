@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Validators, FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -23,7 +23,7 @@ export class ListingComponent implements OnInit {
   City: any;
   submitForm: boolean = false;
 
-  constructor(private service: AppserviceService, private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private service: AppserviceService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
     this.route.paramMap.subscribe((params: any) => {
       this.Category = params.get('type');
       this.City = params.get('city');
@@ -38,6 +38,29 @@ export class ListingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data:any) => {
+      if (data.title) {
+        this.service.setTitle(data.title);
+        this.service.setMetaTags({
+          property: "og:title",
+          content: data.title,
+        });
+      }
+      if (data.description) {
+        this.service.setMetaTags({
+          name: "description",
+          content: data.description,
+        });
+        this.service.setMetaTags({
+          property: "og:description",
+          content: data.description,
+        });
+      }
+
+      this.service.createCanonicalURL(this.router.url);
+    })
+    
     // setTimeout(() => {
     //   this.isLoading = false;
     // }, 1000);

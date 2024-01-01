@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppserviceService } from '../appservice.service';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
@@ -18,13 +18,35 @@ export class AgentDetailComponent implements OnInit {
   imageUrl = environment.imageurl;
   submitForm:boolean = false;
 
-  constructor(private route:ActivatedRoute,private service:AppserviceService,private fb:FormBuilder) { 
+  constructor(private route:ActivatedRoute,private service:AppserviceService,private fb:FormBuilder, private router:Router) { 
     this.route.paramMap.subscribe((params: any) => {
       this.agentId = params.get('id');
     })
   }
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data:any) => {
+      if (data.title) {
+        this.service.setTitle(data.title);
+        this.service.setMetaTags({
+          property: "og:title",
+          content: data.title,
+        });
+      }
+      if (data.description) {
+        this.service.setMetaTags({
+          name: "description",
+          content: data.description,
+        });
+        this.service.setMetaTags({
+          property: "og:description",
+          content: data.description,
+        });
+      }
+      this.service.createCanonicalURL(this.router.url);
+    })
+    
     window.scroll(0,0);
     this.getAgentDetail();
     setTimeout(() => {

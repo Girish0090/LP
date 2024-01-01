@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 declare var citylocation: any;
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -18,9 +19,33 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = true;
   imageUrl = environment.imageurl;
 
-  constructor(private service: AppserviceService, private router: Router) { }
+  constructor(private service: AppserviceService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data:any) => {
+      if (data.title) {
+        this.service.setTitle(data.title);
+        this.service.setMetaTags({
+          property: "og:title",
+          content: data.title,
+        });
+      }
+
+      if (data.description) {
+        this.service.setMetaTags({
+          name: "description",
+          content: data.description,
+        });
+        this.service.setMetaTags({
+          property: "og:description",
+          content: data.description,
+        });
+      }
+      this.service.createCanonicalURL(this.router.url);
+
+    })
+
     // setTimeout(() => {
     //   this.isLoading = false;
     // }, 2000);
@@ -28,6 +53,7 @@ export class HomeComponent implements OnInit {
     this.getAllProjects();
     this.getReviews();
     window.scroll(0, 0);
+
   }
 
   getAllSlider() {
@@ -40,6 +66,27 @@ export class HomeComponent implements OnInit {
         }, 500);
         setTimeout(() => {
           this.isLoading = false;
+
+          
+    $('.home-slider').slick({
+      centerMode: false,
+      slidesToShow: 1,
+      responsive: [{
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          slidesToShow: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+          slidesToShow: 1
+        }
+      }
+      ]
+    });
         }, 1000);
       }
     }, error => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { AppserviceService } from '../appservice.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -14,9 +15,31 @@ export class CareerComponent implements OnInit {
   isLoading: boolean = true;
   submitForm: boolean = false;
 
-  constructor(private fb: FormBuilder, private service: AppserviceService) { }
+  constructor(private fb: FormBuilder, private service: AppserviceService,private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
+
+    this.route.data.subscribe((data:any) => {
+      if (data.title) {
+        this.service.setTitle(data.title);
+        this.service.setMetaTags({
+          property: "og:title",
+          content: data.title,
+        });
+      }
+      if (data.description) {
+        this.service.setMetaTags({
+          name: "description",
+          content: data.description,
+        });
+        this.service.setMetaTags({
+          property: "og:description",
+          content: data.description,
+        });
+      }
+      this.service.createCanonicalURL(this.router.url);
+    })
+
     window.scroll(0,0);
     setTimeout(() => {
       this.isLoading = false;

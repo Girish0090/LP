@@ -1,33 +1,33 @@
-.point{
+.point {
     cursor: pointer;
 }
 
-::ng-deep .modal-body {   
+::ng-deep .modal-body {
     padding: 0em 0em !important;
 }
 
-::ng-deep .resp_log_caption{
+::ng-deep .resp_log_caption {
     padding: 1rem 2.5rem !important;
 }
 
-@media (max-width: 700px){
+@media (max-width: 700px) {
     ::ng-deep .modal-dialog {
         padding-top: 115px !important;
 
     }
 }
 
-@media (min-width: 992px){
+@media (min-width: 992px) {
     ::ng-deep .modal-dialog {
         margin: 30px auto !important;
     }
 }
 
-.details-page:hover{
+.details-page:hover {
     color: black;
 }
 
-.facts-detail p { 
+.facts-detail p {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -37,4 +37,37 @@
     overflow: visible;
     white-space: normal;
 }
-  
+
+.hero_banner {
+    position: absolute !important;
+    top: 50px !important;
+    left: 25% !important;
+}
+
+@media (max-width: 700px) {
+
+    .hero_banner {
+        left: 18% !important;
+    }
+}
+@media (max-width: 600px) {
+
+  /* .full_search_box.hero_search-radius.modern{
+    width: 325px !important;
+  } */
+
+  .hero_banner {
+    left: 10% !important;
+    width: 80% !important;
+    padding: 0px 10px;
+}
+}
+@media (max-width: 450px) {
+    .hero_banner {
+        left: 10% !important;
+    }
+
+  .full_search_box.hero_search-radius.modern{
+    width: 300px !important;
+  }
+}
