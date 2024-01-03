@@ -40,7 +40,7 @@ import { AgentDetailComponent } from './agent-detail/agent-detail.component';
     AgentDetailComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

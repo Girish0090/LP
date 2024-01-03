@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/laxmi-prabhu",
+            "outputPath": "dist/laxmi_Prabhu/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -102,6 +102,64 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/laxmi_Prabhu/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "laxmi_Prabhu:build:development",
+              "serverTarget": "laxmi_Prabhu:server:development"
+            },
+            "production": {
+              "browserTarget": "laxmi_Prabhu:build:production",
+              "serverTarget": "laxmi_Prabhu:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "laxmi_Prabhu:build:production",
+              "serverTarget": "laxmi_Prabhu:server:production"
+            },
+            "development": {
+              "browserTarget": "laxmi_Prabhu:build:development",
+              "serverTarget": "laxmi_Prabhu:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
