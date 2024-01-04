@@ -28,7 +28,8 @@
             "assets": [
               "src/favicon.ico",
               "src/laxmi-prabhu-favicon-black.png",
-              "src/assets"
+              "src/assets",
+              "src/sitemap.xml"
             ],
             "styles": [
               "src/styles.css"
