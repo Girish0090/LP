@@ -15,15 +15,15 @@ const routes: Routes = [
   {
     path: '', component: HomeComponent,
     data: {
-      title: 'Home - Explore Diverse Properties in India with Laxmiprabhu',
-      description: 'Discover a rich variety of residential, commercial, industrial, and villa properties across the enchanting landscapes of India. With Laxmiprabhu as your trusted partner, embark on a seamless and transparent real estate journey.'
+      title: 'Unlock Your Dream Home with Expert Real Estate Insights| LaxmiPrabhu',
+      description: 'Discover your dream home with LaxmiPrabhu! Unlock the door to ideal living spaces using expert real estate insights. Find the perfect property for you.'
     }
   },
   {
     path: 'home', component: HomeComponent,
     data: {
-      title: 'Home - Explore Diverse Properties in India with Laxmiprabhu',
-      description: 'Discover a rich variety of residential, commercial, industrial, and villa properties across the enchanting landscapes of India. With Laxmiprabhu as your trusted partner, embark on a seamless and transparent real estate journey.'
+      title: 'Unlock Your Dream Home with Expert Real Estate Insights| LaxmiPrabhu',
+      description: 'Discover your dream home with LaxmiPrabhu! Unlock the door to ideal living spaces using expert real estate insights. Find the perfect property for you.'
     }
   },
   {
