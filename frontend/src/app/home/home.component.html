@@ -55,8 +55,9 @@
 
 <div class="home-slider margin-bottom-0">
 
-    <div  *ngFor="let slideItem of sliderList">
-        <img src="{{imageUrl}}{{slideItem.image.path}}" class="item" class="d-block w-100" alt="slider image" height="650px">
+    <div *ngFor="let slideItem of sliderList">
+        <img src="{{imageUrl}}{{slideItem.image.path}}" class="item" class="d-block w-100" alt="slider image"
+            height="650px">
     </div>
 
 </div>
@@ -75,7 +76,8 @@
                                 <div class="form-group">
                                     <label>City*</label>
                                     <div class="input-with-icon">
-                                        <select style="padding: 0px;" (change)="getProjectByCity($event)" class="form-control">
+                                        <select style="padding: 0px;" (change)="getProjectByCity($event)"
+                                            class="form-control">
                                             <option value="" selected disabled>Select City</option>
                                             <option value="Jaipur">Jaipur</option>
                                             <option value="Ajmer">Ajmer</option>
@@ -86,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                          </div>
+                        </div>
 
                     </div>
                 </div>
@@ -100,9 +102,6 @@
 <!-- ============================ Agent section start ================================== -->
 <section class="min">
     <div class="container">
-
-
-
         <div class="row justify-content-center">
             <div class="col-lg-7 col-md-8">
                 <div class="sec-heading center">
@@ -408,7 +407,8 @@
                         <div class="property-listing property-2 h-100">
 
                             <div class="listing-img-wrapper">
-                                <div [ngStyle]="{ 'background-color': item?.status === 'Sold/Resale' ? 'red' : (item?.status === 'Sale' ? 'green' : 'inherit') }" class="_exlio_125">For {{item.status}}</div>
+                                <div [ngStyle]="{ 'background-color': item?.status === 'Sold/Resale' ? 'red' : (item?.status === 'Sale' ? 'green' : 'inherit') }"
+                                    class="_exlio_125">For {{item.status}}</div>
                                 <div class="list-img-slide">
                                     <div class="click">
                                         <div><a><img src="{{imageUrl}}{{item.image[0].path}}" class="img-fluid mx-auto"
@@ -416,7 +416,7 @@
                                     </div>
                                 </div>
                             </div>
-    
+
                             <div class="listing-detail-wrapper">
                                 <div class="listing-short-detail-wrap">
                                     <!-- <div class="_card_list_flex mb-2">
@@ -432,12 +432,14 @@
                                         <div class="_card_flex_01">
                                             <h3 class="listing-name verified"><a
                                                     class="details-page prt-link-detail">{{item.project_name}}</a></h3>
-                                            <p style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;text-overflow: ellipsis; max-height: 124px;">{{item.project_description}}</p>
+                                            <p
+                                                style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;text-overflow: ellipsis; max-height: 124px;">
+                                                {{item.project_description}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- <div class="price-features-wrapper">
                             <div class="list-fx-features">
                                 <div class="listing-card-info-icon">
@@ -454,7 +456,7 @@
                                 </div>
                             </div>
                         </div> -->
-    
+
                             <div class="listing-detail-footer">
                                 <div class="footer-first">
                                     <div class="foot-location"><img src="assets/img/pin.svg" width="18"
@@ -488,7 +490,7 @@
                                             class="btn-danger rounded-pill">View detail</button></a>
                                 </div>
                             </div>
-    
+
                         </div>
                     </a>
                 </div>
@@ -572,7 +574,7 @@
                             <div class="location_wrap_content visible">
                                 <div class="location_wrap_content_first">
                                     <h4>PANVEL,(MUMBAI)</h4>
-                                    <span>Upcoming..</span>
+                                    <span>1+ Projects</span>
                                 </div>
                                 <div class="location_btn"><i class="fa fa-arrow-right"></i></div>
                             </div>
@@ -609,7 +611,9 @@
                     <div class="col-lg-7 col-md-8">
                         <div class="sec-heading center">
                             <h2>Good Reviews By Clients</h2>
-                            <p>The team at Laxmi prabhu is not just skilled professionals; they genuinely care about the success of your project. Their dedication and expertise make them stand out in a crowded market. I highly recommend their services.</p>
+                            <p>The team at Laxmi prabhu is not just skilled professionals; they genuinely care about the
+                                success of your project. Their dedication and expertise make them stand out in a crowded
+                                market. I highly recommend their services.</p>
                         </div>
                     </div>
                 </div>
@@ -651,76 +655,77 @@
         <!-- ============================ Smart Testimonials End ================================== -->
 
         <!-- ============================ Property Category Start ================================== -->
-<section class="min">
-    <div class="container">
+        <section class="min">
+            <div class="container">
 
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="sec-heading center">
-                    <h2>Our Production Houses</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center mt-4">
-
-            <!-- Single Category -->
-            <div class="point col-lg-3 col-md-4 col-sm-6">
-                <div class="_category_box">
-                    <!-- <a> -->
-                        <div class="_category_elio text-center">
-                            <div class="_category_thumb">
-                                <img style="height: 100px;" src="assets/img/vrb_logo.png" alt="">
-                            </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-8">
+                        <div class="sec-heading center">
+                            <h2>Our Production Houses</h2>
                         </div>
-                    <!-- </a> -->
+                    </div>
                 </div>
-            </div>
 
-            <!-- Single Category -->
-            <div class="point col-lg-3 col-md-4 col-sm-6">
-                <div class="_category_box">
-                    <!-- <a> -->
-                        <div class="_category_elio text-center">
-                            <div class="_category_thumb">
-                                <img style="height: 100px;" src="assets/img/Riyasat-or-png.png" alt="">
+                <div class="row justify-content-center mt-4">
+
+                    <!-- Single Category -->
+                    <div class="point col-lg-3 col-md-4 col-sm-6">
+                        <div class="_category_box">
+                            <!-- <a> -->
+                            <div class="_category_elio text-center">
+                                <div class="_category_thumb">
+                                    <img style="height: 100px;" src="assets/img/vrb_logo.png" alt="">
+                                </div>
                             </div>
+                            <!-- </a> -->
                         </div>
-                    <!-- </a> -->
-                </div>
-            </div>
+                    </div>
 
-            <!-- Single Category -->
-            <div class="point col-lg-3 col-md-4 col-sm-6">
-                <div class="_category_box">
-                    <!-- <a> -->
-                        <div class="_category_elio text-center">
-                            <div class="_category_thumb">
-                                <img style="height: 100px;" src="assets/img/cropped-bhumija_logo-removebg-preview-1-1-247x95.png" alt="">
+                    <!-- Single Category -->
+                    <div class="point col-lg-3 col-md-4 col-sm-6">
+                        <div class="_category_box">
+                            <!-- <a> -->
+                            <div class="_category_elio text-center">
+                                <div class="_category_thumb">
+                                    <img style="height: 100px;" src="assets/img/Riyasat-or-png.png" alt="">
+                                </div>
                             </div>
+                            <!-- </a> -->
                         </div>
-                    <!-- </a> -->
-                </div>
-            </div>
+                    </div>
 
-            <!-- Single Category -->
-            <div class="point col-lg-3 col-md-4 col-sm-6">
-                <div class="_category_box">
-                    <!-- <a> -->
-                        <div class="_category_elio text-center">
-                            <div class="_category_thumb">
-                                <img style="height: 100px;" src="assets/img/happy.png" alt="">
+                    <!-- Single Category -->
+                    <div class="point col-lg-3 col-md-4 col-sm-6">
+                        <div class="_category_box">
+                            <!-- <a> -->
+                            <div class="_category_elio text-center">
+                                <div class="_category_thumb">
+                                    <img style="height: 100px;"
+                                        src="assets/img/cropped-bhumija_logo-removebg-preview-1-1-247x95.png" alt="">
+                                </div>
                             </div>
+                            <!-- </a> -->
                         </div>
-                    <!-- </a> -->
+                    </div>
+
+                    <!-- Single Category -->
+                    <div class="point col-lg-3 col-md-4 col-sm-6">
+                        <div class="_category_box">
+                            <!-- <a> -->
+                            <div class="_category_elio text-center">
+                                <div class="_category_thumb">
+                                    <img style="height: 100px;" src="assets/img/happy.png" alt="">
+                                </div>
+                            </div>
+                            <!-- </a> -->
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
-
-        </div>
-
-    </div>
-</section>
-<!-- ============================ Property Category End ================================== -->
+        </section>
+        <!-- ============================ Property Category End ================================== -->
 
         <!-- ============================ Call To Action ================================== -->
         <section class="bg-danger call_action_wrap-wrap">
