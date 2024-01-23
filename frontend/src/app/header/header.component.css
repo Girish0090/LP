@@ -24,3 +24,11 @@
         transform: scale(1.1);
     }
 }
+
+@media (max-width: 450px) {
+    .jan{
+        left: 15px;
+        height: 70px;
+        top: 0px;
+    }
+}
