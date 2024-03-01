@@ -70,6 +70,14 @@
     width: 80% !important;
     padding: 0px 10px;
 } */
+
+    ::ng-deep .home-slider .slick-next {
+        display: none !important;
+    }
+
+    ::ng-deep .home-slider .slick-prev {
+        display: none !important;
+    }
 }
 
 @media (max-width: 450px) {
@@ -90,4 +98,14 @@
 
 ::ng-deep .ng-select-container {
     border: none !important;
+}
+
+::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+    white-space: normal !important;
+}
+
+/* Add this CSS to your global styles or component-specific styles */
+::ng-deep .ng-select .ng-select-container::after {
+    /* Hide the blinking cursor */
+    caret-color: transparent !important;
 }
