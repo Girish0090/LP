@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppserviceService } from '../appservice.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 declare var citylocation: any;
@@ -18,12 +19,16 @@ export class HomeComponent implements OnInit {
   getAllReviews: any;
   isLoading: boolean = true;
   imageUrl = environment.imageurl;
+  allCities: any;
+  cityValue: any = "JAIPUR";
+  locationsByCity: any;
+  selectedLocation: any;
 
-  constructor(private service: AppserviceService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private service: AppserviceService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.route.data.subscribe((data:any) => {
+    this.route.data.subscribe((data: any) => {
       if (data.title) {
         this.service.setTitle(data.title);
         this.service.setMetaTags({
@@ -52,6 +57,7 @@ export class HomeComponent implements OnInit {
     this.getAllSlider();
     this.getAllProjects();
     this.getReviews();
+    this.getAllCity();
     window.scroll(0, 0);
 
   }
@@ -67,30 +73,67 @@ export class HomeComponent implements OnInit {
         setTimeout(() => {
           this.isLoading = false;
 
-          
-    $('.home-slider').slick({
-      centerMode: false,
-      slidesToShow: 1,
-      responsive: [{
-        breakpoint: 768,
-        settings: {
-          arrows: true,
-          slidesToShow: 1
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          slidesToShow: 1
-        }
-      }
-      ]
-    });
+
+          $('.home-slider').slick({
+            centerMode: false,
+            slidesToShow: 1,
+            responsive: [{
+              breakpoint: 768,
+              settings: {
+                arrows: true,
+                slidesToShow: 1
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                arrows: false,
+                slidesToShow: 1
+              }
+            }
+            ]
+          });
         }, 1000);
       }
     }, error => {
       this.isLoading = false;
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
+    })
+  }
+
+  getAllCity() {
+    this.service.get("getAllCity").subscribe((res: any) => {
+      if (res.success == true) {
+        this.allCities = res.data;
+      }
+    }, error => {
+      this.isLoading = false;
+      Swal.fire({
+        title: 'Error',
+        text: error.message,
+        icon: 'error',
+      });
+    })
+  }
+
+  getCityValue(event:any){
+    this.cityValue = event.target.value;
+    this.selectedLocation = null;
+    this.getLocationByCity();
+  }
+
+  getLocationByCity(){
+    this.service.get("getLocationByCity/"+this.cityValue).subscribe((data: any) => {
+      if (data.success == true) {
+        this.locationsByCity = data.data;
+        console.log(this.locationsByCity);
+        
+      }
+    }, error => {
       Swal.fire({
         title: 'Error',
         text: error.message,
@@ -132,19 +175,22 @@ export class HomeComponent implements OnInit {
       });
     })
   }
-
-  getProjectByCity(event: any) {
-    this.service.get("getPropertyByCity/" + event.target.value).subscribe((data: any) => {
-      if (data.success == true) {
-        this.router.navigateByUrl("/listing/city/" + event.target.value);
-      }
-    }, error => {
-      Swal.fire({
-        title: 'Error',
-        text: error.message,
-        icon: 'error',
-      });
-    })
+  getProjectByCity() {
+    if (this.selectedLocation == null) {
+      this.service.get("getPropertyByCity/" + this.cityValue).subscribe((data: any) => {
+        if (data.success == true) {
+          this.router.navigateByUrl("/listing/city/" + this.cityValue);
+        }
+      }, error => {
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+      })
+    } else if(this.cityValue && this.selectedLocation) {
+      this.router.navigateByUrl("/listing/"+this.cityValue+"/"+this.selectedLocation);
+    }
   }
 
   getReviews() {

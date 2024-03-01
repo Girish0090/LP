@@ -67,32 +67,47 @@
             <h1 class="big-header-capt mb-0 text-light">Search Your Dream Home</h1>
             <p class="text-center text-light">Find new & featured property located in your local city.</p>
             <div class="row justify-content-center mt-5">
-                <div class="col-xl-4 col-lg-4 col-md-12">
+                <div class="col-xl-7 col-lg-7 col-md-12">
                     <div class="full_search_box nexio_search lightanic_search hero_search-radius modern">
                         <div class="search_hero_wrapping">
-    
+
                             <div class="row">
                                 <div class="col-lg-12 col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label>City*</label>
-                                        <div class="input-with-icon">
-                                            <select style="padding: 0px;" (change)="getProjectByCity($event)"
-                                                class="form-control">
-                                                <option value="" selected disabled>Select City</option>
-                                                <option value="Jaipur">Jaipur</option>
-                                                <option value="Ajmer">Ajmer</option>
-                                                <option value="Mumbai">Mumbai</option>
-                                                <option value="Kota">Kota</option>
-                                                <option value="Indore">Indore</option>
-                                            </select>
+                                    <div class="d-flex form-group" style="border: none !important;">
+                                        <div class="w-100">
+                                            <label>City*</label>
+                                            <div class="input-with-icon">
+                                                <select (change)="getCityValue($event)" style="padding: 0px;"
+                                                    class="form-control">
+                                                    <option value="" selected disabled>Select City</option>
+                                                    <option value="{{city}}" *ngFor="let city of allCities">{{city}}
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
+                                        <div class="w-100">
+                                            <label>Location*</label>
+                                            <div class="input-with-icon">
+                                                <ng-select notFoundText="There is no location" [items]="locationsByCity"
+                                                    bindLabel="name" placeholder="Select Location"
+                                                    [(ngModel)]="selectedLocation"
+                                                    [ngModelOptions]="{standalone: true}"></ng-select>
+                                            </div>
+                                        </div>
+                                        <button (click)="getProjectByCity()"
+                                            class="search flex-shrink-1 btn my-2 my-sm-0" type="submit"
+                                            style="margin-top: 10px !important;margin-left: 10px !important; height: 40px !important;">
+                                            <span style="width: 80px;">
+                                                <i class="fa-solid fa-magnifying-glass"></i> &nbsp; Search
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-    
+
                         </div>
                     </div>
-    
+
                 </div>
             </div>
         </div>

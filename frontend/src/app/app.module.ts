@@ -21,6 +21,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CareerComponent } from './career/career.component';
 import { AgentListingComponent } from './agent-listing/agent-listing.component';
 import { AgentDetailComponent } from './agent-detail/agent-detail.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { AgentDetailComponent } from './agent-detail/agent-detail.component';
     NgxUiLoaderHttpModule.forRoot({
       showForeground:true
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,12 +21,14 @@ export class ListingComponent implements OnInit {
   selectedMin: any;
   selectedMax: any;
   City: any;
+  location:any;
   submitForm: boolean = false;
 
   constructor(private service: AppserviceService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) {
     this.route.paramMap.subscribe((params: any) => {
       this.Category = params.get('type');
       this.City = params.get('city');
+      this.location = params.get('location');
       if (this.Category) {
         this.getProjectByCat();
       } else if (this.City) {
@@ -204,21 +206,39 @@ export class ListingComponent implements OnInit {
 
   getProjectByCity() {
     this.isLoading = true;
-    this.service.get("getPropertyByCity/" + this.City).subscribe((res: any) => {
-      if (res.success == true) {
-        this.projectList = res.data;
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 1000);
-      }
-    }, error => {
-      this.isLoading = false;
-      Swal.fire({
-        title: 'Error',
-        text: error.message,
-        icon: 'error',
-      });
-    })
+    if(!this.location){
+      this.service.get("getPropertyByCity/" + this.City).subscribe((res: any) => {
+        if (res.success == true) {
+          this.projectList = res.data;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
+        }
+      }, error => {
+        this.isLoading = false;
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+      })
+    }else{
+       this.service.get("getPropertiesByLocation/"+this.City+"/"+this.location).subscribe((data: any) => {
+        if (data.success == true) {
+          console.log(data)
+          this.projectList = data.data;
+          setTimeout(() => {
+            this.isLoading = false;
+          }, 1000);
+        }
+      }, error => {
+        Swal.fire({
+          title: 'Error',
+          text: error.message,
+          icon: 'error',
+        });
+      })
+    }
   }
 
   contactProject = this.fb.group({

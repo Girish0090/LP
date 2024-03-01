@@ -81,3 +81,13 @@
         width: 100% !important;
     }
 }
+
+.search {
+    background-color: #a70a29;
+    color: white;
+    border: none;
+}
+
+::ng-deep .ng-select-container {
+    border: none !important;
+}

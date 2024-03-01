@@ -80,7 +80,6 @@ const routes: Routes = [
     data: {
       title: 'Listing Detail - Explore Details of the Property with Laxmiprabhu',
       description: 'Embark on a detailed exploration of a specific property with Laxmiprabhu. Uncover features, specifications, and precise location details. This comprehensive insight empowers you to make well-informed decisions, ensuring the property aligns perfectly with your unique preferences, aspirations, and future plans.'
-
     }
   },
   {
@@ -95,6 +94,13 @@ const routes: Routes = [
     data: {
       title: 'Project Detail - Explore This Property Project with Laxmiprabhu',
       description: "Delve into the unique details of a specific property project with Laxmiprabhu. Understand the project's exclusive features, premium amenities, and prime location. Our comprehensive insights empower you to make well-informed decisions, ensuring the project perfectly aligns with your preferences and lifestyle."
+    }
+  },
+  {
+    path: 'listing/:city/:location', component: ListingComponent,
+    data: {
+      title: 'Listing Detail - Explore Details of the Property with Laxmiprabhu',
+      description: 'Embark on a detailed exploration of a specific property with Laxmiprabhu. Uncover features, specifications, and precise location details. This comprehensive insight empowers you to make well-informed decisions, ensuring the property aligns perfectly with your unique preferences, aspirations, and future plans.'
     }
   },
   {
