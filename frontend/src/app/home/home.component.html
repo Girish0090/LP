@@ -72,9 +72,9 @@
                         <div class="search_hero_wrapping">
 
                             <div class="row">
-                                <div class="col-lg-12 col-md-3 col-sm-12">
-                                    <div class="d-flex form-group" style="border: none !important;">
-                                        <div class="w-100">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="row form-group" style="border: none !important;">
+                                        <div class="col-lg-4 col-sm-12">
                                             <label>City*</label>
                                             <div class="input-with-icon">
                                                 <select (change)="getCityValue($event)" style="padding: 0px;"
@@ -85,7 +85,8 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="w-100">
+                                        <hr class="d-sm-block d-md-block d-lg-none d-xl-none">
+                                        <div class="col-lg-5 col-sm-12">
                                             <label>Location*</label>
                                             <div class="input-with-icon">
                                                 <ng-select notFoundText="There is no location" [items]="locationsByCity"
@@ -94,13 +95,43 @@
                                                     [ngModelOptions]="{standalone: true}"></ng-select>
                                             </div>
                                         </div>
-                                        <button (click)="getProjectByCity()"
+                                        <hr class="d-sm-block d-md-block d-lg-none d-xl-none">
+                                        <div class="col-lg-3 col-sm-12">
+                                            <button (click)="getProjectByCity()"
+                                            class="search flex-shrink-1 btn my-2 my-sm-0" type="submit"
+                                            style="margin-top: 10px !important; height: 40px !important; width: 100%;">
+                                            <span style="width: 80px;">
+                                                <i class="fa-solid fa-magnifying-glass"></i> &nbsp; Search
+                                            </span>
+                                        </button>
+                                        </div>
+                                        <!-- <div class="w-100">
+                                            <label>City*</label>
+                                            <div class="input-with-icon">
+                                                <select (change)="getCityValue($event)" style="padding: 0px;"
+                                                    class="form-control">
+                                                    <option value="" selected disabled>Select City</option>
+                                                    <option value="{{city}}" *ngFor="let city of allCities">{{city}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="w-100">
+                                            <label>Location*</label>
+                                            <div class="input-with-icon">
+                                                <ng-select notFoundText="There is no location" [items]="locationsByCity"
+                                                    bindLabel="name" placeholder="Select Location"
+                                                    [(ngModel)]="selectedLocation"
+                                                    [ngModelOptions]="{standalone: true}"></ng-select>
+                                            </div>
+                                        </div> -->
+                                        <!-- <button (click)="getProjectByCity()"
                                             class="search flex-shrink-1 btn my-2 my-sm-0" type="submit"
                                             style="margin-top: 10px !important;margin-left: 10px !important; height: 40px !important;">
                                             <span style="width: 80px;">
                                                 <i class="fa-solid fa-magnifying-glass"></i> &nbsp; Search
                                             </span>
-                                        </button>
+                                        </button> -->
                                     </div>
                                 </div>
                             </div>

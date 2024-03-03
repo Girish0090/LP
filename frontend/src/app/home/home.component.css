@@ -101,7 +101,7 @@
 }
 
 ::ng-deep .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
-    white-space: normal !important;
+    white-space: nowrap !important;
 }
 
 /* Add this CSS to your global styles or component-specific styles */
